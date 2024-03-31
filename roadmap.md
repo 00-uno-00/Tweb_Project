@@ -1,0 +1,3 @@
+- [ ] User Journeys based on level of experience
+- [ ] barebone structure of the site
+- [ ] initial sql schema
