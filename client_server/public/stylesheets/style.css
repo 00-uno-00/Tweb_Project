@@ -1,0 +1,276 @@
+.login,
+.login * {
+  box-sizing: border-box;
+}
+.login {
+  height: 1024px;
+  position: relative;
+}
+.login2 {
+  background: #ffffff;
+  width: 1440px;
+  height: 1024px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  overflow: hidden;
+}
+.img {
+  position: absolute;
+  inset: 0;
+}
+.image-1 {
+  width: 1440px;
+  height: 1024px;
+  position: absolute;
+  left: 775px;
+  top: 0px;
+  object-fit: cover;
+}
+.image-2 {
+  width: 1440px;
+  height: 1024px;
+  position: absolute;
+  left: -665px;
+  top: 0px;
+  object-fit: cover;
+}
+.rectangle-1 {
+  background: #ffffff;
+  border-radius: 35px;
+  width: 991px;
+  height: 1024px;
+  position: absolute;
+  left: 479px;
+  top: 0px;
+}
+.accedi {
+  color: #000000;
+  text-align: left;
+  font-family: "Sen-Bold", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 916px;
+  top: 88px;
+}
+.frame-2 {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  left: 930px;
+  top: 171px;
+}
+.google-svg {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  overflow: visible;
+}
+.facebook-svg {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.g-10 {
+  height: auto;
+  position: absolute;
+  left: 0px;
+  top: 40px;
+  transform: translate(0px, -40px);
+  overflow: visible;
+}
+.password-dimenticata {
+  color: #000000;
+  text-align: left;
+  font-family: "OpenSans-Bold", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  position: absolute;
+  left: 759px;
+  top: 726px;
+}
+.group-24 {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-5 {
+  background: #000000;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 2px;
+  width: 430px;
+  height: 60px;
+  position: absolute;
+  left: 759px;
+  top: 588px;
+}
+.accedi2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "OpenSans-Bold", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  position: absolute;
+  left: 935px;
+  top: calc(50% - -89px);
+}
+.group-25 {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-52 {
+  background: #666666;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 2px;
+  width: 430px;
+  height: 60px;
+  position: absolute;
+  left: 759px;
+  top: 666px;
+}
+.registrati {
+  color: #ffffff;
+  text-align: left;
+  font-family: "OpenSans-Bold", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  position: absolute;
+  left: 915px;
+  top: calc(50% - -167px);
+}
+.component-2 {
+  width: 430px;
+  height: 60px;
+  position: absolute;
+  left: 764px;
+  top: 498px;
+}
+.rectangle-2 {
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 2px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+}
+.name {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-6 {
+  background: #ffffff;
+  width: 31.63%;
+  height: 61.67%;
+  position: absolute;
+  right: 60%;
+  left: 8.37%;
+  bottom: 18.33%;
+  top: 20%;
+}
+.password {
+  color: #000000;
+  text-align: left;
+  font-family: "OpenSans-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  right: 63.02%;
+  left: 11.63%;
+  width: 25.35%;
+  bottom: 18.33%;
+  top: 26.67%;
+  height: 55%;
+}
+.component-3 {
+  width: 430px;
+  height: 60px;
+  position: absolute;
+  left: 764px;
+  top: 408px;
+}
+.rectangle-62 {
+  background: #ffffff;
+  width: 20.47%;
+  height: 61.67%;
+  position: absolute;
+  right: 70.47%;
+  left: 9.07%;
+  bottom: 18.33%;
+  top: 20%;
+}
+.e-mail {
+  color: #000000;
+  text-align: left;
+  font-family: "OpenSans-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  right: 71.86%;
+  left: 11.16%;
+  width: 16.98%;
+  bottom: 18.33%;
+  top: 26.67%;
+  height: 55%;
+}
+.eye {
+  width: 23px;
+  height: 25px;
+  position: absolute;
+  left: 1151px;
+  top: 516px;
+}
+.eye-1 {
+  width: 100%;
+  height: 97.61%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 2.39%;
+  top: 0%;
+  object-fit: cover;
+}
+.oppure {
+  color: #000000;
+  text-align: left;
+  font-family: "Sen-Regular", sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 909px;
+  top: 232px;
+}
+.line-1 {
+  border-style: solid;
+  border-color: #000000;
+  border-width: 2px 0 0 0;
+  width: 21px;
+  height: 0px;
+  position: absolute;
+  left: 880px;
+  top: 256px;
+}
+.line-2 {
+  border-style: solid;
+  border-color: #000000;
+  border-width: 2px 0 0 0;
+  width: 21px;
+  height: 0px;
+  position: absolute;
+  left: 1057px;
+  top: 256px;
+}
