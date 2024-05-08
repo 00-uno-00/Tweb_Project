@@ -95,6 +95,8 @@
   position: absolute;
   left: 759px;
   top: 726px;
+  border: none;
+  background-color: transparent;
 }
 .group-24 {
   position: absolute;
@@ -121,6 +123,8 @@
   position: absolute;
   left: 935px;
   top: calc(50% - -89px);
+  background-color: transparent;
+  border: none;
 }
 .group-25 {
   position: absolute;
@@ -147,6 +151,8 @@
   position: absolute;
   left: 915px;
   top: calc(50% - -167px);
+  background-color: transparent;
+  border: none;
 }
 .component-2 {
   width: 430px;
@@ -154,6 +160,8 @@
   position: absolute;
   left: 764px;
   top: 498px;
+  border: 3px solid #000000;
+  border-radius: 10px;
 }
 .rectangle-2 {
   border-radius: 10px;
@@ -183,25 +191,31 @@
   top: 20%;
 }
 .password {
+  width: calc(100% - 6px);/*serve a sottrae il doppio del valore del bordo dal 100% per tenere conto del bordo */
+  height: calc(100% - 6px);
   color: #000000;
   text-align: left;
   font-family: "OpenSans-Regular", sans-serif;
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 400;
   position: absolute;
-  right: 63.02%;
-  left: 11.63%;
-  width: 25.35%;
-  bottom: 18.33%;
-  top: 26.67%;
-  height: 55%;
+  border: none;
+  outline: none; /* Rimuove il bordo attorno al campo quando viene selezionato */
+  padding: 0 10px; /* Aggiunge spazio tra il testo e il bordo */
+  box-sizing: border-box; /* Fa in modo che il padding non aumenti la dimensione del campo */
+  background-color: transparent;
+  top: 2.5px;
+  left: 2.5px;
 }
 .component-3 {
   width: 430px;
   height: 60px;
-  position: absolute;
+  position: relative;
   left: 764px;
   top: 408px;
+  border: 3px solid #000000;
+  border-radius: 10px;
+  overflow: hidden;
 }
 .rectangle-62 {
   background: #ffffff;
@@ -214,19 +228,21 @@
   top: 20%;
 }
 .e-mail {
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
   color: #000000;
   text-align: left;
   font-family: "OpenSans-Regular", sans-serif;
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 400;
   position: absolute;
-  right: 71.86%;
-  left: 11.16%;
-  width: 16.98%;
-  bottom: 18.33%;
-  top: 26.67%;
-  height: 55%;
-}
+  border: none;
+  outline: none;
+  padding: 0 10px;
+  box-sizing: border-box;
+  background-color: transparent;
+  top: 2.5px;
+  left: 2.5px;}
 .eye {
   width: 23px;
   height: 25px;
