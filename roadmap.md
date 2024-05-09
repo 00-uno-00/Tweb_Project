@@ -1,10 +1,10 @@
 TODOs for the project
 
 - [ ] Trasform from figma to html/css
-  - [ ] home page
+  - [ ] home page(edo)
   - [ ] contact page
-  - [ ] teams page
-  - [ ] team page
+  - [ ] teams page(edo)
+  - [ ] team page(edo)
   - [ ] players
   - [ ] player
   - [ ] chat room

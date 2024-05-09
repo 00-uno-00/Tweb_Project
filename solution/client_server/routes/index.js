@@ -6,4 +6,10 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/teams', function(req, res) {
+  championship = req.body.championship;
+  // Get teams from database
+  res.json(teams);
+})
+
 module.exports = router;

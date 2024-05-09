@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  --font-open-sans: "Open Sans";
+  --font-inter: Inter;
+  --font-lexend-zetta: "Lexend Zetta";
+  --font-size-13xl: 32px;
+  --font-size-lgi: 19px;
+  --font-size-7xl: 26px;
+  --font-size-5xl: 24px;
+  --font-size-base: 16px;
+  --font-size-21xl: 40px;
+  --font-size-6xl: 25px;
+  --font-size-xl: 20px;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-gray-100: #fafafa;
+  --color-darkolivegreen-100: rgba(64, 110, 77, 0.55);
+  --color-darkolivegreen-200: rgba(25, 73, 38, 0.55);
+  --color-darkolivegreen-300: rgba(25, 73, 38, 0.75);
+  --gap-mini: 15px;
+  --gap-xl: 20px;
+  --gap-3xl-8: 22.8px;
+  --gap-12xl-5: 31.5px;
+  --gap-base: 16px;
+  --padding-5xl: 24px;
+  --padding-xl: 20px;
+  --padding-2xl: 21px;
+  --padding-3xl: 22px;
+  --padding-11xl: 30px;
+  --padding-12xl-5: 31.5px;
+  --padding-11xs: 2px;
+  --padding-smi: 13px;
+  --padding-33xl: 52px;
+  --padding-77xl: 96px;
+  --padding-10xs: 3px;
+  --br-xl: 20px;
+}
+
