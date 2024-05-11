@@ -1,0 +1,342 @@
+:root{
+    --main-color: #FAFAFA;
+    --font-size-medium: 16px;
+    --br-3xs: 10px;
+    --sidebars-color: #DCDCDC;
+    --br-1px-color: #cccccc;
+    --font-size-lg: 18px;
+}
+.write-message {
+    position: absolute;
+    top: 11px;
+    left: 2px;
+}
+
+.type-message {
+    position: absolute;
+    top: 20px;
+    left: 22px;
+    background-color: var(--main-color);
+    width: 175px;
+    height: 45px;
+    cursor: text;
+
+    border: none;
+}
+
+.send-icon,
+.type-message,
+.message-input {
+    position: absolute;
+    /*overflow: hidden;*/
+}
+
+.send-icon {
+    top: 30px;
+    left: 933px;
+    width: 26px;
+    height: 26px;
+    object-fit: cover;
+}
+
+.message-input {
+    position: absolute; /* o position: absolute; */
+    bottom: 20px; /* Posiziona l'elemento all'estremità inferiore della finestra del browser */
+    left: 50px; /* o altra posizione laterale desiderata */
+    border-radius: var(--br-3xs);
+    background-color: var(--main-color);
+    width: 980px; /* Rende l'elemento larghezza piena */
+    height: 86px;
+    box-sizing: border-box; /* Rende l'elemento dimensioni totali */
+}
+
+.choose-team-text {
+    position: absolute;
+    top: calc(50% - 26.5px);
+    left: calc(50% - 284.5px);
+    font-size: var(--font-size-21xl);
+    color: var(--color-black);
+    opacity: 0.5;
+}
+
+.main-chat {
+    position: absolute;
+    top: 274px;
+    left: 344px;
+    border-radius: var(--br-xl);
+    background-color: var(--sidebars-color);
+    width: 1089px;
+    height: 1005px;
+    overflow: hidden;
+}
+
+.enter-chat {
+    position: absolute;
+    top: 919px;
+    left: 14px;
+    border-radius: var(--br-3xs);
+    background-color: #12d11a;
+    width: 299px;
+    height: 63px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: var(--font-size-5xl);
+    color: var(--color-gray-100);
+    font-family: var(--font-open-sans);
+}
+
+.scegli-un-campionato {
+    flex: 1;
+    position: relative;
+    line-height: 25.2px;
+    font-weight: 500;
+}
+
+.league-dropdown {
+    width: 9px;
+    position: relative;
+    height: 5.3px;
+}
+
+.team-dropdown-child,
+.choose-legue {
+    position: absolute;
+    border-radius: var(--br-3xs);
+    border: 1px solid var(--br-1px-color);
+    box-sizing: border-box;
+    width: 280px;
+}
+
+.choose-legue {
+    top: 10px;
+    left: 23px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 16px 24px;
+    gap: 8px;
+}
+
+.team-dropdown-child {
+    top: 0;
+    left: 0;
+    background-color: var(--sidebars-color);
+    height: 60px;
+}
+
+.team-dropdown-icon {
+    position: absolute;
+    top: 26.9px;
+    left: 245.3px;
+    width: 9px;
+    height: 5.3px;
+}
+
+
+.choose-team-text {
+    position: absolute;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.dd-squadra,
+.choose-team {
+    position: absolute;
+    bottom: 78px;
+}
+
+.dd-squadra {
+    left: 10px;
+    border-radius: var(--br-3xs);
+    width: 279px;
+    height: 60px;
+}
+
+.choose-team {
+    height: 100%;
+    width: 100%;
+    right: 50px;
+    left: 0;
+    background-color: var(--sidebars-color);
+    overflow-y: auto;
+}
+
+.team-dropdown {
+    position: absolute;
+    top: 78px;
+    left: 12px;
+    width: 301px;
+    height: 60px;
+    display: none;
+}
+
+.sidebar1 {
+    position: absolute;
+    top: 272px;
+    left: 6px;
+    border-radius: var(--br-xl);
+    background: linear-gradient(#d9d9d9, #d9d9d9),
+    linear-gradient(#9747ff, #9747ff), #9747ff;
+    width: 326px;
+    height: 1007px;
+    overflow: hidden;
+    text-align: left;
+    font-size: var(--font-size-lg);
+    color: var(--color-black);
+    font-family: var(--font-inter);
+}
+
+.logo {
+    position: absolute;
+    height: 100%;
+    width: 8.4%;
+    right: 72.99%;
+    top: 18px;
+    left: 200px;
+    /*object-fit: cover;*/
+}
+
+.login{
+    position: absolute;
+    top: 20px;
+    right: 8px;
+    font-size: var(--font-size-5xl);
+}
+
+.user-icon {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    right: 120px;
+    top: 20px;
+    /*top: 0;
+    right: 64.23%;
+    bottom: 0;
+    left: 0;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.login-section {
+    position: absolute;
+    height: 42.72%;
+    width: 8.54%;
+    top: 14.56%;
+    right: 2.99%;
+    bottom: 42.72%;
+    left: 88.47%;*/
+}
+
+.calcio-trends {
+    position: absolute;
+    top: 23.3%;
+    left: 3.75%;
+    font-size: var(--font-size-21xl);
+    font-weight: 500;
+    white-space: pre-wrap;
+}
+
+/*.prima-navbar-child {
+    position: absolute;
+    height: 48.54%;
+    width: 0.07%;
+    top: 11.17%;
+    right: 12.26%;
+    bottom: 40.29%;
+    left: 87.67%;
+    border-right: 1px solid #5d5d5d;
+    box-sizing: border-box;
+}*/
+
+.search-icon {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+}
+
+.search-bar {
+    position: absolute;
+    top: 11px;
+    left: 1022px;
+    border-radius: var(--br-3xs);
+    background-color: rgba(200, 200, 200, 0.25);
+    width: 222px;
+    height: 48px;
+    overflow: hidden;
+}
+
+
+.nav-item {
+    position: relative;
+    height: 30px;
+    font-size: var(--font-size-5xl);
+    color: var(--color-white);
+    font-family: var(--font-open-sans);
+    background: transparent;
+}
+
+.home .nav-item{
+    width: 90px;
+}
+
+.teams .nav-item {
+    width: 90px;
+}
+
+.news .nav-item {
+    width: 133px;
+}
+
+.competizion.nav-item {
+    width: 250px;
+}
+.contact,
+.nav-item {
+    width: 173px;
+    position: relative;
+    height: 30px;
+}
+
+.navbar-right {
+    position: absolute;
+    top: 169px;
+    left: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 130px;
+}
+
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #0c0c0c;
+    width: 1440px;
+    height: 225px;
+    font-size: var(--font-size-6xl);
+    color: var(--color-white);
+}
+
+.chat-container {
+    width: 100%;
+    position: relative;
+    background-color: var(--color-white);
+    height: 1300px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 16px;
+    color: var(--br-1px-color);
+    font-family: var(--font-open-sans);
+}
