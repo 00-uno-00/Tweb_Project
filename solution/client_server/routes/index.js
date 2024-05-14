@@ -10,6 +10,7 @@ router.get('/teams', function(req, res) {
   championship = req.body.championship;
   // Get teams from database
   res.json(teams);
+  res.render('teams', { title: 'Teams' });
 })
 
 module.exports = router;
