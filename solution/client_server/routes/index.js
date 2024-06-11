@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var path = require('path');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -14,7 +15,7 @@ router.get('/contatti', function(req, res) {
 })
 
 router.get('/stats_match.html', function(req, res) {
-  res.sendFile(join(__dirname,'..public/stats_match.html'));
+  res.sendFile(join(__dirname,'..','public','stats_match.html'));
 })
 
 module.exports = router;
