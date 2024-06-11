@@ -3,14 +3,18 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('Home', { title: 'Express' });
+  res.render('index');
 });
 
-router.get('/teams', function(req, res) {
+router.get('/contatti', function(req, res) {
   championship = req.body.championship;
   // Get teams from database
   res.json(teams);
-  res.render('teams', { title: 'Teams' });
+  res.render('contatti', { title: 'Contatti' });
+})
+
+router.get('/stats_match.html', function(req, res) {
+  res.sendFile(join(__dirname,'..public/stats_match.html'));
 })
 
 module.exports = router;
