@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="bin/www" type="NodeJSConfigurationType" path-to-node="$APPLICATION_CONFIG_DIR$/node/node-v18.15.0-win-x64/node" path-to-js-file="bin/www" working-dir="$PROJECT_DIR$/solution/client_server">
+  <configuration default="false" name="bin/www" type="NodeJSConfigurationType" path-to-node="node" path-to-js-file="bin/www" working-dir="$PROJECT_DIR$/solution/client_server">
     <envs>
       <env name="DEBUG" value="express-server:*" />
     </envs>
