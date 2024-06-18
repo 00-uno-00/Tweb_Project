@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/mongo_express.iml" filepath="$PROJECT_DIR$/mongo_express.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/solution.iml" filepath="$PROJECT_DIR$/.idea/solution.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot_server/springboot_server.iml" filepath="$PROJECT_DIR$/springboot_server/springboot_server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/springboot_server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/springboot_server.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/springboot_server.test.iml" filepath="$PROJECT_DIR$/.idea/modules/springboot_server.test.iml" />
     </modules>
   </component>
 </project>

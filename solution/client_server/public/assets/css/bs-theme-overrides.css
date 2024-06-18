@@ -4,20 +4,15 @@
   --bs-primary-text-emphasis: #1B311E;
   --bs-primary-bg-subtle: #D9E4DB;
   --bs-primary-border-subtle: #B4CAB7;
-  --bs-success: #3af00d;
-  --bs-success-rgb: 58,240,13;
-  --bs-success-text-emphasis: #176005;
-  --bs-success-bg-subtle: #D8FCCF;
-  --bs-success-border-subtle: #B0F99E;
-  --bs-info: #198754;
-  --bs-info-rgb: 25,135,84;
-  --bs-info-text-emphasis: #0A3622;
-  --bs-info-bg-subtle: #D1E7DD;
-  --bs-info-border-subtle: #A3CFBB;
+  --bs-success: #198754;
+  --bs-success-rgb: 25,135,84;
+  --bs-success-text-emphasis: #0A3622;
+  --bs-success-bg-subtle: #D1E7DD;
+  --bs-success-border-subtle: #A3CFBB;
   --bs-link-color: #437a4a;
   --bs-link-color-rgb: 67,122,74;
-  --bs-link-hover-color: #0aca12;
-  --bs-link-hover-color-rgb: 10,202,18;
+  --bs-link-hover-color: #3c6d42;
+  --bs-link-hover-color-rgb: 60,109,66;
 }
 
 .btn-primary {
@@ -52,37 +47,6 @@
 }
 
 .btn-success {
-  --bs-btn-color: #000000;
-  --bs-btn-bg: #3af00d;
-  --bs-btn-border-color: #3af00d;
-  --bs-btn-hover-color: #000000;
-  --bs-btn-hover-bg: #58F231;
-  --bs-btn-hover-border-color: #4EF225;
-  --bs-btn-focus-shadow-rgb: 9,36,2;
-  --bs-btn-active-color: #000000;
-  --bs-btn-active-bg: #61F33D;
-  --bs-btn-active-border-color: #4EF225;
-  --bs-btn-disabled-color: #000000;
-  --bs-btn-disabled-bg: #3af00d;
-  --bs-btn-disabled-border-color: #3af00d;
-}
-
-.btn-outline-success {
-  --bs-btn-color: #3af00d;
-  --bs-btn-border-color: #3af00d;
-  --bs-btn-focus-shadow-rgb: 58,240,13;
-  --bs-btn-hover-color: #000000;
-  --bs-btn-hover-bg: #3af00d;
-  --bs-btn-hover-border-color: #3af00d;
-  --bs-btn-active-color: #000000;
-  --bs-btn-active-bg: #3af00d;
-  --bs-btn-active-border-color: #3af00d;
-  --bs-btn-disabled-color: #3af00d;
-  --bs-btn-disabled-bg: transparent;
-  --bs-btn-disabled-border-color: #3af00d;
-}
-
-.btn-info {
   --bs-btn-color: #fff;
   --bs-btn-bg: #198754;
   --bs-btn-border-color: #198754;
@@ -98,7 +62,7 @@
   --bs-btn-disabled-border-color: #198754;
 }
 
-.btn-outline-info {
+.btn-outline-success {
   --bs-btn-color: #198754;
   --bs-btn-border-color: #198754;
   --bs-btn-focus-shadow-rgb: 25,135,84;
