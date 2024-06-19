@@ -1,0 +1,97 @@
+Funzioni da creare
+
+N.B.: tutte le ricerche le fa edo e passa a mongoDB l id che restituisce le statistiche
+
+Home
+-MongoDb:
+1) 8 squadre più popolari (invento)
+2) 8 campionati più popolari
+
+-Postgres:
+1) Statistiche verdi
+
+
+Players:
+-mongoDB
+1) migliori giocatori (fuznione di edo)
+2) score giocatore singolo (fuznione edo - passa id)
+
+-postgres
+1) ricerca
+
+Teams:
+-MongoDb
+1) prime 15 squadre con più goal totali
+
+-postgres
+1) ricerca
+
+Matches
+ -MongoDB
+1) ultime 15 partite
+2) nome della squadra nella barra di ricerca (-> inserendo una squadra mi porta alle ultime 	15 partite di quella squadra contro)
+
+Championships
+-postgres: 
+1) campionati più popolari (i primi 15)
+
+
+
+Teams (singolo)
+-MongoDB
+1) ultime partite (filtrata per squadra)
+2) riga verde statistiche squadra
+3) ricerca della squadra avversaria (preimpostata la squadra della pagina su cui sei)
+
+-Postgres
+1) tutti i giocatori di una squadra
+
+Champions (singolo)
+-MongoDB
+1) milgiori squadre del campionato (score)
+2) ultime partite del campionato 
+3) statistiche campionato (riga verde)
+
+Partita singola
+1) Vedere che statistiche possono uscire
+2) Elenco di aizoni importanti in game_events che li filtra per partita e li restituiscw in ordine
+
+
+
+
+
+
+
+
+
+
+
+
+ORA
+
+pagina principale --> best players (cicia fa top 15)
+clicco su giocatore1	--> statistiche giocatore 1 (metà edo con dati statici nome, carriera ecc, metà alice con i gol, assist, minuti giocati, cartellini giocatore ecc...)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
