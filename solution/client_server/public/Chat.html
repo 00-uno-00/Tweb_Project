@@ -21,9 +21,12 @@
     <link rel="stylesheet" href="assets/css/Pretty-Search-Form-.css">
     <link rel="stylesheet" href="assets/css/Chat.css">
     <link rel="stylesheet" href="assets/css/Simple-Bootstrap-Chat.css">
+
+    <script src="assets/js/chat.js"> </script>
+    <script src= "socket.io/socket-io.js"> </script>
 </head>
 
-<body>
+<body onload="init()">
     <nav class="navbar navbar-expand-md bg-dark">
         <div class="container-fluid"><a class="navbar-brand me-auto d-md-flex align-items-md-center" href="index.html" style="padding-top: 0;background: #00000000;font-family: 'Lexend Zetta', sans-serif;font-size: 30px;color: rgb(255,255,255);margin-right: 0px;">Calcio <img class="img-fluid" src="assets/img/removebg-3@2x.png" style="max-width: 20%;">Trends</a><button data-bs-toggle="collapse" class="navbar-toggler ms-auto collapsed" data-bs-target="#primaryNavbar" style="filter: invert(100%);"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse text-nowrap justify-content-center" id="primaryNavbar" style="font-size: 20px;color: rgb(255,255,255);">
@@ -38,13 +41,13 @@
                 </ul>
             </div>
         </div>
-    </nav><!-- Start: Contact Details -->
-    <section class="position-relative py-4 py-xl-5">
+    </nav><!-- Start: chat Details -->
+    <section class="chat_form position-relative py-4 py-xl-5">
         <div class="container position-relative">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-6 col-lg-5 col-xl-4 col-xxl-9">
                     <div>
-                        <form class="p-3 p-xl-4" method="post">
+                        <form class="p-3 p-xl-4" onsubmit="return false;">
                             <h2 style="text-align: center;">Please select a championship and a team<br><br><br></h2>
                             <div class="mb-3"><select class="form-select">
                                     <optgroup label="This is a group">
@@ -60,7 +63,7 @@
                                         <option value="14">This is item 3</option>
                                     </optgroup>
                                 </select></div>
-                            <div><button class="btn btn-primary d-block w-100" type="submit">join the chat</button></div>
+                            <div><button class="btn btn-primary d-block w-100" type="submit" id='btn_join' onclick='connectToRoom()'>join the chat</button></div>
                         </form>
                     </div>
                 </div>
@@ -69,7 +72,7 @@
         <div class="row">
             <div class="col">
                 <!-- Start: Testimonials -->
-                <div class="container py-4 py-xl-5">
+                <div class="chat_form container py-4 py-xl-5">
                     <div class="row mb-5">
                         <div class="col-md-8 col-xl-6 text-center mx-auto">
                             <h2>Testimonials</h2>
@@ -114,7 +117,8 @@
             </div>
         </div>
     </section><!-- End: Contact Details -->
-    <div>
+    <div class="chat_interface">
+        <!-- Start: Box Message -->
         <div class="col">
             <div class="row">
                 <div class="col">
@@ -126,10 +130,11 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <!-- Start: Box Message -->
                     <div class="row px-3 py-2" style="background: rgba(52,58,64,0.2);">
                         <div class="col-9 col-sm-10 col-md-10 col-lg-10 col-xl-10" style="padding: 0;"><textarea class="w-100 h-100 border-0" style="border-radius: 25px;resize:none;"></textarea></div>
-                        <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 text-nowrap d-md-flex justify-content-md-end p-0"><button class="btn h-100 mx-auto" type="button" style="border-radius: 10px;"><i class="far fa-image"></i></button><button class="btn btn-light h-100 w-auto" type="button" style="border-radius: 10px;"><i class="fab fa-telegram-plane"></i></button></div>
+                        <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 text-nowrap d-md-flex justify-content-md-end p-0"><button class="btn h-100 mx-auto" type="button" style="border-radius: 10px;"><i class="far fa-image"></i></button>
+                            <button class="btn btn-light h-100 w-auto" type="button" style="border-radius: 10px;" id="chat_input" onclick="sendCha  tText()">
+                                <i class="fab fa-telegram-plane"></i></button></div>
                     </div><!-- End: Box Message -->
                 </div>
             </div>
