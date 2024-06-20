@@ -37,4 +37,15 @@ public class PlayerController {
     public ResponseEntity<Player> getPlayerByName(@PathVariable String name) {
         return new ResponseEntity<>(playerService.getPlayerByName(name), HttpStatus.OK);
     }
+
+    /**
+     * This method is used to get a player by its ID.
+     *
+     * @param id The ID of the player to retrieve.
+     * @return ResponseEntity containing the player and HTTP status.
+     */
+    @GetMapping("/getPlayerById/{id}")
+    public ResponseEntity<Player> getPlayerById(@PathVariable long id) {
+        return new ResponseEntity<>(playerService.getPlayerById(id), HttpStatus.OK);
+    }
 }

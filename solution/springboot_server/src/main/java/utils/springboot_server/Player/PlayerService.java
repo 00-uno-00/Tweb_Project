@@ -2,10 +2,9 @@ package utils.springboot_server.Player;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PlayerService {
@@ -22,5 +21,9 @@ public class PlayerService {
 
     public Player getPlayerByName(String name) {
         return playerRepository.findByName(name);
+    }
+
+    public Player getPlayerById(long id) {
+        return playerRepository.findById(id);
     }
 }

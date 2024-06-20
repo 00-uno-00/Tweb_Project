@@ -36,4 +36,12 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
     @Query(value = "SELECT * FROM players WHERE LOWER(name) = LOWER(:name)", nativeQuery = true)
     Player findByName(String name);
 
+    /**
+     * Retrieves a specific player by its ID.
+     *
+     * @param id The ID of the player to retrieve.
+     * @return the player with the given ID.
+     */
+    @Query(value = "SELECT * FROM players WHERE id = :id", nativeQuery = true)
+    Player findById(long id);
 }
