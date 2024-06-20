@@ -17,4 +17,4 @@ const GameEvents = new mongoose.Schema(
 
 GameEvents.set('toObject', {getters: true, virtuals: true});
 
-module.exports = mongoose.model('GameEvents', GameEvents);
+module.exports = mongoose.model('g_events', GameEvents);
