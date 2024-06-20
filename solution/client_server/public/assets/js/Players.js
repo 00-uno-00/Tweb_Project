@@ -1,8 +1,5 @@
-function populateTop15Scorers() {
-    axios.get("http://localhost:3001/top15goalscorers", {
-        headers: {'Content-Type': 'application/json'}
-    })
-        .then((response) => {
+async function populateTop15Scorers() {
+    const response = await axios.get('/Players/top15goalscorers')
             if (response.status === 200) {
                 const players = response.data;
                 if (players) {
@@ -35,8 +32,7 @@ function populateTop15Scorers() {
                     });
                 }
             }
-        })
-        .catch((error) => {
+        else {
             console.error('There was an error fetching the top 15 goal scorers!', error);
-        });
+        };
 }
