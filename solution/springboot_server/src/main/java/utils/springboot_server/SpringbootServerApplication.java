@@ -10,4 +10,15 @@ public class SpringbootServerApplication {
         SpringApplication.run(SpringbootServerApplication.class, args);
     }
 
+    //Allow cross-origin requests from localhost:3000 for testing purposes
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedOrigins("http://localhost:3000");
+            }
+        };
+    }
+
 }
