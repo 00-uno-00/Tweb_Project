@@ -3,6 +3,7 @@ var router = express.Router();
 
 const appearancesController = require('../controllers/appearances');
 const clubGamesController = require('../controllers/club_games');
+const gameEventsController = require('../controllers/games_events');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -133,5 +134,40 @@ router.get('/getmanager', (req, res) => {
         })
         .catch(error => {
             res.status(500).json({ error: 'An error occurred while fetching the manager name' });
+        });
+});
+
+/**
+ * GET /top15clubsbywins
+ * Restituisce le prime 15 squadre con il maggior numero di vittorie.
+ * @returns {Object} - JSON con l'ID del club e il totale delle vittorie
+ */
+router.get('/top15clubsbywins', (req, res) => {
+    clubGamesController.top15ClubsByWins()
+        .then(clubs => {
+            console.log(clubs); // Visualizza i risultati
+            res.status(200).json(clubs); // Restituisce i club con più vittorie come JSON
+        })
+        .catch(error => {
+            console.error('Error fetching top 15 clubs by wins:', error);
+            res.status(500).json({ error: 'An error occurred while fetching the top 15 clubs by wins' });
+        });
+});
+
+
+/**
+ * GET /top15goalscorers
+ * Restituisce i primi 15 giocatori con il maggior numero di gol.
+ * @returns {Object} - JSON con l'ID del giocatore e il totale dei gol
+ */
+router.get('/top15goalscorers', (req, res) => {
+    gameEventsController.top15GoalScorers()
+        .then(players => {
+            console.log(players); // Visualizza i risultati
+            res.status(200).json(players); // Restituisce i giocatori con più gol come JSON
+        })
+        .catch(error => {
+            console.error('Error fetching top 15 goal scorers:', error);
+            res.status(500).json({ error: 'An error occurred while fetching the top 15 goal scorers' });
         });
 });

@@ -14,7 +14,7 @@ function getAllAppearances() {
 }
 
 /**
- * Retrieves the top 20 players with the most red cards from the database.
+ * Retrieves the top 15 players with the most red cards from the database.
  * @returns {Promise} - A promise that resolves with the retrieved data or rejects with an error.
  */
 function mostRedCards() {
@@ -28,7 +28,7 @@ function mostRedCards() {
                 }
             },
             { $sort: { red_cards: -1 } },
-            { $limit: 20 }
+            { $limit: 15 }
         ])
             .then(results => {
                 resolve(results);
