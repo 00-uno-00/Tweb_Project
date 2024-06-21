@@ -44,4 +44,13 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
      */
     @Query(value = "SELECT * FROM players WHERE id = :id", nativeQuery = true)
     Player findById(long id);
+
+    /**
+     * Retrieves a list of players by their IDs.
+     *
+     * @param ids The list of player IDs to retrieve.
+     * @return A list of Player objects. Each Player object represents a player with the given ID.
+     */
+    @Query(value = "SELECT * FROM players WHERE id IN :ids", nativeQuery = true)
+    List<Player> findAllById(List<Long> ids);
 }
