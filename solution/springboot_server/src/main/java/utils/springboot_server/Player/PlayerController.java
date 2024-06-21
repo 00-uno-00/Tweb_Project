@@ -5,10 +5,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.Console;
 import java.util.List;
 
 @RestController
-@RequestMapping("/player")
+@RequestMapping("/Player")
 public class PlayerController {
     private final PlayerService playerService;
 
@@ -47,5 +48,10 @@ public class PlayerController {
     @GetMapping("/getPlayerById/{id}")
     public ResponseEntity<Player> getPlayerById(@PathVariable long id) {
         return new ResponseEntity<>(playerService.getPlayerById(id), HttpStatus.OK);
+    }
+
+    @PostMapping("/addPlayers")
+    public ResponseEntity<List<Player>> addPlayers(@RequestBody List<Player> players) {
+        return new ResponseEntity<>(playerService.savePlayers(players), HttpStatus.OK);
     }
 }

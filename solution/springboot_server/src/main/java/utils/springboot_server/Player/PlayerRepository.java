@@ -42,7 +42,7 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
      * @param id The ID of the player to retrieve.
      * @return the player with the given ID.
      */
-    @Query(value = "SELECT * FROM players WHERE id = :id", nativeQuery = true)
+    @Query(value = "SELECT * FROM players WHERE player_id = :id", nativeQuery = true)
     Player findById(long id);
 
     /**
@@ -53,4 +53,6 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
      */
     @Query(value = "SELECT * FROM players WHERE id IN :ids", nativeQuery = true)
     List<Player> findAllById(List<Long> ids);
+
+
 }
