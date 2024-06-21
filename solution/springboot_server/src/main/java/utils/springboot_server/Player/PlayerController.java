@@ -48,9 +48,4 @@ public class PlayerController {
     public ResponseEntity<Player> getPlayerById(@PathVariable long id) {
         return new ResponseEntity<>(playerService.getPlayerById(id), HttpStatus.OK);
     }
-
-    @PostMapping("/getPlayersByIds")
-    public ResponseEntity<List<Player>> getPlayersByIds(@RequestBody List<Long> ids) {
-        return new ResponseEntity<>(playerService.getPlayersByIds(ids), HttpStatus.OK);
-    }
 }

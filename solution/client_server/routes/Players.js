@@ -14,4 +14,17 @@ router.get('/top15goalscorers', async (req, res) => {
     }
 });
 
+
+router.get('/:id', async (req, res) => {
+    const playerId = req.params.id;
+
+    try{
+        const response = await axios.get(`http://localhost:8080/getPlayerById/${playerId}`);
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error fetching player: ', error);
+        res.status(500).send('Internal server error');
+    }
+});
+
 module.exports = router;
