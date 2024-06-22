@@ -1,9 +1,9 @@
-var Appearance = require('../models/appearances');
+var Appearances = require('../models/appearances');
 
 //prova
 function getAllAppearances() {
     return new Promise((resolve, reject) => {
-        Appearance.find({appearance_id:'2233748_79232'})
+        Appearances.find({appearance_id:'2233748_79232'})
             .then(results => {
                 resolve(results);
             })
@@ -19,7 +19,7 @@ function getAllAppearances() {
  */
 function mostRedCards() {
     return new Promise((resolve, reject) => {
-        Appearance.aggregate([
+        Appearances.aggregate([
             {
                 $group: {
                     _id: "$player_id",
@@ -45,7 +45,7 @@ function mostRedCards() {
  */
 function mostYellowCards() {
     return new Promise((resolve, reject) => {
-        Appearance.aggregate([
+        Appearances.aggregate([
             {
                 $group: {
                     _id: "$player_id",
@@ -72,7 +72,7 @@ function mostYellowCards() {
  */
 function totalMinutesPlayed(playerId) {
     return new Promise((resolve, reject) => {
-        Appearance.aggregate([
+        Appearances.aggregate([
             {
                 $match: { player_id: playerId }
             },
@@ -103,7 +103,7 @@ function totalMinutesPlayed(playerId) {
  */
 function totalGoalsScored(playerId) {
     return new Promise((resolve, reject) => {
-        Appearance.aggregate([
+        Appearances.aggregate([
             {
                 $match: { player_id: playerId }
             },
@@ -134,7 +134,7 @@ function totalGoalsScored(playerId) {
  */
 function totalAssists(playerId) {
     return new Promise((resolve, reject) => {
-        Appearance.aggregate([
+        Appearances.aggregate([
             {
                 $match: { player_id: playerId }
             },

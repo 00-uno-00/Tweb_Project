@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const playersRouter = require('./routes/Players');
+const specificPlayerRouter = require('./routes/specific_Player');
 
 var app = express();
 
@@ -21,8 +22,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/index', indexRouter);
 app.use('/users', usersRouter);
 app.use('/players', playersRouter); // Add the players router to the middleware chain
+app.use('/specific_Player', specificPlayerRouter); // Add the specificPlayer router to the middleware chain
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

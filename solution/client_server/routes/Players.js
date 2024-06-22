@@ -21,12 +21,14 @@ router.get('/:id', async (req, res) => {
     try{
         const response = await axios.get(`http://localhost:8080/Player/getPlayerById/${playerId}`);
         res.json(response.data);
-        console.log(res);
     } catch (error) {
         console.error('Error fetching player: ', error);
         res.status(500).send('Internal server error');
-        console.log(res)
     }
 });
+
+router.post('/specific_Player/:id', function (req, res) {
+    res.render('specific_Player', {id: req.params.id})
+})
 
 module.exports = router;

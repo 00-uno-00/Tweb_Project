@@ -1,4 +1,3 @@
-const axios = require('axios');
 var express = require('express');
 const {join} = require("path");
 var router = express.Router();
@@ -10,6 +9,10 @@ router.get('/', function(req, res, next) {
 
 router.get('/Players', function (req, res) {
   res.render('Players')
+})
+
+router.get('/specific_Player/:id', function (req, res) {
+    res.render('specific_Player', {id: req.params.id})
 })
 
 router.get('/Teams', function (req, res) {

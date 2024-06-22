@@ -46,7 +46,6 @@ function top15GoalScorers() {
 }
 
 
-
 module.exports = {
     totalGoalsByPlayer,
     top15GoalScorers
