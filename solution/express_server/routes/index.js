@@ -173,7 +173,6 @@ router.get('/top15goalscorers', (req, res) => {
         });
 });
 
-<<<<<<< Updated upstream
 router.get('/redCardsAPlayer', (req, res) => {
     appearancesController.redCardsAPlayer(38253)
         .then(players => {
@@ -194,9 +193,9 @@ router.get('/yellowCardsAPlayer', (req, res) => {
         })
         .catch(error => {
             console.error('Error fetching top 15 goal scorers:', error);
-            res.status(500).json({ error: 'An error occurred while fetching the top 15 goal scorers' });
-=======
-/////////// file games ////////////////
+            res.status(500).json({error: 'An error occurred while fetching the top 15 goal scorers'});
+        });
+});
 /**
  * GET /last15games
  * Restituisce le ultime 15 partite giocate rispetto alla data odierna.
@@ -228,8 +227,8 @@ router.get('/teamscores/:gamesID', (req, res) => {
         .catch(error => {
             console.error('Error fetching team scores:', error);
             res.status(500).json({ error: 'An error occurred while fetching the team scores' });
->>>>>>> Stashed changes
         });
 });
+
 
 module.exports = router;
