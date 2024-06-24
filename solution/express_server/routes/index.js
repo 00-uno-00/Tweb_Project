@@ -4,6 +4,7 @@ var router = express.Router();
 const appearancesController = require('../controllers/appearances');
 const clubGamesController = require('../controllers/club_games');
 const gameEventsController = require('../controllers/games_events');
+const gamesController = require('../controllers/games');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -172,6 +173,7 @@ router.get('/top15goalscorers', (req, res) => {
         });
 });
 
+<<<<<<< Updated upstream
 router.get('/redCardsAPlayer', (req, res) => {
     appearancesController.redCardsAPlayer(38253)
         .then(players => {
@@ -193,6 +195,40 @@ router.get('/yellowCardsAPlayer', (req, res) => {
         .catch(error => {
             console.error('Error fetching top 15 goal scorers:', error);
             res.status(500).json({ error: 'An error occurred while fetching the top 15 goal scorers' });
+=======
+/////////// file games ////////////////
+/**
+ * GET /last15games
+ * Restituisce le ultime 15 partite giocate rispetto alla data odierna.
+ * @returns {Object} - JSON con le ultime 15 partite.
+ */
+router.get('/last15games', (req, res) => {
+    gamesController.getLast15Games()
+        .then(games => {
+            res.status(200).json(games); // Restituisce le ultime 15 partite come JSON
+        })
+        .catch(error => {
+            console.error('Error fetching last 15 games:', error);
+            res.status(500).json({ error: 'An error occurred while fetching the last 15 games' });
+        });
+});
+
+/**
+ * GET /teamscores/:gamesID
+ * Restituisce il punteggio della squadra e della squadra avversaria per una data squadra.
+ * @param {Number} clubId - ID della squadra.
+ * @returns {Object} - JSON con i punteggi delle partite.
+ */
+router.get('/teamscores/:gamesID', (req, res) => {
+    const gamesID = req.params.id;
+    gamesController.getTeamScores(gamesID)
+        .then(scores => {
+            res.status(200).json(scores); // Restituisce i punteggi come JSON
+        })
+        .catch(error => {
+            console.error('Error fetching team scores:', error);
+            res.status(500).json({ error: 'An error occurred while fetching the team scores' });
+>>>>>>> Stashed changes
         });
 });
 

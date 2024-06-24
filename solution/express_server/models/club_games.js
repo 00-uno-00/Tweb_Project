@@ -19,4 +19,4 @@ const ClubGames = new mongoose.Schema(
 
 ClubGames.set('toObject', {getters: true, virtuals: true});
 
-module.exports = mongoose.model('ClubGames', ClubGames);
+module.exports = mongoose.model('Club_games', ClubGames);
