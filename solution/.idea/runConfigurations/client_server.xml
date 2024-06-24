@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="client_server" type="NodeJSConfigurationType" path-to-js-file="bin/www" working-dir="$PROJECT_DIR$/client_server">
+  <configuration default="false" name="client_server" type="NodeJSConfigurationType" path-to-node="$USER_HOME$/AppData/Roaming/JetBrains/WebStorm2024.1/node/node-v18.15.0-win-x64/node" path-to-js-file="bin/www" working-dir="$PROJECT_DIR$/client_server">
     <envs>
       <env name="DEBUG" value="client-server:*" />
     </envs>

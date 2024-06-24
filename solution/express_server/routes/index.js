@@ -95,7 +95,7 @@ router.get('/totalassists', (req, res) => {
 });
 
 
-module.exports = router;
+
 
 //////////////////// file club games //////////////////////
 
@@ -171,3 +171,29 @@ router.get('/top15goalscorers', (req, res) => {
             res.status(500).json({ error: 'An error occurred while fetching the top 15 goal scorers' });
         });
 });
+
+router.get('/redCardsAPlayer', (req, res) => {
+    appearancesController.redCardsAPlayer(38253)
+        .then(players => {
+            console.log(players); // Visualizza i risultati
+            res.status(200).json(players); // Restituisce i giocatori con più gol come JSON
+        })
+        .catch(error => {
+            console.error('Error fetching top 15 goal scorers:', error);
+            res.status(500).json({ error: 'An error occurred while fetching the top 15 goal scorers' });
+        });
+});
+
+router.get('/yellowCardsAPlayer', (req, res) => {
+    appearancesController.yellowCardsAPlayer(38253)
+        .then(players => {
+            console.log(players); // Visualizza i risultati
+            res.status(200).json(players); // Restituisce i giocatori con più gol come JSON
+        })
+        .catch(error => {
+            console.error('Error fetching top 15 goal scorers:', error);
+            res.status(500).json({ error: 'An error occurred while fetching the top 15 goal scorers' });
+        });
+});
+
+module.exports = router;

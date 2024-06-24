@@ -158,6 +158,57 @@ function totalAssists(playerId) {
     });
 }
 
+async function redCardsAPlayer(playerId) {
+    try {
+        const results = await Appearances.aggregate([
+            {
+                $match: { player_id: playerId }
+            },
+            {
+                $group: {
+                    _id: "$player_id",
+                    player_name: { $first: "$player_name" },
+                    red_cards: { $sum: "$red_cards" }
+                }
+            }
+        ]);
+
+        if (results.length > 0) {
+            return results[0];
+        } else {
+            return null;
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
+async function yellowCardsAPlayer(playerId) {
+    try {
+        const results = await Appearances.aggregate([
+            {
+                $match: { player_id: playerId }
+            },
+            {
+                $group: {
+                    _id: "$player_id",
+                    player_name: { $first: "$player_name" },
+                    red_cards: { $sum: "$yellow_cards" }
+                }
+            }
+        ]);
+
+        if (results.length > 0) {
+            return results[0];
+        } else {
+            return null;
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
+
 
 
 
@@ -167,5 +218,7 @@ module.exports = {
     mostYellowCards, //giocatori con più cartellini gialli
     totalMinutesPlayed, //minuti giocati
     totalGoalsScored, //gol fatti
-    totalAssists //assist fatti
+    totalAssists, //assist fatti
+    redCardsAPlayer, //cartellini rossi fatti da un giocatore
+    yellowCardsAPlayer //cartellini gialli fatti da un giocatore
 };
