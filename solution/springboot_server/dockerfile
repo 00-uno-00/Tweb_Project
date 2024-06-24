@@ -1,0 +1,26 @@
+# Use an official Gradle image to build the application
+FROM gradle:8.0.0-jdk11 AS build
+
+# Set the working directory in the container
+WORKDIR /home/gradle/project
+
+# Copy source code
+COPY . .
+
+# Build the application
+RUN gradle build --no-daemon
+
+# Use an OpenJDK runtime as a parent image
+FROM openjdk:17-jre-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the built jar file
+COPY --from=build /home/gradle/project/build/libs/*.jar app.jar
+
+# Expose the port the app runs on
+EXPOSE 8080
+
+# Define the command to run the app
+CMD ["java", "-jar", "app.jar"]
