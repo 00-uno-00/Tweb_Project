@@ -230,5 +230,32 @@ router.get('/teamscores/:gamesID', (req, res) => {
         });
 });
 
+router.get('/clubGoals', (req, res) => {
+    gamesController.clubGoals()
+        .then(clubGoals => {
+            res.status(200).json(clubGoals);
+        })
+        .catch(error => {
+            console.error('Error fetching club goals:', error);
+            res.status(500).json({ error: 'An error occurred while fetching club goals' });
+        });
+});
+
+router.get('/gameManagers/:gameId', (req, res) => {
+    const gameId = parseInt(req.params.gameId, 10);
+    gamesController.getManagerNames(gameId)
+        .then(managers => {
+            if (managers) {
+                res.status(200).json(managers);
+            } else {
+                res.status(404).json({ error: 'Game not found' });
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching game managers:', error);
+            res.status(500).json({ error: 'An error occurred while fetching the game managers' });
+        });
+});
+
 
 module.exports = router;
