@@ -137,5 +137,6 @@ module.exports = {
     getLast15Games,
     getTeamScores,
     clubGoals,
-    getManagerNames
+    getManagerNames,
+    getGameDetails
 };
