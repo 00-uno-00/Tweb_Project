@@ -8,7 +8,7 @@ router.get('/statsMatch/:id', async (req, res) => {
 
     try{
         const data_stadium_promise = axios.get(`http://localhost:3001/api/getGameDetails/${id}`);
-        const club_goals_promise = axios.get(`http://localhost:3001/api/clubGoals/${id}`);
+        const club_goals_promise = axios.get(`http://localhost:3001/api/teamscores/${id}`);
         const manager_promise = axios.get(`http://localhost:3001/api/getManagerNames/${id}`);
 
         const data_stadium = await data_stadium_promise;

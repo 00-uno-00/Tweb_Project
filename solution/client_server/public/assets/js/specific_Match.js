@@ -12,6 +12,7 @@ async function populateStatsMatch() {
 
         teams.textContent = match.homeTeamName + ' ' + match.homeTeamGoals + ' - ' + match.awayTeamGoals + ' ' + match.awayTeamName;
         stadium.textContent += match.stadiumName;
+        manager.textContent += match.managerName;
 
         img.src = match.imageUrl;
     } catch (error) {
