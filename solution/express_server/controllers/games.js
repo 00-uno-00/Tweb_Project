@@ -78,7 +78,7 @@ function getGameDetails(gameId) {
     });
 }
 
-function clubGoals() {
+/*function clubGoals() {
     return new Promise((resolve, reject) => {
         ClubGames.aggregate([
             {
@@ -122,7 +122,7 @@ function clubGoals() {
                 reject(error);
             });
     });
-}
+}*/
 
 /**
  * Funzione per ottenere i nomi dei manager di ogni squadra.
@@ -155,6 +155,6 @@ module.exports = {
     getLast15Games,
     getTeamScores,
     getGameDetails,
-    clubGoals,
+    //clubGoals,
     getManagerNames
 };
