@@ -53,73 +53,21 @@ function getTeamScores(gameId) {
 }
 
 /**
- * Funzione per ottenere il numero totale di goal segnati da ogni squadra.
- * @returns {Promise}
+ * Funzione per ottenere i dettagli di una partita dato l'ID della partita.
+ * @param {String} gameId - ID della partita.
+ * @returns {Promise} - Una promessa che si risolve con i dettagli della partita.
  */
-
-
-function clubGoals() {
-    return new Promise((resolve, reject) => {
-        ClubGames.aggregate([
-            {
-                $group: {
-                    _id: "$home_club_name",
-                    home_goals: { $sum: "$home_club_goals" }
-                }
-            },
-            {
-                $unionWith: {
-                    coll: "ClubGames",
-                    pipeline: [
-                        {
-                            $group: {
-                                _id: "$away_club_name",
-                                away_goals: { $sum: "$away_club_goals" }
-                            }
-                        }
-                    ]
-                }
-            },
-            {
-                $group: {
-                    _id: "$_id",
-                    total_goals: { $sum: { $add: ["$home_goals", "$away_goals"] } }
-                }
-            },
-            {
-                $project: {
-                    club: "$_id",
-                    total_goals: 1,
-                    _id: 0
-                }
-            },
-            { $sort: { total_goals: -1 } }
-        ])
-            .then(results => {
-                resolve(results);
-            })
-            .catch(error => {
-                reject(error);
-            });
-    });
-}
-
-/**
- * Funzione per ottenere i nomi dei manager di ogni squadra.
- * @returns {Promise}
- */
-
-function getManagerNames(gameId) {
+function getGameDetails(gameId) {
     return new Promise((resolve, reject) => {
         ClubGames.findOne({ game_id: gameId })
-            .select('home_club_manager_name away_club_manager_name') // Seleziona solo i campi necessari
+            .select('date stadium') // Seleziona solo i campi necessari
             .then(result => {
                 if (result) {
-                    const managers = {
-                        home_manager: result.home_club_manager_name,
-                        away_manager: result.away_club_manager_name
+                    const formattedResult = {
+                        date: result.date,
+                        stadium: result.stadium
                     };
-                    resolve(managers);
+                    resolve(formattedResult);
                 } else {
                     resolve(null); // Se la partita non viene trovata
                 }
@@ -131,12 +79,8 @@ function getManagerNames(gameId) {
 }
 
 
-
-
 module.exports = {
     getLast15Games,
     getTeamScores,
-    clubGoals,
-    getManagerNames,
     getGameDetails
 };
