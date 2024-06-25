@@ -230,27 +230,5 @@ router.get('/teamscores/:gamesID', (req, res) => {
         });
 });
 
-/**
- * GET /gamedetails/:gameId
- * Restituisce la data e il nome dello stadio di una partita dato l'ID della partita.
- * @param {String} gameId - ID della partita.
- * @returns {Object} - JSON con la data e il nome dello stadio.
- */
-router.get('/gamedetails/:gameId', (req, res) => {
-    const gameId = req.params.gameId;
-    gamesController.getGameDetails(gameId)
-        .then(details => {
-            if (details) {
-                res.status(200).json(details); // Restituisce i dettagli della partita come JSON
-            } else {
-                res.status(404).json({ error: 'Game not found' });
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching game details:', error);
-            res.status(500).json({ error: 'An error occurred while fetching the game details' });
-        });
-});
-
 
 module.exports = router;
