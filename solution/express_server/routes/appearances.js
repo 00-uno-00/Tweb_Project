@@ -18,7 +18,7 @@ router.get('/player/totalassists/:id', async function (req, res) {
     const playerId = parseInt(req.params.id, 10);
 
     try {
-        const appearances = await controller.totalAssists(38004);
+        const appearances = await controller.totalAssists(playerId);
         res.status(200).json(appearances);
     } catch (error) {
         console.error('Error fetching player appearances:', error);
@@ -31,6 +31,30 @@ router.get('/player/totalminutesplayed/:id', async function (req, res) {
 
     try {
         const appearances = await controller.totalMinutesPlayed(playerId);
+        res.status(200).json(appearances);
+    } catch (error) {
+        console.error('Error fetching player appearances:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+router.get('/player/yellowCardsAPlayer/:id', async function (req, res) {
+    const playerId = parseInt(req.params.id, 10);
+
+    try {
+        const appearances = await controller.yellowCardsAPlayer(38004);
+        res.status(200).json(appearances);
+    } catch (error) {
+        console.error('Error fetching player appearances:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+router.get('/player/redCardsAPlayer/:id', async function (req, res) {
+    const playerId = parseInt(req.params.id, 10);
+
+    try {
+        const appearances = await controller.redCardsAPlayer(38004);
         res.status(200).json(appearances);
     } catch (error) {
         console.error('Error fetching player appearances:', error);

@@ -5,13 +5,14 @@ const router = express.Router();
 
 router.get('/stats/:id', async (req, res) => {
     const id = req.params.id;
-    const goalsPromise = axios.get(`http://localhost:3001/api/player/totalgoals/${id}`);
-    const assistsPromise = axios.get(`http://localhost:3001/api/player/totalassists/${id}`);
-    const timePromise = axios.get(`http://localhost:3001/api/player/totalminutesplayed/${id}`);
-    const redCardsPromise = axios.get(`http://localhost:3001/api/player/redCardAPlayer/${id}`);
-    const yellowCardsPromise = axios.get(`http://localhost:3001/api/player/yellowCardAPlayer/${id}`);
 
     try {
+        const goalsPromise = axios.get(`http://localhost:3001/api/player/totalgoals/${id}`);
+        const assistsPromise = axios.get(`http://localhost:3001/api/player/totalassists/${id}`);
+        const timePromise = axios.get(`http://localhost:3001/api/player/totalminutesplayed/${id}`);
+        const redCardsPromise = axios.get(`http://localhost:3001/api/player/redCardsAPlayer/${id}`);
+        const yellowCardsPromise = axios.get(`http://localhost:3001/api/player/yellowCardsAPlayer/${id}`);
+
         const goals = await goalsPromise;
         const assists = await assistsPromise;
         const time = await timePromise;
