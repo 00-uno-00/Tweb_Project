@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  client_server:
+    build:
+      context: ./client_server
+    ports:
+      - "3000:3000"
+    depends_on:
+      - express_server
+      - springboot_server
+
+  express_server:
+    build:
+      context: ./express_server
+    ports:
+      - "3001:3001"
+    environment:
+      MONGO_URL: mongodb://mongo:27017/Tweb
+    depends_on:
+      - mongo
+
+  springboot_server:
+    build:
+      context: ./springboot_server
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/calciotrends
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: a
+    depends_on:
+      - postgres
+
+  mongo:
+    image: mongo:5.0.9
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
+  postgres:
+    image: postgres:16.0
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: calciotrends
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: a
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  mongo-data:
+  postgres-data:
