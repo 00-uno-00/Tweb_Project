@@ -52,7 +52,34 @@ function getTeamScores(gameId) {
     });
 }
 
+/**
+ * Funzione per ottenere i dettagli di una partita dato l'ID della partita.
+ * @param {String} gameId - ID della partita.
+ * @returns {Promise} - Una promessa che si risolve con i dettagli della partita.
+ */
+function getGameDetails(gameId) {
+    return new Promise((resolve, reject) => {
+        ClubGames.findOne({ game_id: gameId })
+            .select('date stadium') // Seleziona solo i campi necessari
+            .then(result => {
+                if (result) {
+                    const formattedResult = {
+                        date: result.date,
+                        stadium: result.stadium
+                    };
+                    resolve(formattedResult);
+                } else {
+                    resolve(null); // Se la partita non viene trovata
+                }
+            })
+            .catch(error => {
+                reject(error);
+            });
+    });
+}
+
 module.exports = {
     getLast15Games,
-    getTeamScores
+    getTeamScores,
+    getGameDetails
 };

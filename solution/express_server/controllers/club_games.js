@@ -98,5 +98,6 @@ function top15ClubsByWins() {
 
 module.exports = {
     getManager,
-    top15ClubsByWins
+    top15ClubsByWins,
+    top15ClubsByGoals
 };
