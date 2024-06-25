@@ -1,9 +1,6 @@
 .idea/runConfigurations/bin_www.xml
 solution/pythonProject/Assignment_Data/appearances.csv
-<<<<<<< Updated upstream
 node_modules
 /node_modules
-=======
-/node_modules
-/solution/client_server/node_modules
->>>>>>> Stashed changes
+/solution/.idea
+*/.idea
