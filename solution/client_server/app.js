@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 const playersRouter = require('./routes/Players');
 const specificPlayerRouter = require('./routes/specific_Player');
 const matchesRouter = require('./routes/Matches');
+const specificMatchRouter = require('./routes/specific_Match');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use('/users', usersRouter);
 app.use('/players', playersRouter); // Add the players router to the middleware chain
 app.use('/specific_Player', specificPlayerRouter); // Add the specificPlayer router to the middleware chain
 app.use('/matches', matchesRouter); // Add the matches router to the middleware chain
+app.use('/specific_Match', specificMatchRouter); // Add the specificMatch router to the middleware chain
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

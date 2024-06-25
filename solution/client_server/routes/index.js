@@ -35,4 +35,7 @@ router.get('/Info', function (req, res) {
   res.render('Info')
 })
 
+router.get('/specific_Match/:id', function (req, res) {
+    res.render('specific_Match', {id: req.params.id})
+})
 module.exports = router;
