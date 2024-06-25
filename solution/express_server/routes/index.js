@@ -231,4 +231,26 @@ router.get('/teamscores/:gamesID', (req, res) => {
 });
 
 
+/**
+ * GET /playerappearances/:playerId
+ * Restituisce la prima e l'ultima apparizione di un giocatore in ciascuna squadra.
+ * @param {Number} playerId - ID del giocatore.
+ * @returns {Object} - JSON con le prime e ultime apparizioni per ciascuna squadra.
+ */
+router.get('/playerappearances/:playerId', (req, res) => {
+    const playerId = parseInt(req.params.playerId, 10);
+    appearancesController.getPlayerAppearances(playerId)
+        .then(appearances => {
+            if (appearances && appearances.length > 0) {
+                res.status(200).json(appearances); // Restituisce le apparizioni come JSON
+            } else {
+                res.status(404).json({ error: 'No appearances found for the specified player ID' });
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching player appearances:', error);
+            res.status(500).json({ error: 'An error occurred while fetching the player appearances' });
+        });
+});
+
 module.exports = router;

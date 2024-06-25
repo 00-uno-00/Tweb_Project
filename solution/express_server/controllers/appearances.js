@@ -209,6 +209,46 @@ async function yellowCardsAPlayer(playerId) {
 }
 
 
+/**
+ * Funzione per ottenere la prima e l'ultima apparizione di un giocatore in ciascuna squadra.
+ * @param {Number} playerId - ID del giocatore.
+ * @returns {Promise} - Una promessa che si risolve con le prime e ultime apparizioni per ciascuna squadra.
+ */
+function getPlayerAppearances(playerId) {
+    return new Promise((resolve, reject) => {
+        Appearances.aggregate([
+            {
+                $match: { player_id: playerId } // Filtra per ID del giocatore
+            },
+            {
+                $group: {
+                    _id: "$player_club_id", // Raggruppa per ID del club
+                    firstAppearance: { $min: "$date" }, // Trova la data della prima apparizione
+                    lastAppearance: { $max: "$date" }, // Trova la data dell'ultima apparizione
+                    player_name: { $first: "$player_name" } // Mantiene il nome del giocatore
+                }
+            },
+            {
+                $project: {
+                    _id: 0, // Escludi l'_id
+                    club_id: "$_id", // Rinominare _id in club_id
+                    player_name: 1, // Includi il nome del giocatore
+                    firstAppearance: 1, // Includi la prima apparizione
+                    lastAppearance: 1 // Includi l'ultima apparizione
+                }
+            }
+        ])
+            .then(results => {
+                resolve(results); // Risolvi con i risultati dell'aggregazione
+            })
+            .catch(error => {
+                reject(error); // Rifiuta in caso di errore
+            });
+    });
+}
+
+
+
 
 
 
@@ -220,5 +260,6 @@ module.exports = {
     totalGoalsScored, //gol fatti
     totalAssists, //assist fatti
     redCardsAPlayer, //cartellini rossi fatti da un giocatore
-    yellowCardsAPlayer //cartellini gialli fatti da un giocatore
+    yellowCardsAPlayer, //cartellini gialli fatti da un giocatore
+    getPlayerAppearances //prima e ultima apparizione di un giocatore in ciascuna squadra
 };
