@@ -253,4 +253,26 @@ router.get('/playerappearances/:playerId', (req, res) => {
         });
 });
 
+/**
+ * GET /gameevents/:gameId
+ * Restituisce tutti gli eventi accaduti in una partita dato il suo ID.
+ * @param {Number} gameId - ID della partita.
+ * @returns {Object} - JSON con gli eventi della partita.
+ */
+router.get('/gameevents/:gameId', (req, res) => {
+    const gameId = parseInt(req.params.gameId, 10);
+    gameEventsController.getEventsByGameId(gameId)
+        .then(events => {
+            if (events && events.length > 0) {
+                res.status(200).json(events); // Restituisce gli eventi come JSON
+            } else {
+                res.status(404).json({ error: 'No events found for the specified game ID' });
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching game events:', error);
+            res.status(500).json({ error: 'An error occurred while fetching the game events' });
+        });
+});
+
 module.exports = router;

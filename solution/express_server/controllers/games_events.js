@@ -45,8 +45,27 @@ function top15GoalScorers() {
     });
 }
 
+/**
+ * Funzione per ottenere tutti gli eventi di una partita dato il suo ID.
+ * @param {Number} gameId - ID della partita.
+ * @returns {Promise} - Una promessa che si risolve con gli eventi della partita.
+ */
+function getEventsByGameId(gameId) {
+    return new Promise((resolve, reject) => {
+        GameEvents.find({ game_id: gameId })
+            .select('type player_id description minute') // Seleziona solo i campi necessari
+            .then(results => {
+                resolve(results); // Risolvi con i risultati della query
+            })
+            .catch(error => {
+                reject(error); // Rifiuta in caso di errore
+            });
+    });
+}
+
 
 module.exports = {
     totalGoalsByPlayer,
-    top15GoalScorers
+    top15GoalScorers,
+    getEventsByGameId
 };
