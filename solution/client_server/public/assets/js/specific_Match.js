@@ -16,7 +16,7 @@ async function populateStatsMatch() {
         teams.textContent = match.club_goals.home_team + ' ' + match.club_goals.home_score + ' - ' + match.club_goals.away_score + ' ' + match.club_goals.away_team;
         let date = new Date(match.data_stadium.date);
         let formattedDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
-        stadium.textContent += "Stadium: " + match.data_stadium.stadium + "  " + "Date: "  + formattedDate; //TODO data formato
+        stadium.textContent += "Stadium: " + match.data_stadium.stadium + "  " + "Date: "  + formattedDate;
         manager.textContent += match.manager.managerName;
 
         //img1.src = match.imageUrl;//TODO: Add images for teams
