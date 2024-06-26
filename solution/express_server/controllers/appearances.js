@@ -248,8 +248,67 @@ function getPlayerAppearances(playerId) {
 }
 
 
+/**
+ * Funzione per ottenere il numero totale di cartellini rossi in una partita dato il suo ID.
+ * @param {Number} gameId - ID della partita.
+ * @returns {Promise} - Una promessa che si risolve con il numero totale di cartellini rossi.
+ */
+function getTotalRedCards(gameId) {
+    return new Promise((resolve, reject) => {
+        Appearances.aggregate([
+            { $match: { game_id: gameId } },
+            { $group: { _id: null, totalRedCards: { $sum: "$red_cards" } } }
+        ])
+            .then(results => {
+                if (results.length > 0) {
+                    resolve(results[0].totalRedCards); // Risolvi con il numero totale di cartellini rossi
+                } else {
+                    resolve(0); // Se non ci sono cartellini rossi, restituisci 0
+                }
+            })
+            .catch(error => {
+                reject(error); // Rifiuta in caso di errore
+            });
+    });
+}
 
+function getTotalYellowCards(gameId) {
+    return new Promise((resolve, reject) => {
+        Appearances.aggregate([
+            { $match: { game_id: gameId } },
+            { $group: { _id: null, totalRedCards: { $sum: "$Yellow_cards" } } }
+        ])
+            .then(results => {
+                if (results.length > 0) {
+                    resolve(results[0].totalRedCards); // Risolvi con il numero totale di cartellini rossi
+                } else {
+                    resolve(0); // Se non ci sono cartellini rossi, restituisci 0
+                }
+            })
+            .catch(error => {
+                reject(error); // Rifiuta in caso di errore
+            });
+    });
+}
 
+function getTotalAssists(gameId) {
+    return new Promise((resolve, reject) => {
+        Appearances.aggregate([
+            { $match: { game_id: gameId } },
+            { $group: { _id: null, totalAssists: { $sum: "$assists" } } }
+        ])
+            .then(results => {
+                if (results.length > 0) {
+                    resolve(results[0].totalAssists); // Risolvi con il numero totale di assist
+                } else {
+                    resolve(0); // Se non ci sono assist, restituisci 0
+                }
+            })
+            .catch(error => {
+                reject(error); // Rifiuta in caso di errore
+            });
+    });
+}
 
 
 module.exports = {
@@ -261,5 +320,8 @@ module.exports = {
     totalAssists, //assist fatti
     redCardsAPlayer, //cartellini rossi fatti da un giocatore
     yellowCardsAPlayer, //cartellini gialli fatti da un giocatore
-    getPlayerAppearances //prima e ultima apparizione di un giocatore in ciascuna squadra
+    getPlayerAppearances, //prima e ultima apparizione di un giocatore in ciascuna squadra
+    getTotalRedCards, //numero totale di cartellini rossi in una partita
+    getTotalYellowCards, //numero totale di cartellini gialli in una partita
+    getTotalAssists //numero totale di assist in una partita
 };

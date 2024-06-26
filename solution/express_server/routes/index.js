@@ -275,4 +275,16 @@ router.get('/gameevents/:gameId', (req, res) => {
         });
 });*/
 
+router.get('/game/:gameId/redcards', (req, res) => {
+    const gameId = parseInt(req.params.gameId, 10);
+    appearancesController.getTotalRedCards(gameId)
+        .then(redCardCount => {
+            res.status(200).json({ totalRedCards: redCardCount }); // Restituisce il numero totale di cartellini rossi come JSON
+        })
+        .catch(error => {
+            console.error('Error fetching total red cards:', error);
+            res.status(500).json({ error: 'An error occurred while fetching the total red cards' });
+        });
+});
+
 module.exports = router;
