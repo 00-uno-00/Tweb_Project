@@ -19,7 +19,7 @@ async function populateStatsMatch() {
         let formattedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
         stadium.innerHTML = `Stadium: ${match.data_stadium.stadium} <br> Date: ${formattedDate}`;
-        manager.textContent = `Manager: ${match.manager.managerName}`;
+        manager.textContent = `Manager: ${match.manager.home_manager}` + match.manager.away_manager;
 
         const events_Match = match.events;
 
