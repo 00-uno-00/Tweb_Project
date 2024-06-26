@@ -2,6 +2,7 @@ async function populateLatest15Matches() {
     const response = await axios.get('/Matches/latest15matches')
     if (response.status === 200) {
         const matches = response.data;
+        console.log(matches)
         if (matches) {
             const table = document.getElementById('matches_table');
             // Clear the existing rows in the table, if any
@@ -21,24 +22,31 @@ async function populateLatest15Matches() {
                 // Create and append the home team cell
                 const homeTeamCell = document.createElement('td');
                 homeTeamCell.textContent = homeTeam;
+                homeTeamCell.className = 'text-start';
                 row.appendChild(homeTeamCell);
                 const homeTeamScore = document.createElement('td');
                 homeTeamScore.textContent = homeScore;
+                homeTeamScore.className = 'text-start';
                 row.appendChild(homeTeamScore);
                 // Create and append the vs cell
                 const vsCell = document.createElement('td');
                 vsCell.textContent = '-';
-                vsCell.style.padding = '0px';
+                vsCell.className = 'text-center';
                 row.appendChild(vsCell);
                 // Create and append the away team cell
                 const awayClubScore = document.createElement('td');
                 awayClubScore.textContent = awayScore;
+                awayClubScore.className = 'text-end';
                 row.appendChild(awayClubScore);
                 const awayTeamCell = document.createElement('td');
                 awayTeamCell.textContent = awayTeam;
                 awayTeamCell.className = 'text-end';
                 row.appendChild(awayTeamCell);
                 // Append the row to the table
+                const href = `/Match/${matches[i].game_id}`;
+                row.addEventListener('click', () => {
+                    window.location.href = href;
+                });
                 table.appendChild(row);
             }
         }
