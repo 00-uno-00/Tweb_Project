@@ -27,8 +27,8 @@ router.get('/Championships', function (req, res) {
   res.render('Championships')
 })
 
-router.get('/Chat1', function (req, res) {
-  res.render('Chat1')
+router.get('/chat1', function (req, res) {
+  res.render('chat1')
 })
 
 router.get('/Info', function (req, res) {

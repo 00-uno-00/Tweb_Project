@@ -88,3 +88,9 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+const io = require('socket.io')(server, {
+  pingTimeout: 80000,
+});
+var socket_module = require('socket.io/socket-io.js');
+socket_module.init(io,app);

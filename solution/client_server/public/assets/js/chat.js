@@ -1,17 +1,13 @@
 
 let name = null;
 let roomNo = null;
-let chat1 = io.connect('/chat1');
+let chat1 ;
 
 function init() {
     document.getElementById('initial_form').style.display = 'block';
     document.getElementById('chat_interface').style.display = 'none';
+    chat1 = io('/chat1');
     initChatSocket();
-}
-
-function generateRoom() {
-    roomNo = Math.round(Math.random() * 10000);
-    document.getElementById('roomNo').value = 'R' + roomNo;
 }
 
 function initChatSocket() {

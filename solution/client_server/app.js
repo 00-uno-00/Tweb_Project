@@ -36,6 +36,14 @@ app.use(function(req, res, next) {
     next(createError(404));
 });
 
+app.use(express.static('public', {
+    setHeader: function (res, path, stat) {
+        if (path.endsWith('.css')) {
+            res.setHeader('Content-Type', 'text/css');
+        }
+    }
+}));
+
 // error handler
 app.use(function(err, req, res, next) {
     // set locals, only providing error in development
