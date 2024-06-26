@@ -11,28 +11,6 @@ async function populateStatsMatch() {
     try {
         const response = await axios.get(`/specific_Match/statsMatch/${matchId}`);
         const match = response.data;
-        console.log(match);
-
-
-        teams.textContent = match.club_goals.home_team + ' ' +
-                            match.club_goals.home_score + ' - ' +
-                            match.club_goals.away_score + ' ' +
-                                match.club_goals.away_team;
-        let date = new Date(match.data_stadium.date);
-        let formattedDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
-        stadium.textContent += "Stadium: " + match.data_stadium.stadium + "  " + "Date: "  + formattedDate;
-        manager.textContent += match.manager.home_manager + ' - ' + match.manager.away_manager;
-
-        //img1.src = match.imageUrl;//TODO: Add images for teams
-        //img2.src = match.imageUrl;
-    } catch (error) {
-        console.error('Error fetching match: ', error);
-    }
-
-
-    try {
-        const response = await axios.get(`/specific_Match/statsMatch/${matchId}`);
-        const match = response.data;
         console.log('Match data:', match);
 
         teams.textContent = `${match.club_goals.home_team} ${match.club_goals.home_score} - ${match.club_goals.away_score} ${match.club_goals.away_team}`;
