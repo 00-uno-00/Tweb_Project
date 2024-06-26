@@ -77,3 +77,16 @@
   --bs-btn-disabled-border-color: #198754;
 }
 
+.event_card{
+  background-color: indianred;
+    color: black;
+  padding: 10px;
+  margin: 5px 0;
+}
+
+.event_goal{
+  background-color: darkseagreen;
+    color: black;
+  padding: 10px;
+  margin: 5px 0;
+}

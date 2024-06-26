@@ -258,7 +258,7 @@ router.get('/playerappearances/:playerId', (req, res) => {
  * Restituisce tutti gli eventi accaduti in una partita dato il suo ID.
  * @param {Number} gameId - ID della partita.
  * @returns {Object} - JSON con gli eventi della partita.
- */
+
 router.get('/gameevents/:gameId', (req, res) => {
     const gameId = parseInt(req.params.gameId, 10);
     gameEventsController.getEventsByGameId(gameId)
@@ -273,6 +273,6 @@ router.get('/gameevents/:gameId', (req, res) => {
             console.error('Error fetching game events:', error);
             res.status(500).json({ error: 'An error occurred while fetching the game events' });
         });
-});
+});*/
 
 module.exports = router;
