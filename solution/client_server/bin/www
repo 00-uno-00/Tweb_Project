@@ -89,8 +89,8 @@ function onListening() {
   debug('Listening on ' + bind);
 }
 
+const socket_module = require('../socket.io/socket-io');
 const io = require('socket.io')(server, {
   pingTimeout: 80000,
 });
-var socket_module = require('socket.io/socket-io.js');
 socket_module.init(io,app);
