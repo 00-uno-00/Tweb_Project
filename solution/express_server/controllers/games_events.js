@@ -53,7 +53,7 @@ function top15GoalScorers() {
 function getEventsByGameId(gameId) {
     return new Promise((resolve, reject) => {
         GameEvents.find({ game_id: gameId })
-            .select('type player_id description minute') // Seleziona solo i campi necessari
+            .select('club_id type player_id description minute') // Seleziona solo i campi necessari
             .then(results => {
                 resolve(results); // Risolvi con i risultati della query
             })

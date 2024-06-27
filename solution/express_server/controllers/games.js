@@ -31,12 +31,15 @@ function getLast15Games() {
 function getTeamScores(gameId) {
     return new Promise((resolve, reject) => {
         ClubGames.findOne({game_id: gameId })
-            .select('home_club_name away_club_name home_club_goals away_club_goals date') // Seleziona solo i campi necessari
+            .select('game_id home_club_name home_club_id away_club_name away_club_id home_club_goals away_club_goals date') // Seleziona solo i campi necessari
             .then(result => {
                 if (result) {
                     const formattedResult = {
+                        game_id: result.game_id,
                         home_team: result.home_club_name,
+                        home_id: result.home_club_id,
                         away_team: result.away_club_name,
+                        away_id: result.away_club_id,
                         home_score: result.home_club_goals,
                         away_score: result.away_club_goals,
                         date: result.date

@@ -249,14 +249,15 @@ function getPlayerAppearances(playerId) {
 
 
 /**
- * Funzione per ottenere il numero totale di cartellini rossi in una partita dato il suo ID.
+ * Funzione per ottenere il numero totale di cartellini rossi di una squadra in una partita dato il suo ID e l'ID della squadra.
  * @param {Number} gameId - ID della partita.
+ * @param {Number} clubId - ID della squadra.
  * @returns {Promise} - Una promessa che si risolve con il numero totale di cartellini rossi.
  */
-function getTotalRedCards(gameId) {
+function getTeamTotalRedCards(gameId, clubId) {
     return new Promise((resolve, reject) => {
         Appearances.aggregate([
-            { $match: { game_id: gameId } },
+            { $match: { game_id: gameId, player_club_id: clubId } }, // Filtra per ID partita e ID squadra
             { $group: { _id: null, totalRedCards: { $sum: "$red_cards" } } }
         ])
             .then(results => {
@@ -272,17 +273,42 @@ function getTotalRedCards(gameId) {
     });
 }
 
-function getTotalYellowCards(gameId) {
+// function getTeamTotalYellowCards(gameId, clubId) {
+//     return new Promise((resolve, reject) => {
+//         console.log("gameId:", gameId, "clubId:", clubId);
+//
+//         Appearances.aggregate([
+//             { $match: { game_id: gameId, player_club_id: clubId } }, // Filtra per ID partita e ID squadra
+//             { $group: { _id: null, totalYellowCards: { $sum: "$yellow_cards" } } }
+//         ])
+//             .then(results => {
+//                 console.log("Aggregation results:", results.length);
+//                 if (results.length > 0) {
+//                     resolve(results[0].totalYellowCards); // Risolvi con il numero totale di cartellini rossi
+//                 } else {
+//                     resolve(0); // Se non ci sono cartellini rossi, restituisci 0
+//                 }
+//
+//             })
+//             .catch(error => {
+//                 reject(error); // Rifiuta in caso di errore
+//             });
+//     });
+// }
+
+function getTeamTotalYellowCards(gameId, clubId) {
     return new Promise((resolve, reject) => {
-        Appearances.aggregate([
-            { $match: { game_id: gameId } },
-            { $group: { _id: null, totalRedCards: { $sum: "$Yellow_cards" } } }
-        ])
+        console.log("gameId:", gameId, "clubId:", clubId);
+
+        Appearances.find({ game_id: gameId, player_club_id: clubId })
             .then(results => {
+                console.log("Find results:", results);
                 if (results.length > 0) {
-                    resolve(results[0].totalRedCards); // Risolvi con il numero totale di cartellini rossi
+                    // Calcola il numero totale di cartellini gialli sommando il campo yellow_cards di ciascun documento
+                    const totalYellowCards = results.reduce((sum, appearance) => sum + appearance.yellow_cards, 0);
+                    resolve(totalYellowCards); // Risolvi con il numero totale di cartellini gialli
                 } else {
-                    resolve(0); // Se non ci sono cartellini rossi, restituisci 0
+                    resolve(0); // Se non ci sono apparizioni, restituisci 0
                 }
             })
             .catch(error => {
@@ -291,10 +317,19 @@ function getTotalYellowCards(gameId) {
     });
 }
 
-function getTotalAssists(gameId) {
+
+
+/**
+ * Funzione per ottenere il numero totale di assist di una squadra in una partita dato il suo ID e l'ID della squadra.
+ * @param {Number} gameId - ID della partita.
+ * @param {Number} clubId - ID della squadra.
+ * @returns {Promise} - Una promessa che si risolve con il numero totale di assist.
+ */
+
+function getTeamTotalAssists(gameId, clubId) {
     return new Promise((resolve, reject) => {
         Appearances.aggregate([
-            { $match: { game_id: gameId } },
+            { $match: { game_id: gameId, player_club_id: clubId } }, // Filtra per ID partita e ID squadra
             { $group: { _id: null, totalAssists: { $sum: "$assists" } } }
         ])
             .then(results => {
@@ -321,7 +356,7 @@ module.exports = {
     redCardsAPlayer, //cartellini rossi fatti da un giocatore
     yellowCardsAPlayer, //cartellini gialli fatti da un giocatore
     getPlayerAppearances, //prima e ultima apparizione di un giocatore in ciascuna squadra
-    getTotalRedCards, //numero totale di cartellini rossi in una partita
-    getTotalYellowCards, //numero totale di cartellini gialli in una partita
-    getTotalAssists //numero totale di assist in una partita
+    getTeamTotalRedCards, //numero totale di cartellini rossi in una partita di una squadra
+    getTeamTotalYellowCards, //numero totale di cartellini gialli in una partita di una squadra
+    getTeamTotalAssists //numero totale di assist in una partita di una squadra
 };

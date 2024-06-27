@@ -287,4 +287,19 @@ router.get('/game/:gameId/redcards', (req, res) => {
         });
 });
 
+
+/*router.get('/game/yellowCards/:gameId/:clubId', (req, res) => {
+    const gameId = req.params.gameId;
+    const clubId = req.params.clubId;
+
+    appearancesController.getTeamTotalYellowCards(gameId, clubId)
+        .then(yellowCardCount => {
+            res.status(200).json({ totalYellowCards: yellowCardCount }); // Restituisce il numero totale di cartellini rossi come JSON
+        })
+        .catch(error => {
+            console.error('Error fetching total yellow cards:', error);
+            res.status(500).json({ error: 'An error occurred while fetching the total yellow cards' });
+        });
+});*/
+
 module.exports = router;

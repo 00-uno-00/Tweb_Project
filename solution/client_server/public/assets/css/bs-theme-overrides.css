@@ -77,7 +77,7 @@
   --bs-btn-disabled-border-color: #198754;
 }
 
-.event_card{
+/*.event_card{
   background-color: indianred;
     color: black;
   padding: 10px;
@@ -90,3 +90,68 @@
   padding: 10px;
   margin: 5px 0;
 }
+.other_events{
+  background-color: lightblue;
+  color: black;
+  padding: 10px;
+  margin: 5px 0;
+}
+
+.alert{
+  background-color: #f8d7da;
+    color: #721c24;
+  padding: 10px;
+  margin: 5px 0;
+}*/
+
+/* Stili generali per gli eventi */
+.event {
+  width: 45%; /* Riduce la larghezza dell'evento */
+  margin: 10px; /* Aggiunge un margine intorno agli eventi */
+  padding: 10px; /* Aggiunge un'imbottitura interna */
+  border-radius: 5px; /* Arrotonda i bordi */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Aggiunge un'ombra per dare profondità */
+  font-family: Arial, sans-serif; /* Imposta il carattere */
+}
+
+/* Posizionamento eventi */
+.left {
+  float: left; /* Posiziona gli eventi della squadra di casa a sinistra */
+}
+
+.right {
+  float: right; /* Posiziona gli eventi della squadra ospite a destra */
+}
+
+/* Colori per i vari tipi di eventi */
+.event_card {
+  background-color: indianred; /* Colora di rosso gli eventi di tipo "Cards" */
+  color: white; /* Imposta il colore del testo a bianco per contrasto */
+}
+
+.event_goal {
+  background-color: lightgreen; /* Colora di verde gli eventi di tipo "Goals" */
+  color: white; /* Imposta il colore del testo a bianco per contrasto */
+}
+
+.other_events {
+  background-color: lightblue; /* Colora di azzurro gli altri eventi */
+  color: white; /* Imposta il colore del testo a bianco per contrasto */
+}
+
+/* Stile per il contenitore degli eventi */
+#eventsContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 20px;
+  border: 1px solid #ddd; /* Aggiunge un bordo leggero al contenitore */
+  border-radius: 10px; /* Arrotonda i bordi del contenitore */
+  background-color: #f9f9f9; /* Imposta uno sfondo chiaro per il contenitore */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Aggiunge un'ombra per dare profondità */
+}
+
+p {
+  margin: 5px 0; /* Imposta un margine sui paragrafi all'interno degli eventi */
+}
+

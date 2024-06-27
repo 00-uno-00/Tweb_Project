@@ -19,12 +19,17 @@ async function populateStatsMatch() {
         let formattedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
         stadium.innerHTML = `Stadium: ${match.data_stadium.stadium} <br> Date: ${formattedDate}`;
+        //unire manager agli altri dati
         manager.textContent = `Manager: ${match.manager.home_manager}` + match.manager.away_manager;
 
+        const homeID = match.club_goals.home_id;
+        const awayID = match.club_goals.away_id;
+        const gameId = match.club_goals.game_id;
+
+        console.log(homeID, awayID, gameId);
         const events_Match = match.events;
-
         eventsContainer.innerHTML = ''; // Clear previous content
-
+//todo sistemare css in modo che colori di rosso e che lasci i giusti spazi
         if (events_Match.length === 0) {
             eventsContainer.textContent = 'No events found.';
         } else {
@@ -32,12 +37,30 @@ async function populateStatsMatch() {
                 const eventDiv = document.createElement('div');
                 eventDiv.className = 'event';
 
-                // Add class based on event type
-                if (event.type === 'Cards') {
-                    eventDiv.classList.add('event_card');
-                } else if (event.type === 'Goals') {
-                    eventDiv.classList.add('event_goal');
+                if (event.club_id === homeID) {
+                    eventDiv.classList.add('left'); //mette l'eventi nella colonna di sinistra
+                    // Add class based on event type
+                    if (event.type === 'Cards') {
+                        eventDiv.classList.add('event_card'); //colora di rosso
+                    } else if (event.type === 'Goals') {
+                        eventDiv.classList.add('event_goal'); //colora di verde
+                    } else {
+                        eventDiv.classList.add('other_events'); //colora di azzurro
+                    }
+
+                } else if (event.team === 'away_team') {
+                    eventDiv.classList.add('right'); //mette l'eventi nella colonna di destra
+                    // Add class based on event type
+                    if (event.type === 'Cards') {
+                        eventDiv.classList.add('event_card'); //colora di rosso
+                    } else if (event.type === 'Goals') {
+                        eventDiv.classList.add('event_goal'); //colora di verde
+                    } else {
+                        eventDiv.classList.add('other_events'); //colora di azzurro
+                    }
+
                 }
+
 
                 eventDiv.innerHTML = `
                     <p>Minute: ${event.minute} -  ${event.type} Player: ${event.player_id}</p>
@@ -46,8 +69,27 @@ async function populateStatsMatch() {
                 eventsContainer.appendChild(eventDiv);
             });
         }
+
+        //let home_id = homeID;
+        //let away_id = awayID;
+        try {
+            const home_response = await axios.get(`/specific_Match/statsMatch/totalinfo/${gameId}/${homeID}`);
+            const away_response = await axios.get(`/specific_Match/statsMatch/totalinfo/${gameId}/${awayID}`);
+            const home_game_info = home_response.data;
+            const away_game_info = away_response.data;
+            console.log('Match data1111:', home_game_info);
+            home_y_card.textContent = `${home_game_info.totalYellowCards}`;
+            away_y_card.textContent = `${away_game_info.totalYellowCards}`;
+            
+        } catch (error) {
+            console.error('Error fetching match events: ', error);
+            eventsContainer.textContent = 'Error loading match events information.';
+        }
+
     } catch (error) {
         console.error('Error fetching match events: ', error);
         eventsContainer.textContent = 'Error loading match events.';
     }
+
+
 }
