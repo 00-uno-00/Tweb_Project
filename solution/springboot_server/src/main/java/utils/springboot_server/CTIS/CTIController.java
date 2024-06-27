@@ -20,4 +20,9 @@ public class CTIController {
     public ResponseEntity<Integer> getScoreById(@PathVariable long player_id) {
         return new ResponseEntity<>(ctiService.getScoreById(player_id), HttpStatus.OK);
     }
+
+    @GetMapping("/getScoreByList/{player_ids}")
+    public ResponseEntity<List<Integer>> getScoreByList(@PathVariable List<Long> player_ids) {
+        return new ResponseEntity<>(ctiService.getScoreByList(player_ids), HttpStatus.OK);
+    }
 }

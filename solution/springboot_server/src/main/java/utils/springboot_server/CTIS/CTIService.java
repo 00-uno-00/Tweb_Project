@@ -22,4 +22,8 @@ public class CTIService {
     public Integer getScoreById(long id) {
         return ctiRepository.findScoreById(id);
     }
+
+    public List<Integer> getScoreByList(List<Long> playerIds) {
+        return ctiRepository.findScoreByList(playerIds);
+    }
 }
