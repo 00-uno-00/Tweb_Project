@@ -115,8 +115,8 @@
 }
 
 /* Posizionamento eventi */
-.left {
-  float: left; /* Posiziona gli eventi della squadra di casa a sinistra */
+.center-left {
+  float: left ; /* Posiziona gli eventi della squadra di casa a sinistra */
 }
 
 .right {
