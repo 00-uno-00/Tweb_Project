@@ -19,7 +19,7 @@ function initChatSocket() {
         }
     });
 
-    chat1.on('cha1t', function (room, userId, chatText) {
+    chat1.on('chat1', function (room, userId, chatText) {
         let who = userId;
         if (userId === name) who = 'Me';
         writeOnChatHistory('<b>' + who + ':</b> ' + chatText);
@@ -28,6 +28,7 @@ function initChatSocket() {
 
 function sendChatText() {
     let chatText = document.getElementById('message-input').value;
+    console.log( name, chatText)
     chat1.emit('chat1', roomNo, name, chatText);
 }
 
@@ -63,6 +64,9 @@ function writeOnChatHistory(text) {
     let paragraph = document.createElement('p');
     paragraph.innerHTML = text;
     history.appendChild(paragraph);
+
+    history.scrollTop = history.scrollHeight;
+
     document.getElementById('message-input').value = '';
 }
 
@@ -70,7 +74,7 @@ function showDropdown2() {
     var dropdown1 = document.getElementById("dropdown1");
     var dropdown2 = document.getElementById("dropdown2");
     if (dropdown1.value !== "") {
-        dropdown2.style.display = "block";
+        dropdown2.style.display = "inline-block";
     } else {
         dropdown2.style.display = "none";
     }

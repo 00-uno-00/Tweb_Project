@@ -13,6 +13,7 @@ exports.init = function(io) {
           });
 
           socket.on('chat1', function (room, userId, chatText) {
+              console.log('chat1', room, userId, chatText);
             chat.to(room).emit('chat1', room, userId, chatText);
           });
 
