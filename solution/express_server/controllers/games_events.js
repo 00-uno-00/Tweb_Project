@@ -54,6 +54,7 @@ function getEventsByGameId(gameId) {
     return new Promise((resolve, reject) => {
         GameEvents.find({ game_id: gameId })
             .select('club_id type player_id description minute') // Seleziona solo i campi necessari
+            .sort({ minute: 1 }) // Ordina i risultati in base al campo "minute" in ordine crescente
             .then(results => {
                 resolve(results); // Risolvi con i risultati della query
             })

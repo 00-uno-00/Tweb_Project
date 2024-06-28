@@ -48,7 +48,7 @@ async function populateStatsMatch() {
                         eventDiv.classList.add('other_events'); //colora di azzurro
                     }
 
-                } else if (event.team === 'away_team') {
+                } else if (event.club_id === 'away_team') {
                     eventDiv.classList.add('right'); //mette l'eventi nella colonna di destra
                     // Add class based on event type
                     if (event.type === 'Cards') {
@@ -77,7 +77,7 @@ async function populateStatsMatch() {
             const away_response = await axios.get(`/specific_Match/statsMatch/totalinfo/${gameId}/${awayID}`);
             const home_game_info = home_response.data;
             const away_game_info = away_response.data;
-            console.log('Match data1111:', home_game_info);
+            console.log('Match data:', home_game_info);
             home_y_card.textContent = `${home_game_info.totalYellowCards}`;
             away_y_card.textContent = `${away_game_info.totalYellowCards}`;
             

@@ -256,15 +256,14 @@ function getPlayerAppearances(playerId) {
  */
 function getTeamTotalRedCards(gameId, clubId) {
     return new Promise((resolve, reject) => {
-        Appearances.aggregate([
-            { $match: { game_id: gameId, player_club_id: clubId } }, // Filtra per ID partita e ID squadra
-            { $group: { _id: null, totalRedCards: { $sum: "$red_cards" } } }
-        ])
+        Appearances.find({ game_id: gameId, player_club_id: clubId })
             .then(results => {
                 if (results.length > 0) {
-                    resolve(results[0].totalRedCards); // Risolvi con il numero totale di cartellini rossi
+                    // Calcola il numero totale di cartellini rossi sommando il campo red_cards di ciascun documento
+                    const totalRedCards = results.reduce((sum, appearance) => sum + appearance.red_cards, 0);
+                    resolve(totalRedCards); // Risolvi con il numero totale di cartellini rossi
                 } else {
-                    resolve(0); // Se non ci sono cartellini rossi, restituisci 0
+                    resolve(0); // Se non ci sono apparizioni, restituisci 0
                 }
             })
             .catch(error => {
@@ -328,15 +327,14 @@ function getTeamTotalYellowCards(gameId, clubId) {
 
 function getTeamTotalAssists(gameId, clubId) {
     return new Promise((resolve, reject) => {
-        Appearances.aggregate([
-            { $match: { game_id: gameId, player_club_id: clubId } }, // Filtra per ID partita e ID squadra
-            { $group: { _id: null, totalAssists: { $sum: "$assists" } } }
-        ])
+        Appearances.find({ game_id: gameId, player_club_id: clubId })
             .then(results => {
                 if (results.length > 0) {
-                    resolve(results[0].totalAssists); // Risolvi con il numero totale di assist
+                    // Calcola il numero totale di assist sommando il campo assists di ciascun documento
+                    const totalAssists = results.reduce((sum, appearance) => sum + appearance.assists, 0);
+                    resolve(totalAssists); // Risolvi con il numero totale di assist
                 } else {
-                    resolve(0); // Se non ci sono assist, restituisci 0
+                    resolve(0); // Se non ci sono apparizioni, restituisci 0
                 }
             })
             .catch(error => {
@@ -344,7 +342,6 @@ function getTeamTotalAssists(gameId, clubId) {
             });
     });
 }
-
 
 module.exports = {
     getAllAppearances, //prova
