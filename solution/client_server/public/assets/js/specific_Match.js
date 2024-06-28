@@ -70,8 +70,6 @@ async function populateStatsMatch() {
             });
         }
 
-        //let home_id = homeID;
-        //let away_id = awayID;
         try {
             const home_response = await axios.get(`/specific_Match/statsMatch/totalinfo/${gameId}/${homeID}`);
             const away_response = await axios.get(`/specific_Match/statsMatch/totalinfo/${gameId}/${awayID}`);

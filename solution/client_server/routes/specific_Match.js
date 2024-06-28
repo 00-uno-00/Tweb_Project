@@ -65,8 +65,9 @@ router.get('/statsMatch/totalinfo/:gameId/:clubId', async (req, res) => {
     try {
         const team_id = req.params.clubId;
         const game_id = req.params.gameId;
-        const team_stats = await axios.get(`http://localhost:3001/api/game/yellowCards/${game_id}/${team_id}`);
-        res.json(team_stats.data);
+        const team_stats_yellow = await axios.get(`http://localhost:3001/api/game/yellowCards/${game_id}/${team_id}`);
+        res.json(team_stats_yellow.data);
+
     } catch (error) {
         console.error('Error fetching team stats:', error);
         return res.status(500).json({error: 'Error fetching team stats'});

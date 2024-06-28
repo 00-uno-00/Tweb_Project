@@ -47,5 +47,40 @@ async function populateStats() {
     } catch (error) {
         console.error('Error fetching player stats: ', error);
     }
+    try {
+        let careerData;
+        const career = await axios.get(`/specific_Player/career/${playerId}`);
+        careerData = career.data;
+        console.log(careerData);
+
+        // Crea una tabella HTML
+        let tableHTML = '<table><thead><tr><th>Club</th><th>First Appearance</th><th>Last Appearance</th></tr></thead><tbody>';
+        let i=0;
+        careerData.forEach(item => {
+
+            let date = new Date(careerData[i].firstAppearance);
+            let formattedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+
+            let datelast = new Date(careerData[i].firstAppearance);
+            let formattedDatelast = `${datelast.getFullYear()}-${datelast.getMonth() + 1}-${datelast.getDate()}`;
+
+            tableHTML += `
+            <tr>
+               
+                <td>${item.club_id}</td>
+                <td>${formattedDate}</td>
+                <td>${formattedDatelast}</td>
+            </tr>
+        `;
+            i++;
+        });
+
+        tableHTML += '</tbody></table>';
+
+        // Inserisci la tabella in un elemento del DOM
+        document.getElementById('tabella_carriera').innerHTML = tableHTML;
+    } catch {
+        console.error('Error fetching player careerrrrrrr: ', error);
+    }
 }
 

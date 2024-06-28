@@ -230,12 +230,15 @@ function getPlayerAppearances(playerId) {
             },
             {
                 $project: {
-                    _id: 0, // Escludi l'_id
+                    _id: 0,  //Escludi l'_id
                     club_id: "$_id", // Rinominare _id in club_id
                     player_name: 1, // Includi il nome del giocatore
                     firstAppearance: 1, // Includi la prima apparizione
                     lastAppearance: 1 // Includi l'ultima apparizione
                 }
+            },
+            {
+                $sort: { firstAppearance: -1 }
             }
         ])
             .then(results => {

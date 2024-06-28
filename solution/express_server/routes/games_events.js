@@ -42,32 +42,7 @@ router.get('/gameevents/:gameId', (req, res) => {
         });
 });
 
-router.get('/game/assists/:gameId/:clubId', (req, res) => {
-    const gameId = req.params.gameId;
-    const clubId = req.params.clubId;
 
-    appearancesController.getTeamTotalAssists(gameId, clubId)
-        .then(totalAssists => {
-            res.status(200).json({ totalAssists: totalAssists }); // Restituisce il numero totale di assist come JSON
-        })
-        .catch(error => {
-            console.error('Error fetching total assists:', error);
-            res.status(500).json({ error: 'An error occurred while fetching the total assists' });
-        });
-});
 
-router.get('/game/redcards/:gameId/:clubId', (req, res) => {
-    const gameId = req.params.gameId;
-    const clubId = req.params.clubId;
-
-    appearancesController.getTeamTotalRedCards(gameId, clubId)
-        .then(totalRedCards => {
-            res.status(200).json({ totalRedCards: totalRedCards }); // Restituisce il numero totale di cartellini rossi come JSON
-        })
-        .catch(error => {
-            console.error('Error fetching total red cards:', error);
-            res.status(500).json({ error: 'An error occurred while fetching the total red cards' });
-        });
-});
 
 module.exports = router;
