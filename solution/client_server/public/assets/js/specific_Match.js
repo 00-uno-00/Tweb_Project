@@ -1,12 +1,15 @@
 async function populateStatsMatch() {
     let teams = document.getElementById('teams');
     let stadium = document.getElementById('stadium');
-    let manager = document.getElementById('manager');
+    let h_manager = document.getElementById('home_manager');
+    let a_manager = document.getElementById('away_manager');
     let eventsContainer = document.getElementById('events');
     let home_y_card = document.getElementById('home_y_card');
     let away_y_card = document.getElementById('away_y_card');
     let home_r_card = document.getElementById('home_r_card');
     let away_r_card = document.getElementById('away_r_card');
+    let h_assist = document.getElementById('home_assist');
+    let a_assist = document.getElementById('away_assist');
     //let img1 = document.getElementById('sq_1');
     //let img2 = document.getElementById('sq_2');
 
@@ -23,8 +26,6 @@ async function populateStatsMatch() {
         let formattedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
         stadium.innerHTML = `Stadium: ${match.data_stadium.stadium} <br> Date: ${formattedDate}`;
-        //unire manager agli altri dati
-        manager.textContent = `Manager: ${match.manager.home_manager}` + match.manager.away_manager;
 
         const homeID = match.club_goals.home_id;
         const awayID = match.club_goals.away_id;
@@ -85,13 +86,18 @@ async function populateStatsMatch() {
             away_y_card.textContent = `${away_yellow_card.yellow_Card.totalYellowCards}`;
             home_y_card.textContent = `${home_yellow_card.yellow_Card.totalYellowCards}`;
 
-            console.log('Match data:', home_yellow_card.totalYellowCards);
-            console.log('Match :', away_y_card);
-
             home_r_card.textContent = `${home_response.data.red_Card.totalRedCards}`;
             away_r_card.textContent = `${away_response.data.red_Card.totalRedCards}`;
 
-            
+
+            h_manager.textContent = `${home_response.data.manager.home_manager}`;
+            a_manager.textContent = `${home_response.data.manager.away_manager}`;
+
+            h_assist.textContent = `${home_response.data.assists.totalAssists}`;
+            a_assist.textContent = `${away_response.data.assists.totalAssists}`;
+
+
+
         } catch (error) {
             console.error('Error fetching match events: ', error);
             eventsContainer.textContent = 'Error loading match events information.';
