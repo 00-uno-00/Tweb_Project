@@ -1,0 +1,38 @@
+async function getTeams() {
+  const response = await axios.get('/Teams/top15Teams');
+  if (response.status === 200) {
+    const teams = response.data;
+    if (teams) {
+      const table = document.getElementById('teams_table');
+
+      table.innerHTML = '';
+      for (let i = 0; i < teams.length; i++) {
+        const teamName = teams[i].name;
+        const teamScore = teams[i].teamScore;
+
+        const row = document.createElement('tr');
+
+        const positionCell = document.createElement('td');
+        positionCell.textContent = i + 1;
+        row.appendChild(positionCell);
+
+        const nameCell = document.createElement('td');
+        nameCell.textContent = teamName;
+        row.appendChild(nameCell);
+
+        const goalsCell = document.createElement('td');
+        goalsCell.textContent = teamScore; // Team's number of goals
+        row.appendChild(goalsCell);
+
+        const href = `/Team/${teams[i].club_id}`;
+        row.addEventListener('click', () => {
+          window.location.href = href;
+        });
+
+        table.appendChild(row);
+      }
+    }
+  } else {
+    console.error('There was an error fetching the top 15 teams!');
+  }
+}
