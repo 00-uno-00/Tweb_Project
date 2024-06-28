@@ -1,7 +1,6 @@
-
 let name = null;
 let roomNo = null;
-let chat1 ;
+let chat1;
 
 function init() {
     document.getElementById('initial_form').style.display = 'block';
@@ -28,8 +27,9 @@ function initChatSocket() {
 
 function sendChatText() {
     let chatText = document.getElementById('message-input').value;
-    console.log( name, chatText)
     chat1.emit('chat1', roomNo, name, chatText);
+    document.getElementById('message-input').value = '';
+
 }
 
 function connectToRoom() {
@@ -65,9 +65,7 @@ function writeOnChatHistory(text) {
     paragraph.innerHTML = text;
     history.appendChild(paragraph);
 
-    history.scrollTop = history.scrollHeight;
-
-    document.getElementById('message-input').value = '';
+    history.scrollTop = history.scrollHeight; // Ensure scrolling to the bottom
 }
 
 function showDropdown2() {
