@@ -12,4 +12,7 @@ public interface CTIRepository extends JpaRepository<CTIS, Long> {
 
     @Query(value = "SELECT * FROM cti_score WHERE player_id IN :playerIds", nativeQuery = true)
     List<Integer> findScoreByList(List<Long> playerIds);
+
+    @Query(value = "SELECT * FROM cti_score ORDER BY score DESC LIMIT 15", nativeQuery = true)
+    List<CTIS> findTop15();
 }

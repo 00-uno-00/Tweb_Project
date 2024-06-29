@@ -2,6 +2,8 @@ package utils.springboot_server.CTIS;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import utils.springboot_server.Player.Player;
+import utils.springboot_server.Player.PlayerController;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,5 +27,9 @@ public class CTIService {
 
     public List<Integer> getScoreByList(List<Long> playerIds) {
         return ctiRepository.findScoreByList(playerIds);
+    }
+
+    public List<CTIS> getTop15() {
+        return ctiRepository.findTop15();
     }
 }

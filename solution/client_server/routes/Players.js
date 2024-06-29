@@ -4,13 +4,17 @@ const router = express.Router();
 
 
 // GET top 15 goal scorers
-router.get('/top15goalscorers', async (req, res) => {
+router.get('/top15', async (req, res) => {
+    let response;
+
+    //GetScores
     try {
-        const response = await axios.get('http://localhost:3001/api/players/top15goalscorers');
+        response = await axios.get('http://localhost:8080/CTI_Score/getTop15');
+        console.log(response.data);
         res.json(response.data);
     } catch (error) {
         console.error('Error fetching top 15 goal scorers:', error);
-        res.status(500).json({ error: 'Error fetching top 15 goal scorers' });
+        res.status(500).json({error: 'Error fetching top 15 goal scorers'});
     }
 });
 
@@ -18,7 +22,7 @@ router.get('/top15goalscorers', async (req, res) => {
 router.get('/:id', async (req, res) => {
     const playerId = req.params.id;
 
-    try{
+    try {
         const response = await axios.get(`http://localhost:8080/Player/getPlayerById/${playerId}`);
         res.json(response.data);
     } catch (error) {

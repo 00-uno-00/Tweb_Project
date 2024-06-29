@@ -1,5 +1,5 @@
 async function populateTop15Scorers() {
-    const response = await axios.get('/Players/top15goalscorers')
+    const response = await axios.get('/Players/top15')
     if (response.status === 200) {
         const players = response.data;
         if (players) {
@@ -7,12 +7,12 @@ async function populateTop15Scorers() {
             // Clear the existing rows in the table, if any
             table.innerHTML = '';
 
-            const playerPromises = players.map(player => axios.get(`/Players/${player._id}`));
+            const playerPromises = players.map(player => axios.get(`/Players/${player.id}`));
             const playerResponses = await Promise.all(playerPromises);
 
             for (let i = 0; i < players.length; i++) {
                 const playerName = playerResponses[i].data.name;
-                const playerGoals = players[i].totalGoals;
+                const playerScore = players[i].score;
                 // Create a new row
                 const row = document.createElement('tr');
                 // Create and append the position cell
@@ -24,16 +24,14 @@ async function populateTop15Scorers() {
                 nameCell.textContent = playerName;
                 row.appendChild(nameCell);
                 // Create and append the goals cell
-                const goalsCell = document.createElement('td');
-                goalsCell.textContent = playerGoals; // Player's number of goals
-                row.appendChild(goalsCell);
+                const scoreCell = document.createElement('td');
+                scoreCell.textContent = playerScore; // Player's number of goals
+                row.appendChild(scoreCell);
                 //link row to specific player page
-                const linkCell = document.createElement('td');
-                const link = document.createElement('a');
-                link.href = `/specific_Player/${players[i]._id}`;
-                link.textContent = 'View Player';
-                linkCell.appendChild(link);
-                row.appendChild(linkCell);
+                const href = `/specific_Player/${players[i].id}`;
+                row.addEventListener('click', () => {
+                    window.location.href = href;
+                });
                 // Append the row to the table
                 table.appendChild(row);
             }

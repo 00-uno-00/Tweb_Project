@@ -7,6 +7,7 @@ import calculator as calc
 from dataclasses import dataclass, field
 from typing import List
 import csv
+import json
 
 @dataclass
 class Player:
@@ -125,6 +126,21 @@ def calculate_score(player_stats: PlayerStats) -> float:
         
     return score
 
+def normalize_scores(scores):
+    """
+    Normalize the scores to be between 1 and 10.
+    
+    Parameters:
+    scores (list): A list of scores for all players.
+    
+    Returns:
+    list: A list of normalized scores between 1 and 100.
+    """
+    min_score = min(scores)
+    max_score = max(scores)
+    normalized_scores = [1 + (score - min_score) * (100 - 1) / (max_score - min_score) for score in scores]
+    return normalized_scores
+
 if __name__ == "__main__":
 
     # Load data
@@ -133,5 +149,26 @@ if __name__ == "__main__":
 
     # Example usage
     grouped_df = filter('2023', players, app)
+    #for player in grouped_df:
+    #    print(f"Player ID: {player.player_id}, Score: {calculate_score(player)}")
+    
+    # Calculate scores for each player
+    player_scores = []
     for player in grouped_df:
-        print(f"Player ID: {player.player_id}, Score: {calculate_score(player)}")
+        score = calculate_score(player)
+        player_scores.append({
+            'player_id': player.player_id,
+            'year': '2023',
+            'score': score
+        })
+
+    # Normalize scores
+    normalized_scores = normalize_scores([player['score'] for player in player_scores])
+
+    # Update scores with normalized values
+    for i, player in enumerate(player_scores):
+        player['score'] = normalized_scores[i]
+
+    # Write scores to JSON file
+    with open('scores.json', 'w') as json_file:
+        json.dump(player_scores, json_file)
