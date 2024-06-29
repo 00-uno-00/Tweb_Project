@@ -27,11 +27,11 @@ router.get('/top15Teams', async (req, res) => {
         console.error('Error fetching all the teams', error);
         res.status(500).json({error: 'Error fetching all the teams'});
     }
-
+    console.log(teams);
     // Get the ids of the players in the team
     for (const team of teams) {
         try {
-            const response = await axios.get(`http://localhost:8080/Player/getPlayersByCurrentClubId/${team._id}`);
+            const response = await axios.get(`http://localhost:8080/Player/getPlayersByCurrentClubId/${team.id}`);
             getTeamScore(response.data)
                 .then(teamScore => {
                     team.teamScore = teamScore;
@@ -56,14 +56,17 @@ router.get('/top15Teams', async (req, res) => {
 async function getTeamScore(players) {
     let teamScore = 0;
 
-    try {
-        const response = await axios.get(`http://localhost:8080/CTI_Score/getScoreByList/${players}`);
-        teamScore += response.data.totalGoals;
-    } catch (error) {
-        console.error('Error fetching player: ', error);
-        res.status(500).send('Internal server error');
+    let player_ids = players.map(player => player.id);
+    for (const player_id of player_ids) {
+        try {
+            const response = await axios.get(`http://localhost:8080/CTI_Score/getScore/${player_id}`);
+            
+            teamScore += response.data;
+        } catch (error) {
+            console.error('Error fetching player score: ', error);
+            return 0;
+        }
     }
-
     return teamScore;
 }
 

@@ -27,7 +27,7 @@ public class TeamController {
         return teamService.getAllTeams();
     }
 
-    @GetMapping("getTeamsByChampionship/{championship}")
+    @GetMapping("/getTeamsByChampionship/{championship}")
     public List<Team> getTeamsByChampionship(@PathVariable String championship) {
         return teamService.getTeamsByChampionship(championship);
     }
