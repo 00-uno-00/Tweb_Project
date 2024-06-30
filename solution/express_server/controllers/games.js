@@ -82,6 +82,32 @@ async function getAllGames(id) {
 
 }
 
+async function getChampionshipGames(id) {
+    return new Promise((resolve, reject) => {
+        Games.aggregate([
+            {
+                $match:
+                    {
+                        competition_id: id
+                    }
+            },
+            {
+                $match: {
+                    date: {
+                        '$gte': new Date('Sun, 01 Jan 2023 00:00:00 GMT'),
+                        '$lt': new Date('Mon, 01 Jan 2024 00:00:00 GMT')
+                    }
+                }
+            }
+        ])
+            .then(results => {
+                resolve(results);
+            })
+            .catch(error => {
+                reject(error);
+            });
+    });
+}
 /**
  * Funzione per ottenere il punteggio di una partita dato l'ID della partita.
  * @param {String} gameId - ID della partita.
@@ -219,6 +245,7 @@ module.exports = {
     getTeamScores,
     getGameDetails,
     getAllGames,
+    getChampionshipGames,
     //clubGoals,
     getManagerNames
 };

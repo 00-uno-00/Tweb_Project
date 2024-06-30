@@ -36,7 +36,7 @@ app.use('/specific_Player', specificPlayerRouter);
 app.use('/matches', matchesRouter);
 app.use('/specific_Match', specificMatchRouter);
 app.use('/championships', championshipsRouter);
-app.use('/specific_Championship', championshipsRouter);
+app.use('/specific_Championship', specificChampionshipRouter);
 app.use('/teams', teamsRouter);
 app.use('/team', teamRouter);
 
