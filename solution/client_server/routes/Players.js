@@ -10,7 +10,6 @@ router.get('/top15', async (req, res) => {
     //GetScores
     try {
         response = await axios.get('http://localhost:8080/CTI_Score/getTop15');
-        console.log(response.data);
         res.json(response.data);
     } catch (error) {
         console.error('Error fetching top 15 goal scorers:', error);

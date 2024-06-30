@@ -6,9 +6,9 @@ async function getTeams() {
       const table = document.getElementById('teams_table');
 
       table.innerHTML = '';
-      for (let i = 0; i < teams.length; i++) {
+      for (let i = 0; i < 15; i++) {
         const teamName = teams[i].name;
-        const teamScore = teams[i].teamScore;
+        const teamScore = teams[i].score;
 
         const row = document.createElement('tr');
 
@@ -24,7 +24,7 @@ async function getTeams() {
         goalsCell.textContent = teamScore; // Team's number of goals
         row.appendChild(goalsCell);
 
-        const href = `/Team/${teams[i].club_id}`;
+        const href = `/Team/${teams[i].id}`;
         row.addEventListener('click', () => {
           window.location.href = href;
         });

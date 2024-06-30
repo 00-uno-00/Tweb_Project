@@ -31,7 +31,7 @@ router.get('/Championships', function (req, res) {
   res.render('Championships')
 })
 
-router.get('/Championship/:id', function (req, res) {
+router.get('/specific_Championship/:id', function (req, res) {
     res.render('Championship', {id: req.params.id})
 })
 

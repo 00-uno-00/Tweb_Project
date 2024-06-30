@@ -12,6 +12,16 @@ router.get('/latest15matches', async function (req, res) {
     }
 });
 
+router.get('/latest10matches/:id', async function (req, res) {
+    try {
+        const matches = await controller.getLast10Games(parseInt(req.params.id));
+        res.status(200).json(matches);
+    } catch (error) {
+        console.error('Error fetching latest 15 matches:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 router.get('/teamscores/:id', async function (req, res) {
     try {
         const matches = await controller.getTeamScores(req.params.id);
@@ -25,6 +35,16 @@ router.get('/teamscores/:id', async function (req, res) {
 router.get('/getManagerNames/:id', async function (req, res) {
     try {
         const matches = await controller.getManagerNames(req.params.id);
+        res.status(200).json(matches);
+    } catch (error) {
+        console.error('Error fetching latest 15 matches:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+router.get('/getAllGames/:id', async function (req, res) {
+    try {
+        const matches = await controller.getAllGames(req.params.id);
         res.status(200).json(matches);
     } catch (error) {
         console.error('Error fetching latest 15 matches:', error);

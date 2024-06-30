@@ -1,4 +1,4 @@
-const ClubGames = require('../models/games'); // Assicurati che il percorso sia corretto
+const Games = require('../models/games'); // Assicurati che il percorso sia corretto
 
 /**
  * Funzione per ottenere le ultime 15 partite giocate rispetto alla data odierna.
@@ -6,9 +6,9 @@ const ClubGames = require('../models/games'); // Assicurati che il percorso sia 
  */
 function getLast15Games() {
     return new Promise((resolve, reject) => {
-        ClubGames.aggregate([
+        Games.aggregate([
             {
-                $sort: { date: -1 } // Ordina per data in ordine decrescente
+                $sort: {date: -1} // Ordina per data in ordine decrescente
             },
             {
                 $limit: 15 // Limita il risultato alle ultime 15 partite
@@ -23,6 +23,65 @@ function getLast15Games() {
     });
 }
 
+function getLast10Games(clubId) {
+    return new Promise((resolve, reject) => {
+        Games.aggregate([
+            {
+                $match: {
+                    $or: [
+                        {home_club_id: clubId},
+                        {away_club_id: clubId}
+                    ]
+                }
+            },
+            {
+                $sort: {date: -1}
+            },
+            {
+                $limit: 10
+            }
+        ])
+            .then(results => {
+                resolve(results);
+            })
+            .catch(error => {
+                reject(error);
+            });
+    });
+
+}
+
+async function getAllGames(id) {
+    return new Promise((resolve, reject) => {
+        Games.aggregate([
+            [
+                {
+                    $match: {
+                        $or:
+                            [{home_club_id: id},
+                                {away_club_id: id}]
+                    }
+                },
+                {
+                    $match: {
+                        date: {
+                            '$gte': new Date('Sun, 01 Jan 2023 00:00:00 GMT'),
+                            '$lt': new Date('Mon, 01 Jan 2024 00:00:00 GMT')
+                        }
+                    }
+                }
+            ]
+        ])
+            .then(results => {
+                resolve(results);
+            })
+            .catch(error => {
+                reject(error);
+            });
+    });
+
+}
+
 /**
  * Funzione per ottenere il punteggio di una partita dato l'ID della partita.
  * @param {String} gameId - ID della partita.
@@ -30,7 +89,7 @@ function getLast15Games() {
  */
 function getTeamScores(gameId) {
     return new Promise((resolve, reject) => {
-        ClubGames.findOne({game_id: gameId })
+        Games.findOne({game_id: gameId})
             .select('game_id home_club_name home_club_id away_club_name away_club_id home_club_goals away_club_goals date') // Seleziona solo i campi necessari
             .then(result => {
                 if (result) {
@@ -62,7 +121,7 @@ function getTeamScores(gameId) {
  */
 function getGameDetails(gameId) {
     return new Promise((resolve, reject) => {
-        ClubGames.findOne({ game_id: gameId })
+        Games.findOne({game_id: gameId})
             .select('date stadium') // Seleziona solo i campi necessari
             .then(result => {
                 if (result) {
@@ -134,7 +193,7 @@ function getGameDetails(gameId) {
 
 function getManagerNames(gameId) {
     return new Promise((resolve, reject) => {
-        ClubGames.findOne({ game_id: gameId })
+        Games.findOne({game_id: gameId})
             .select('home_club_manager_name away_club_manager_name') // Seleziona solo i campi necessari
             .then(result => {
                 if (result) {
@@ -156,8 +215,10 @@ function getManagerNames(gameId) {
 
 module.exports = {
     getLast15Games,
+    getLast10Games,
     getTeamScores,
     getGameDetails,
+    getAllGames,
     //clubGoals,
     getManagerNames
 };
