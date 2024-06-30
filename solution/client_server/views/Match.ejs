@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="/assets/css/Pretty-Search-Form-.css">
     <link rel="stylesheet" href="/assets/css/Chat.css">
     <link rel="stylesheet" href="/assets/css/Simple-Bootstrap-Chat.css">
+    <link rel="stylesheet" href="/assets/css/prova.css">
 </head>
 
 <body onload="populateStatsMatch()">
@@ -113,7 +114,21 @@
     <div class="col" style="text-align: center;">
         <div>
             <h2 class="fw-normal" style="margin-bottom: 0.5rem;">Azione_importante</h2>
-            <p id="events">info</p>
+            <div class="event_container">
+                <table class="events_table">
+                    <thead>
+                    <tr>
+                        <th>Home Events</th>
+                        <th>Away Events</th>
+                    </tr>
+                    </thead>
+                    <tbody id="events">
+                    <!-- Event rows will be dynamically inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!--<p id="events">info</p>-->
         </div>
     </div>
     <div class="row" style="margin-right: 0;margin-left: 0;">

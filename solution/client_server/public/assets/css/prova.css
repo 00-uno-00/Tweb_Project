@@ -1,0 +1,62 @@
+/* Container styles */
+.event_container {
+    display: flex;
+    justify-content: center; /* Centra la tabella orizzontalmente */
+    padding: 20px;
+    width: 100%;
+}
+
+/* Table styles */
+.events_table {
+    width: 100%;
+    max-width: 800px; /* Regola la larghezza massima secondo necessità */
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.events_table th, .events_table td {
+    padding: 10px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.events_table th {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.events_table td {
+    width: 45%; /* Imposta una larghezza fissa per le celle degli eventi */
+    vertical-align: top;
+}
+
+/* Divider column */
+.divider {
+    border-left: 1px solid #000; /* Change color as needed */
+    width: 1px;
+    height: auto;
+}
+
+/* Base styles for events */
+.event {
+    width: 100%; /* Assicura che gli eventi riempiano la larghezza della cella */
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* Specific colors for events */
+.event_card_left, .event_card_right {
+    background-color: red; /* Color for Cards events */
+}
+
+.event_goal_left, .event_goal_right {
+    background-color: green; /* Color for Goals events */
+}
+
+.other_events_left, .other_events_right {
+    background-color: blue; /* Color for other events */
+}

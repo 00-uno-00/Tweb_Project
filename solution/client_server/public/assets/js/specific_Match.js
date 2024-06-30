@@ -38,40 +38,50 @@ async function populateStatsMatch() {
         if (events_Match.length === 0) {
             eventsContainer.textContent = 'No events found.';
         } else {
+            const eventsBody = document.getElementById('events');
+
             events_Match.forEach(event => {
+                const eventRow = document.createElement('tr');
+
+                const homeCell = document.createElement('td');
+                //const dividerCell = document.createElement('td');
+                const awayCell = document.createElement('td');
+
+                //dividerCell.className = 'divider';
+
                 const eventDiv = document.createElement('div');
                 eventDiv.className = 'event';
 
+                eventDiv.innerHTML = `
+            <p>Minute: ${event.minute} -  ${event.type} Player: ${event.player_id}</p>
+            <p>Description: ${event.description}</p>
+        `;
+
                 if (event.club_id === homeID) {
-                    eventDiv.classList.add('center-left'); //mette l'eventi nella colonna di sinistra
-                    // Add class based on event type
                     if (event.type === 'Cards') {
-                        eventDiv.classList.add('event_card'); //colora di rosso
+                        eventDiv.classList.add('event_card_left'); //colora di rosso
                     } else if (event.type === 'Goals') {
-                        eventDiv.classList.add('event_goal'); //colora di verde
+                        eventDiv.classList.add('event_goal_left'); //colora di verde
                     } else {
-                        eventDiv.classList.add('other_events'); //colora di azzurro
+                        eventDiv.classList.add('other_events_left'); //colora di azzurro
                     }
-
-                } else if (event.club_id === 'away_team') {
-                    eventDiv.classList.add('right'); //mette l'eventi nella colonna di destra
-                    // Add class based on event type
+                    homeCell.appendChild(eventDiv);
+                } else if (event.club_id === awayID) {
                     if (event.type === 'Cards') {
-                        eventDiv.classList.add('event_card'); //colora di rosso
+                        eventDiv.classList.add('event_card_right'); //colora di rosso
                     } else if (event.type === 'Goals') {
-                        eventDiv.classList.add('event_goal'); //colora di verde
+                        eventDiv.classList.add('event_goal_right'); //colora di verde
                     } else {
-                        eventDiv.classList.add('other_events'); //colora di azzurro
+                        eventDiv.classList.add('other_events_right'); //colora di azzurro
                     }
-
+                    awayCell.appendChild(eventDiv);
                 }
 
+                eventRow.appendChild(homeCell);
+                //eventRow.appendChild(dividerCell);
+                eventRow.appendChild(awayCell);
 
-                eventDiv.innerHTML = `
-                    <p>Minute: ${event.minute} -  ${event.type} Player: ${event.player_id}</p>
-                    <p>Description: ${event.description}</p>
-                `;
-                eventsContainer.appendChild(eventDiv);
+                eventsBody.appendChild(eventRow);
             });
         }
 
@@ -102,7 +112,7 @@ async function populateStatsMatch() {
             console.error('Error fetching match events: ', error);
             eventsContainer.textContent = 'Error loading match events information.';
         }
-        
+
 
     } catch (error) {
         console.error('Error fetching match events: ', error);
