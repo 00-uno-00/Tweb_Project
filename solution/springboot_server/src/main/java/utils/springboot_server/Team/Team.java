@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 public class Team {
     @Id
     @Column(name = "club_id", nullable = false)
-    private String id;
+    private int id;
 
     @Column(name = "club_code")
     private String code;
@@ -52,16 +52,16 @@ public class Team {
     private String coachName;
 
     @Column(name = "last_season")
-    private String lastSeason;
+    private int lastSeason;
 
     @Column(name = "url")
     private String url;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -169,11 +169,11 @@ public class Team {
         this.coachName = coachName;
     }
 
-    public String getLastSeason() {
+    public int getLastSeason() {
         return lastSeason;
     }
 
-    public void setLastSeason(String lastSeason) {
+    public void setLastSeason(int lastSeason) {
         this.lastSeason = lastSeason;
     }
 

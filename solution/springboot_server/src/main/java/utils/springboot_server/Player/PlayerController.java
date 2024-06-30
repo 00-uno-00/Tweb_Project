@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Console;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/Player")
@@ -50,8 +51,15 @@ public class PlayerController {
         return new ResponseEntity<>(playerService.getPlayerById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/getCurrentClubScore/{currentClubId}")
+    public ResponseEntity<Float> getCurrentClubScore(@PathVariable long currentClubId) {
+        return new ResponseEntity<>(playerService.getCurrentClubScore(currentClubId), HttpStatus.OK);
+    }
+
     @PostMapping("/addPlayers")
     public ResponseEntity<List<Player>> addPlayers(@RequestBody List<Player> players) {
         return new ResponseEntity<>(playerService.savePlayers(players), HttpStatus.OK);
     }
+
+
 }

@@ -9,4 +9,7 @@ public interface TeamRepository extends JpaRepository<Team, String> {
 
     @Query("SELECT t FROM Team t WHERE t.domesticCompetitionId = ?1")
     List<Team> findByChampionship(String championship);
+
+    @Query("SELECT t FROM Team t WHERE t.lastSeason = 2023")
+    List<Team> findByActive(boolean b);
 }

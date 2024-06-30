@@ -23,4 +23,8 @@ public class TeamService {
     public List<Team> getTeamsByChampionship(String championship) {
         return teamRepository.findByChampionship(championship);
     }
+
+    public List<Team> getActiveTeams() {
+        return teamRepository.findByActive(true);
+    }
 }

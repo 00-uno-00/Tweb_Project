@@ -78,6 +78,17 @@ public class Player {
     @Column(name = "current_club_name")
     private String currentClubName;
 
+    @Column(name = "score")
+    private float score;
+
+    public float getScore() {
+        return score;
+    }
+
+    public void setScore(float score) {
+        this.score = score;
+    }
+
     public Player() {
     }
 

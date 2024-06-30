@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -28,6 +29,10 @@ public class PlayerService {
     }
 
     public List<Player> savePlayers(List<Player> players) {return playerRepository.saveAll(players);}
+
+    public Float getCurrentClubScore(long currentClubId) {
+        return playerRepository.getCurrentClubScore(currentClubId);
+    }
 
     public List<Player> getPlayersByIds(List<Long> ids) {return playerRepository.findAllById(ids);}
 }
