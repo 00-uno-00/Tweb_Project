@@ -58,8 +58,10 @@ async function getAllGames(id) {
                 {
                     $match: {
                         $or:
-                            [{home_club_id: id},
-                                {away_club_id: id}]
+                            [
+                                {home_club_id: id},
+                                {away_club_id: id}
+                            ]
                     }
                 },
                 {
@@ -69,6 +71,9 @@ async function getAllGames(id) {
                             '$lt': new Date('Mon, 01 Jan 2024 00:00:00 GMT')
                         }
                     }
+                },
+                {
+                    $sort: {date: -1}
                 }
             ]
         ])
