@@ -24,4 +24,23 @@ router.get('/getChampionship/:id', async (req, res) => {
     }
 });
 
+/**
+ * Route to get all the teams scores in the championship.
+ * @name getTeamsCTI
+ * @function
+ * @param {list} ids - List of team ids.
+ */
+router.get('/getTeamsCTIS/:ids', async (req, res) => {
+    try {
+        const ids = req.params.ids.split(','); // split ids by comma
+        const teamsPromises = ids.map(id => axios.get(`http://localhost:8080/Player/getCurrentClubScore/${id}`)); // create a promise for each id
+        const teamsResponses = await Promise.all(teamsPromises);
+        const teams = teamsResponses.map(response => response.data);
+        res.json(teams);
+    } catch (error) {
+        console.error('Error fetching teams:', error);
+        res.status(500).json({error: 'Error fetching teams'});
+    }
+});
+
 module.exports = router;
