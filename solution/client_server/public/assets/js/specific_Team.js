@@ -103,7 +103,7 @@ async function getMatches(team_id) {
             matchRow.appendChild(matchResult);
             matchRow.appendChild(matchOpponent);
 
-            const href = `/Match/${match.id}`;
+            const href = `/Match/${match.game_id}`;
             matchRow.addEventListener('click', () => {
                 window.location.href = href;
             });
