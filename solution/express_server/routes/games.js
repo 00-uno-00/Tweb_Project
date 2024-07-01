@@ -41,10 +41,10 @@ router.get('/getManagerNames/:id', async function (req, res) {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
-
+//getallgames of a team
 router.get('/getAllGames/:id', async function (req, res) {
     try {
-        const matches = await controller.getAllGames(req.params.id);
+        const matches = await controller.getAllGames(parseInt(req.params.id));
         res.status(200).json(matches);
     } catch (error) {
         console.error('Error fetching latest 15 matches:', error);

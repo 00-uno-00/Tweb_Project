@@ -1,11 +1,11 @@
 async function getTeamData() {
     const team_id = window.location.pathname.split('/')[2];
 
-    // Get the team data
-    await getTeamInfo(team_id);
-
     //Players
     await getPlayers(team_id);
+
+    // Get the team data
+    await getTeamInfo(team_id);
 
     //Matches
     await getMatches(team_id);
@@ -16,17 +16,21 @@ async function getTeamInfo(team_id) {
     if (teamResponse.status === 200) {
         const team = teamResponse.data.name;
         document.getElementById('team_name').textContent = team.name;
-        const goals = document.getElementById('atk').textContent
-        const conceded = document.getElementById('def').textContent
+        const goals = document.getElementById('atk')
+        const conceded = document.getElementById('def')
+        const matches_n = document.getElementById('matches_n')
+        let matches = 0;
         const gameStats = teamResponse.data.gameStats ;
         let atk = 0;
         gameStats.forEach(game => {
+            matches++;
             if (game.home_club_id === parseInt(team_id)) {
                 atk += game.home_club_goals;
             } else {
                 atk += game.away_club_goals;
             }
         });
+        matches_n.textContent = matches;
         goals.textContent = atk;
         let def = 0;
         gameStats.forEach(game => {
