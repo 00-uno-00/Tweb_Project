@@ -10,6 +10,8 @@ async function populateStatsMatch() {
     let away_r_card = document.getElementById('away_r_card');
     let h_assist = document.getElementById('home_assist');
     let a_assist = document.getElementById('away_assist');
+    let home_goals = document.getElementById('home_goals');
+    let away_goals = document.getElementById('away_goals');
     //let img1 = document.getElementById('sq_1');
     //let img2 = document.getElementById('sq_2');
 
@@ -105,6 +107,9 @@ async function populateStatsMatch() {
 
             h_assist.textContent = `${home_response.data.assists.totalAssists}`;
             a_assist.textContent = `${away_response.data.assists.totalAssists}`;
+
+            home_goals.textContent = `${match.club_goals.home_score}`;
+            away_goals.textContent = `${match.club_goals.away_score}`;
 
 
 

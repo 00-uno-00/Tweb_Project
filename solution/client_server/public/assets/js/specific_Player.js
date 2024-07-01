@@ -28,10 +28,12 @@ async function populateStats() {
         let formattedDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
         contractExpirationDate.textContent += formattedDate;
         dob.textContent += player.dateOfBirth;
-        currentClubDomesticCompetitionId.textContent += player.currentClubDomesticCompetitionId;
+        currentClubDomesticCompetitionId.textContent += player.championship;
         club.textContent += player.currentClubName;
         height.textContent += player.heightInCm + ' cm';
         foot.textContent += player.foot;
+        currentClubDomesticCompetitionId.textContent += player.championship.name;
+        console.log(currentClubDomesticCompetitionId);
 
         img.src = player.imageUrl;
     } catch (error) {
@@ -61,7 +63,7 @@ async function populateStats() {
             let date = new Date(careerData[i].firstAppearance);
             let formattedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
-            let datelast = new Date(careerData[i].firstAppearance);
+            let datelast = new Date(careerData[i].lastAppearance);
             let formattedDatelast = `${datelast.getFullYear()}-${datelast.getMonth() + 1}-${datelast.getDate()}`;
 
             tableHTML += `

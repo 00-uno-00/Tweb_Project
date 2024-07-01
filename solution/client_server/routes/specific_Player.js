@@ -31,6 +31,8 @@ router.get('/career/:id', async (req, res) => {
 
     try {
         const response = await axios.get(`http://localhost:3001/api/player/career/${id}`);
+
+
         res.json(response.data);
     } catch (error) {
         console.error('Error fetching player career:', error);
