@@ -1,6 +1,7 @@
 package utils.springboot_server.Championship;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,5 +35,9 @@ public class ChampionshipService {
 
     public List<Championship> getFirstTierChampionships() {
         return championshipRepository.findFirstTierChampionships();
+    }
+
+    public List<Championship> searchChamp(String query, Pageable page) {
+        return championshipRepository.findByNameContainingIgnoreCase(query, page);
     }
 }

@@ -1,6 +1,7 @@
 package utils.springboot_server.Player;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,4 +36,8 @@ public class PlayerService {
     }
 
     public List<Player> getPlayersByIds(List<Long> ids) {return playerRepository.findAllById(ids);}
+
+    public List<Player> searchPlayers(String name, Pageable pageable) {
+        return playerRepository.findByNameContainingIgnoreCase(name, pageable);
+    }
 }

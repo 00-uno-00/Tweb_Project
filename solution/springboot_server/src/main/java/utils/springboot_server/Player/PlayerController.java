@@ -1,9 +1,13 @@
 package utils.springboot_server.Player;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.io.Console;
 import java.util.List;
@@ -54,6 +58,13 @@ public class PlayerController {
     @GetMapping("/getCurrentClubScore/{currentClubId}")
     public ResponseEntity<Float> getCurrentClubScore(@PathVariable long currentClubId) {
         return new ResponseEntity<>(playerService.getCurrentClubScore(currentClubId), HttpStatus.OK);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Player>> searchPlayers(@RequestParam String query) {
+        Pageable page = PageRequest.of(0, 10);
+        List<Player> result = playerService.searchPlayers(query, page);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PostMapping("/addPlayers")

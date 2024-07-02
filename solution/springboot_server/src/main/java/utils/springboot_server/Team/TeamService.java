@@ -1,5 +1,6 @@
 package utils.springboot_server.Team;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,5 +27,9 @@ public class TeamService {
 
     public List<Team> getActiveTeams() {
         return teamRepository.findByActive(true);
+    }
+
+    public List<Team> searchTeams(String query, Pageable page) {
+        return teamRepository.findByNameContainingIgnoreCase(query, page);
     }
 }

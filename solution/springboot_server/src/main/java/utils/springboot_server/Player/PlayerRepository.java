@@ -1,5 +1,6 @@
 package utils.springboot_server.Player;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -8,14 +9,7 @@ import java.util.Map;
 
 public interface PlayerRepository extends JpaRepository<Player, Long> {
 
-    /**
-     * Retrieves the list of the top 15 players with the highest score.
-     * The score is calculated based on the player's performance in the last season (2023).
-     *
-     * @return A list of Player objects. Each Player object represents a player with the highest score in the last season (2023).
-     */
-    @Query(value = "SELECT * FROM players WHERE last_season = 2023 ORDER BY score DESC LIMIT 15", nativeQuery = true)
-    List<Player> findTopPlayersByScore();//TODO connect with mongo and retrieve calculated score from there
+    List<Player> findByNameContainingIgnoreCase(String name, Pageable pageable);
 
     /**
      * Retrieves a list of players who are currently associated with a specific club.

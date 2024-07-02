@@ -1,5 +1,6 @@
 package utils.springboot_server.Championship;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -9,4 +10,6 @@ public interface ChampionshipRepository extends JpaRepository<Championship, Stri
 
     @Query("SELECT c FROM Championship c WHERE c.subType = 'first_tier' ORDER BY c.name")
     List<Championship> findFirstTierChampionships();
+
+    List<Championship> findByNameContainingIgnoreCase(String query, Pageable page);
 }

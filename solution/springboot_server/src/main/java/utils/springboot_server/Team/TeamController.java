@@ -1,10 +1,12 @@
 package utils.springboot_server.Team;
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import utils.springboot_server.Player.Player;
 
 import java.util.List;
 
@@ -35,5 +37,12 @@ public class TeamController {
     @GetMapping("/getActiveTeams")
     public List<Team> getActiveTeams() {
         return teamService.getActiveTeams();
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Team>> searchTeams(@RequestParam String query) {
+        Pageable page = PageRequest.of(0, 10);
+        List<Team> result = teamService.searchTeams(query, page);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }
