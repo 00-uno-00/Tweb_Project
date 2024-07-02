@@ -11,7 +11,8 @@ router.get('/Players', async (req, res) => {
         const [playersResponse, clubsResponse] = await Promise.all([playersPromise]);
 
         const response = {
-            players: playersResponse.data
+            postgres: playersResponse.data,
+            mongo: []
         };
 
         res.json(response);
@@ -30,7 +31,8 @@ router.get('/Teams', async (req, res) => {
         const [teamResponse, clubsResponse] = await Promise.all([teamPromise]);
 
         const response = {
-            players: teamResponse.data
+            postgres: teamResponse.data,
+            mongo: []
         };
 
         res.json(response);
@@ -49,9 +51,29 @@ router.get('/Championships', async (req, res) => {
         const [champResponse, clubsResponse] = await Promise.all([champPromise]);
 
         const response = {
-            players: champResponse.data
+            postgres: champResponse.data,
+            mongo: []
         };
 
+        res.json(response);
+    } catch (error) {
+        console.error('Error in search: ', error);
+        res.status(500).send('Internal server error');
+    }
+});
+
+router.get('/Matches', async (req, res) => {
+    try {
+        const searchText = req.query.query;
+
+        const gamesPromise = axios.get('http://localhost:3001/api/searchGames', { params: { query: searchText } });
+
+        const [gamesResponse] = await Promise.all([gamesPromise]);
+
+        const response = {
+            postgres: [],
+            mongo: gamesResponse.data
+        };
         res.json(response);
     } catch (error) {
         console.error('Error in search: ', error);

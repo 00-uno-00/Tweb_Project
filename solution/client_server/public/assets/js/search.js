@@ -8,6 +8,11 @@ function initSearch() {
 
     searchBar.addEventListener('click', openQuickSearch);
     searchBar.addEventListener('input', handleQuickSearchInput);
+
+    document.getElementById('searchButton').addEventListener('click', function() {
+        const searchText = document.getElementById('searchbar').value;
+        matchesSearch(searchText);
+    });
 }
 
 /**
@@ -28,8 +33,21 @@ function openQuickSearch() {
 function handleQuickSearchInput(event) {
     const searchText = event.target.value;
     const type = window.location.pathname.split('/')[1];
-    if (searchText.length > 1) {
-        axios.get(`/search/${type}`, { params: { query: searchText } })
+
+    // Dictionary to map the type of search to the corresponding API endpoint.
+    const dictionary = {
+        'Players': 'Players',
+        'specific_Player': 'Players',
+        'Teams': 'Teams',
+        'Team': 'Teams',
+        'Championships': 'Championships',
+        'specific_Championship': 'Championships',
+        'Match': 'Matches',
+        'Matches': 'Matches'
+    };
+
+    if (searchText.length > 1 ) {//&& dictionary[type] === 'Matches'
+        axios.get(`/search/${dictionary[type]}`, { params: { query: searchText } })
             .then(response => displaySearchResults(response.data, type))
             .catch(error => {
                 console.error(error);
@@ -38,6 +56,15 @@ function handleQuickSearchInput(event) {
     } else {
         clearSearchResults();
     }
+}
+
+function matchesSearch(searchText) {
+    axios.get(`/search/Matches`, { params: { query: searchText } })
+        .then(response => displaySearchResults(response.data, 'Matches'))
+        .catch(error => {
+            console.error(error);
+            displayError('Error retrieving search results.');
+        });
 }
 
 /**
@@ -53,16 +80,24 @@ function displaySearchResults(results, type) {
 
     const dictionary = {
         'Players': 'specific_Player',
+        'specific_Player': 'specific_Player',
         'Teams': 'Team',
-        'Championships': 'specific_Championship'
+        'Championships': 'specific_Championship',
+        'specific_Championship': 'specific_Championship',
+        'Matches': 'Match',
+        'Match': 'Match'
     };
 
 
-    if (results && results.players && results.players.length > 0) {
-        createCategoryContainer("Here's what we found:", results.players, dictionary[type], 'id', resultsDiv);
+    if (results && results.postgres && results.postgres.length > 0) {
+        createCategoryContainer("Here's what we found:", results.postgres, dictionary[type], 'id', resultsDiv);
     }
 
-    if (!results.players || results.players.length === 0) {
+    if (results && results.mongo && results.mongo.length > 0) {
+        createCategoryContainer("Here's what we found:", results.mongo, 'Match', 'game_id', resultsDiv);
+    }
+
+    if (results.mongo.length === 0 && results.postgres.length === 0) {
         displayError('No results found matching your search.');
     }
 }
@@ -84,7 +119,13 @@ function createCategoryContainer(labelText, items, itemClass, idKey, resultsDiv)
     containerDiv.appendChild(categoryDiv);
 
     items.forEach(item => {
-        const itemElement = createElement('p', ['item'], item.name);
+        let itemElement;
+
+        if (itemClass === 'Match') {
+             itemElement = createElement('p', ['item'], `${item.home_club_name} vs ${item.away_club_name}`);
+        } else {
+             itemElement = createElement('p', ['item'], item.name);
+        }
         const href = `/${itemClass}/${item[idKey]}`;
         itemElement.addEventListener('click', () => {
             window.location.href = href;
@@ -134,8 +175,9 @@ function clearSearchResults() {
 function closeSearchEvent(event) {
     const searchResults = document.getElementsByClassName('category');
     const searchbar = document.getElementById('searchbar');
+    const searchButton = document.getElementById('searchButton');
     const isClickInsideQuickSearch = Array.from(searchResults).some(element => element.contains(event.target)) ||
-        searchbar.contains(event.target);
+        searchbar.contains(event.target) || searchButton.contains(event.target);
     if (!isClickInsideQuickSearch) {
         document.removeEventListener('click', closeSearchEvent, true);
         closeQuickSearch();

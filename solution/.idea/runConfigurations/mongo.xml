@@ -3,9 +3,6 @@
     <envs>
       <env name="DEBUG" value="express-server:*" />
     </envs>
-    <EXTENSION ID="com.intellij.lang.javascript.buildTools.npm.rc.StartBrowserRunConfigurationExtension">
-      <browser url="http://localhost:3000/" />
-    </EXTENSION>
     <method v="2" />
   </configuration>
 </component>

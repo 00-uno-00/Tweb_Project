@@ -246,6 +246,56 @@ function getManagerNames(gameId) {
     });
 }
 
+function searchGames(names) {
+    names = names.map(name => name.toString());
+    if (names.length === 1) names.push("");
+
+    return new Promise((resolve, reject) => {
+        Games.aggregate([
+            {
+                $match: {
+                    $or: [
+                        {
+                            home_club_name: { $regex: names[0], $options: "i" },
+                            away_club_name: { $regex: names[1] !== "" ? names[1] : names[0], $options: "i" }
+                        },
+                        {
+                            home_club_name: { $regex: names[1] !== "" ? names[1] : names[0], $options: "i" },
+                            away_club_name: { $regex: names[0], $options: "i" }
+                        },
+                        {
+                            home_club_name: { $regex: names[0], $options: "i" }
+                        },
+                        {
+                            away_club_name: { $regex: names[0], $options: "i" }
+                        }
+                    ]
+                }
+            },
+            {
+                $match: {
+                    date: {
+                        $gte: new Date("Sun, 01 Jan 2023 00:00:00 GMT"),
+                        $lt: new Date("Mon, 01 Jan 2024 00:00:00 GMT")
+                    }
+                }
+            },
+            {
+                $sort: { date: -1 }
+            },
+            {
+                $limit: 10
+            }
+        ])
+            .then(results => {
+                resolve(results);
+            })
+            .catch(error => {
+                reject(error);
+            });
+    });
+}
+
 
 module.exports = {
     getLast15Games,
@@ -254,6 +304,7 @@ module.exports = {
     getGameDetails,
     getAllGames,
     getChampionshipGames,
+    searchGames,
     //clubGoals,
     getManagerNames
 };

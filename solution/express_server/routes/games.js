@@ -72,4 +72,17 @@ router.get('/getGamesByChampionship/:id', async function (req, res) {
     }
 });
 
+router.get('/searchGames/', async function (req, res) {
+    const searchText = req.query.query;
+    const searchArray = searchText.split(' ');
+
+    try {
+        const matches = await controller.searchGames(searchArray);
+        res.status(200).json(matches);
+    } catch (error) {
+        console.error('Error fetching latest 15 matches:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 module.exports = router;
