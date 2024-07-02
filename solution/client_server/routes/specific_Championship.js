@@ -43,4 +43,16 @@ router.get('/getTeamsCTIS/:ids', async (req, res) => {
     }
 });
 
+router.get('/getTeam/:id', async (req, res) => {
+    const id = req.params.id;
+    try {
+        const teamPromise = axios.get(`http://localhost:8080/Team/getTeamById/${id}`);
+        const team = await teamPromise;
+        res.json(team.data);
+    } catch (error) {
+        console.error('Error fetching team:', error);
+        res.status(500).json({error: 'Error fetching team'});
+    }
+});
+
 module.exports = router;

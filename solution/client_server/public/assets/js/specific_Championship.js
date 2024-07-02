@@ -7,7 +7,7 @@ async function loadData() {
     //set championship generic data
     await champData(championship.championship);
 
-    await teamsData(championship.teams);
+    await teamsData(championship);
 
     await matchesData(championship.matches);
 }
@@ -23,18 +23,34 @@ async function champData(championship) {
     info.innerText += " | Confederation: " + championship.confederation.toUpperCase();
 }
 
-async function teamsData(teams) {
+async function teamsData(data) {
+    let teams = data.teams;
+
+    //if there are no teams in the championship we search for the teams through the matches
+    if (teams.length === 0) {
+        team_ids = data.matches.map(match => match.home_club_id);
+        const team_ids_away = data.matches.map(match => match.away_club_id);
+        team_ids.push(...team_ids_away);
+        team_ids = [...new Set(team_ids)];
+        for (let i = 0; i < team_ids.length; i++) {
+            const res = await axios.get(`/specific_Championship/getTeam/${team_ids[i]}`);
+            teams.push(res.data);
+        }
+    }
+
     const players_n = document.getElementById('players_n');
     const teams_n = document.getElementById('teams_n');
     let players = 0;
     let nteams = 0;
     teams.forEach(team => {
-        players += team.squadSize;
+        players += team ? team.squadSize : 0;
         nteams++;
     });
     players_n.textContent = players;
     teams_n.textContent = nteams;
-    const team_ids = teams.map(team => team.id);
+
+    team_ids = teams.filter(team => team !== undefined && team.id !== undefined).map(team => team.id);
+
     const res = await axios.get(`/specific_Championship/getTeamsCTIS/${team_ids.join(',')}`);
     const scores = res.data;
     const bestTeamsTable = document.getElementById('best_teams_table');
@@ -42,7 +58,7 @@ async function teamsData(teams) {
     for (let i = 0; i < teams.length; i++) {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td style="align-content: start">${teams[i].name}</td>
+            <td style="align-content: start">${teams[i] ? teams[i].name : "Unknown"}</td>
             <td>${scores[i] === "" ? "N/A" : scores[i]}</td>
             `;
         const href = `/Team/${teams[i].id}`;
@@ -71,6 +87,9 @@ async function matchesData(matches) {
         `;
         row.addEventListener('click', () => {
             window.location.href = href;
+        });
+        row.addEventListener('mouseover', () => {
+            row.style.cursor = 'pointer';
         });
         matchesTable.appendChild(row);
     }
