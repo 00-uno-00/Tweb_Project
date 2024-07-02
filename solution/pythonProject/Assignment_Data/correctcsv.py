@@ -5,8 +5,14 @@ def csv_to_null(csv_file_path, output_csv_file_path):
     # Read the CSV file
     df = pd.read_csv(csv_file_path)
     
-    # Replace empty values with None
-    df = df.where(pd.notnull(df), None)
+    # Replace null values with appropriate default values
+    for column in df.columns:
+        if df[column].dtype == 'int64':
+            df[column].fillna(-1, inplace=True)
+        elif df[column].dtype == 'float64':
+            df[column].fillna(-1.0, inplace=True)
+        else:
+            df[column].fillna("", inplace=True)
     
     # Write the DataFrame back to a CSV file
     df.to_csv(output_csv_file_path, index=False)
