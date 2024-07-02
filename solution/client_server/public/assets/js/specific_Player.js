@@ -19,6 +19,7 @@ async function populateStats() {
     try {
         const response = await axios.get(`/Players/${playerId}`);
         const player = response.data;
+        console.log(player);
 
         playerName.textContent = player.name;
         nationality.textContent += ' ' + player.countryOfCitizenship;
@@ -28,7 +29,6 @@ async function populateStats() {
         let formattedDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
         contractExpirationDate.textContent += formattedDate;
         dob.textContent += player.dateOfBirth;
-        currentClubDomesticCompetitionId.textContent += player.championship;
         club.textContent += player.currentClubName;
         height.textContent += player.heightInCm + ' cm';
         foot.textContent += player.foot;

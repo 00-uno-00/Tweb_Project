@@ -103,6 +103,9 @@ async function getChampionshipGames(id) {
                         '$lt': new Date('Mon, 01 Jan 2024 00:00:00 GMT')
                     }
                 }
+            },
+            {
+                $sort: {date: -1}
             }
         ])
             .then(results => {

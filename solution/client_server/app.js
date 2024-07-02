@@ -14,6 +14,7 @@ const championshipsRouter = require('./routes/Championships');
 const specificChampionshipRouter = require('./routes/specific_Championship');
 const teamsRouter = require('./routes/Teams');
 const teamRouter = require('./routes/specific_Team');
+const searchRouter = require('./routes/search');
 
 var app = express();
 
@@ -39,6 +40,8 @@ app.use('/championships', championshipsRouter);
 app.use('/specific_Championship', specificChampionshipRouter);
 app.use('/teams', teamsRouter);
 app.use('/team', teamRouter);
+app.use('/search', searchRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

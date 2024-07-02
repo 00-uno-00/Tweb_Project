@@ -77,5 +77,40 @@
   --bs-btn-disabled-border-color: #198754;
 }
 
+.no-results {
+  text-align: center;
+  padding: 2.5%;
+  color: white;
+  background-color: var(--bs-primary);
+  font-size: larger;
+  font-weight: Bold;
+}
+
+.loading{
+  text-align: center;
+  padding: 2.5%;
+  color: white;
+  background-color: var(--bs-primary);
+  font-size: larger;
+  font-weight: Bold;
+}
+
+.category {
+  text-align: center;
+}
+
+.label {
+  text-align: center;
+  position: sticky;
+  top: 0;
+  color: white;
+  background-color: var(--bs-primary);
+  z-index: 0;
+  width: 100%;
+  padding: 10px 0;
+  font-size: larger;
+  font-weight: Bold;
+}
+
 
 
