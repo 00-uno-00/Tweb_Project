@@ -32,6 +32,7 @@ async function populateTop15Scorers() {
                 row.addEventListener('click', () => {
                     window.location.href = href;
                 });
+                row.style.cursor = 'pointer';
                 // Append the row to the table
                 table.appendChild(row);
             }

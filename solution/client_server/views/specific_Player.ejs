@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="/assets/css/Simple-Bootstrap-Chat.css">
 </head>
 
-<body style="filter: invert(0%);" onload="populateStats()">
+<body style="filter: invert(0%);" onload="populateStats(), initSearch()">
 <nav class="navbar navbar-expand-md bg-dark">
     <div class="container-fluid"><a class="navbar-brand me-auto d-md-flex align-items-md-center" href="/index"
                                     style="padding-top: 0;background: #00000000;font-family: 'Lexend Zetta', sans-serif;font-size: 30px;color: rgb(255,255,255);margin-right: 0px;">Calcio
@@ -144,9 +144,14 @@
         <p style="font-size: 1.25rem;padding-bottom: 1rem;margin-bottom: 0;">Insert their name and we'll do the rest&nbsp;</p>
     </div>
 </div><!-- Start: Pretty Search Form -->
-<form class="search-form">
-    <div class="input-group"><span class="input-group-text"><i class="fa fa-search"></i></span><input class="form-control" type="text" placeholder="I am looking for.."><button class="btn btn-light" type="button" style="background: var(--bs-primary);color: var(--bs-body-bg);">Search </button></div>
+<form id="search-form" class="search-form">
+    <div class="input-group">
+        <span class="input-group-text"><i class="fa fa-search"></i></span>
+        <input id="searchbar" class="form-control" type="text" placeholder="I am looking for..">
+        <button id="searchButton" class="btn btn-light" type="button" style="background: var(--bs-primary);color: var(--bs-body-bg);">Search </button>
+    </div>
 </form><!-- End: Pretty Search Form -->
+<div id="results" class="results" ></div>
 <footer class="d-xl-flex align-items-xl-end" style="background: var(--bs-body-color);">
     <div class="container">
         <div class="row">
@@ -176,6 +181,7 @@
 <script src="/assets/js/bs-init.js"></script>
 <script src="/assets/js/specific_Player.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="/assets/js/search.js"></script>
 </body>
 
 </html>

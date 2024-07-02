@@ -24,9 +24,9 @@
     <link rel="stylesheet" href="/assets/css/prova.css">
 </head>
 
-<body onload="populateStatsMatch()">
+<body onload="populateStatsMatch(), initSearch()">
     <nav class="navbar navbar-expand-md bg-dark">
-        <div class="container-fluid"><a class="navbar-brand me-auto d-md-flex align-items-md-center" href="index.html" style="padding-top: 0;background: #00000000;font-family: 'Lexend Zetta', sans-serif;font-size: 30px;color: rgb(255,255,255);margin-right: 0px;">Calcio <img class="img-fluid" src="/assets/img/removebg-3@2x.png" style="max-width: 20%;">Trends</a><button data-bs-toggle="collapse" class="navbar-toggler ms-auto collapsed" data-bs-target="#primaryNavbar" style="filter: invert(100%);"><span class="navbar-toggler-icon"></span></button>
+        <div class="container-fluid"><a class="navbar-brand me-auto d-md-flex align-items-md-center" href="/index" style="padding-top: 0;background: #00000000;font-family: 'Lexend Zetta', sans-serif;font-size: 30px;color: rgb(255,255,255);margin-right: 0px;">Calcio <img class="img-fluid" src="/assets/img/removebg-3@2x.png" style="max-width: 20%;">Trends</a><button data-bs-toggle="collapse" class="navbar-toggler ms-auto collapsed" data-bs-target="#primaryNavbar" style="filter: invert(100%);"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse text-nowrap justify-content-center" id="primaryNavbar" style="font-size: 20px;color: rgb(255,255,255);">
                 <ul class="navbar-nav ms-auto" style="color: #ffffff;">
                     <li class="nav-item"><a class="nav-link" href="/index" style="color: #ffffff;">Home</a></li>
@@ -137,9 +137,14 @@
             <p style="font-size: 1.25rem;padding-bottom: 1rem;margin-bottom: 0;">Insert the team names and we'll do the rest&nbsp;</p>
         </div>
     </div><!-- Start: Pretty Search Form -->
-    <form class="search-form">
-        <div class="input-group"><span class="input-group-text"><i class="fa fa-search"></i></span><input class="form-control" type="text" placeholder="I am looking for.."><button class="btn btn-light" type="button" style="background: var(--bs-primary);color: var(--bs-body-bg);">Search </button></div>
+    <form id="search-form" class="search-form">
+        <div class="input-group">
+            <span class="input-group-text"><i class="fa fa-search"></i></span>
+            <input id="searchbar" class="form-control" type="text" placeholder="I am looking for..">
+            <button id="searchButton" class="btn btn-light" type="button" style="background: var(--bs-primary);color: var(--bs-body-bg);">Search </button>
+        </div>
     </form><!-- End: Pretty Search Form -->
+    <div id="results" class="results" ></div>
     <footer class="d-xl-flex align-items-xl-end" style="background: var(--bs-body-color);">
         <div class="container">
             <div class="row">
@@ -165,6 +170,7 @@
     <script src="/assets/js/bs-init.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script src="/assets/js/specific_Match.js"></script>
+    <script src="/assets/js/search.js"></script>
 </body>
 
 </html>

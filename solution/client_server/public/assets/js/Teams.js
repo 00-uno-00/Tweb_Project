@@ -28,6 +28,7 @@ async function getTeams() {
         row.addEventListener('click', () => {
           window.location.href = href;
         });
+        row.style.cursor = 'pointer';
 
         table.appendChild(row);
       }

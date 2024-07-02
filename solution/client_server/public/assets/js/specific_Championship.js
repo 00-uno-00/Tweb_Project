@@ -65,6 +65,7 @@ async function teamsData(data) {
         row.addEventListener('click', () => {
             window.location.href = href;
         });
+        row.style.cursor = 'pointer';
         bestTeamsTable.appendChild(row);
     }
 }
@@ -88,9 +89,7 @@ async function matchesData(matches) {
         row.addEventListener('click', () => {
             window.location.href = href;
         });
-        row.addEventListener('mouseover', () => {
-            row.style.cursor = 'pointer';
-        });
+        row.style.cursor = 'pointer';
         matchesTable.appendChild(row);
     }
 }
