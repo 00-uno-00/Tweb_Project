@@ -24,10 +24,8 @@ router.get('/:id', async (req, res) => {
     try {
         const response = await axios.get(`http://localhost:8080/Player/getPlayerById/${playerId}`);
 
-        // todo championship
         const championshipPromise = await axios.get(`http://localhost:8080/Championship/getChampionshipById/${response.data.currentClubDomesticCompetitionId}`);
         response.data.championship = championshipPromise.data;
-    console.log(response.data);
         res.json(response.data);
     } catch (error) {
         console.error('Error fetching player: ', error);

@@ -72,4 +72,15 @@ router.get('/lastMatches', async (req, res) => {
         res.status(500).json({error: 'Error fetching last matches'});
     }
 });
+
+router.get('/getPlayerName/:id', async (req, res) => {
+    const playerId = req.params.id;
+    try {
+        response = await axios.get(`http://localhost:8080/Player/getPlayerById/${playerId}`);
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error fetching player:', error);
+        res.status(500).json({error: 'Error fetching player'});
+    }
+});
 module.exports = router;
