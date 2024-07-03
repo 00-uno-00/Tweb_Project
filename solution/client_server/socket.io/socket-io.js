@@ -16,10 +16,16 @@ exports.init = function(io) {
             chat.to(room).emit('chat1', room, userId, chatText);
           });
 
+            socket.on('leave', function(room, userId) {
+                socket.leave(room);
+                chat.to(room).emit('left', room, userId);
+            });
+
           socket.on('disconnect', function(){
             console.log('someone disconnected');
           });
         } catch (e) {
+            console.error(e)
         }
       });
 }

@@ -1,6 +1,7 @@
 package utils.springboot_server.Team;
 
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class TeamService {
     }
 
     public List<Team> getAllTeams() {
-        return teamRepository.findAll();
+        return teamRepository.findAll(Sort.by("name"));
     }
 
     public List<Team> getTeamsByChampionship(String championship) {

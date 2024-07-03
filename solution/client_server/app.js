@@ -15,6 +15,7 @@ const specificChampionshipRouter = require('./routes/specific_Championship');
 const teamsRouter = require('./routes/Teams');
 const teamRouter = require('./routes/specific_Team');
 const searchRouter = require('./routes/search');
+const chat = require('./routes/chat');
 
 var app = express();
 
@@ -41,6 +42,7 @@ app.use('/specific_Championship', specificChampionshipRouter);
 app.use('/teams', teamsRouter);
 app.use('/team', teamRouter);
 app.use('/search', searchRouter);
+app.use('/chat', chat);
 
 
 // catch 404 and forward to error handler

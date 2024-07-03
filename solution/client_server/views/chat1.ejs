@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -15,8 +14,12 @@
     <link rel="stylesheet" href="assets/css/Pretty-Search-Form-.css">
     <link rel="stylesheet" href="assets/css/Chat.css">
     <link rel="stylesheet" href="assets/css/Simple-Bootstrap-Chat.css">
+    <style>
+        /* Insert optimized CSS here */
+    </style>
     <script src="assets/js/chat.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 </head>
 <body onload="init()">
 <nav class="navbar navbar-expand-md bg-dark">
@@ -44,16 +47,15 @@
     <p>Please insert your name and select an option from the dropdown menu to join a room.</p>
     <form onsubmit="return false;">
         <p>
-            <label for="name">Your name</label>
+            <label for="name" fill="false">Your name</label>
             <input type="text" id="name" name="name">
         </p>
         <p>
             <label for="dropdown1">Select option</label>
             <select id="dropdown1" name="dropdown1" onchange="showDropdown2()">
                 <option value="">--Select an option--</option>
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
+                <option value="Championship">Championship</option>
+                <option value="Team">Team</option>
             </select>
         </p>
         <p>
@@ -64,7 +66,6 @@
                 <option value="option2">Option 2</option>
                 <option value="option3">Option 3</option>
             </select>
-        </p>
         <button id="connect" onclick="connectToRoom()">Connect</button>
     </form>
 </div>
@@ -82,80 +83,12 @@
                 </div>
                 <form id="chat-form" onsubmit="sendChatText(); return false;">
                     <input id="message-input" type="text" placeholder="Type a message..." autocomplete="off">
-                    <button id="chat_sens" type="submit">Send</button>
+                    <button id="chat_send" class="btn-send" type="submit">Send</button>
+                    <button id="chat_leave" class="btn-leave" type="button" onclick="leaveRoom()">Leave</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col">
-        <!-- Start: Testimonials -->
-        <div class="chat_form container py-4 py-xl-5">
-            <div class="row mb-5">
-                <div class="col-md-8 col-xl-6 text-center mx-auto">
-                    <h2>Testimonials</h2>
-                </div>
-            </div>
-            <div class="row gy-4 row-cols-1 row-cols-sm-2 row-cols-lg-3">
-                <div class="col">
-                    <div>
-                        <p class="bg-body-tertiary border rounded border-0 p-4">Nisi sit justo faucibus nec ornare amet, tortor torquent. Blandit class dapibus, aliquet morbi.</p>
-                        <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
-                            <div>
-                                <p class="fw-bold text-primary mb-0">John Smith</p>
-                                <p class="text-muted mb-0">Erat netus</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div>
-                        <p class="bg-body-tertiary border rounded border-0 p-4">Nisi sit justo faucibus nec ornare amet, tortor torquent. Blandit class dapibus, aliquet morbi.</p>
-                        <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
-                            <div>
-                                <p class="fw-bold text-primary mb-0">John Smith</p>
-                                <p class="text-muted mb-0">Erat netus</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div>
-                        <p class="bg-body-tertiary border rounded border-0 p-4">Nisi sit justo faucibus nec ornare amet, tortor torquent. Blandit class dapibus, aliquet morbi.</p>
-                        <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
-                            <div>
-                                <p class="fw-bold text-primary mb-0">John Smith</p>
-                                <p class="text-muted mb-0">Erat netus</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<footer class="d-xl-flex align-items-xl-end" style="background: var(--bs-body-color);">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h3 class="text-center" style="color: var(--bs-body-bg);margin-top: 8px;">Contact Us</h3>
-                <hr style="color: var(--bs-body-bg);">
-                <h4 class="text-center" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" style="color: var(--bs-body-bg);" title="Please don't contact us">Email: <a href="mailto:calcio@trends.com" target="_blank"><span style="color: rgb(255, 255, 255);">calcio@trends.com</span></a><br>or write us a message!</h4>
-            </div>
-            <div class="col align-self-center col-2" id="logo"><img class="img-fluid" src="assets/img/removebg-3@2x.png" style="max-height: 50%;"></div>
-            <div class="col">
-                <h3 class="text-center" style="color: var(--bs-body-bg);margin-top: 8px;">Social</h3>
-                <hr style="color: var(--bs-body-bg);">
-                <div class="row">
-                    <div class="col" style="text-align: center;"><img src="/assets/img/facebook--negative.png"></div>
-                    <div class="col" style="text-align: center;"><img src="/assets/img/instagram--negative.png"></div>
-                    <div class="col" style="text-align: center;"><img src="/assets/img/twitter--negative.png"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
 </body>
 </html>
-

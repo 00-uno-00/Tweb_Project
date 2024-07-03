@@ -25,9 +25,19 @@ public class ChampionshipController {
         return new ResponseEntity<>(championshipService.getChampionshipById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/getChampionshipByName/{name}")
+    public ResponseEntity<Championship> getChampionshipByName(@PathVariable String name) {
+        return new ResponseEntity<>(championshipService.getChampionshipByName(name), HttpStatus.OK);
+    }
+
     @GetMapping("/getFirstTierChampionships")
     public ResponseEntity<List<Championship>> getFirstTierChampionships() {
         return new ResponseEntity<>(championshipService.getFirstTierChampionships(), HttpStatus.OK);
+    }
+
+    @GetMapping("/getChampionships")
+    public ResponseEntity<List<Championship>> getChampionships() {
+        return new ResponseEntity<>(championshipService.getChampionships(), HttpStatus.OK);
     }
 
     @GetMapping("/search")

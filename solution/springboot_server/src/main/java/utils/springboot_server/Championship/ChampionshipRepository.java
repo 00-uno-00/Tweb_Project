@@ -12,4 +12,7 @@ public interface ChampionshipRepository extends JpaRepository<Championship, Stri
     List<Championship> findFirstTierChampionships();
 
     List<Championship> findByNameContainingIgnoreCase(String query, Pageable page);
+
+    @Query("SELECT c FROM Championship c WHERE c.name = :name")
+    Championship findByName(String name);
 }
