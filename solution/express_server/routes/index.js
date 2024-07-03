@@ -5,13 +5,14 @@ const appearancesController = require('../controllers/appearances');
 const clubGamesController = require('../controllers/club_games');
 const gameEventsController = require('../controllers/games_events');
 const gamesController = require('../controllers/games');
+const controller = require("../controllers/games");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-module.exports = router;
+//odule.exports = router;
 
 //prova
 router.get('/appearances', (req, res) => {
@@ -185,8 +186,10 @@ router.get('/redCardsAPlayer', (req, res) => {
         });
 });
 
-router.get('/yellowCardsAPlayer', (req, res) => {
-    appearancesController.yellowCardsAPlayer(38253)
+router.get('/yellowCardsAPlayer/:id', (req, res) => {
+    const playerId = req.params.id;
+    console.log(playerId);
+    appearancesController.yellowCardsAPlayer(playerId)
         .then(players => {
             console.log(players); // Visualizza i risultati
             res.status(200).json(players); // Restituisce i giocatori con più gol come JSON

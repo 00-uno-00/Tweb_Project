@@ -158,9 +158,9 @@ function totalAssists(playerId) {
     });
 }
 
-async function redCardsAPlayer(playerId) {
-    try {
-        const results = await Appearances.aggregate([
+function redCardsAPlayer(playerId) {
+    return new Promise((resolve, reject) => {
+        Appearances.aggregate([
             {
                 $match: { player_id: playerId }
             },
@@ -171,21 +171,24 @@ async function redCardsAPlayer(playerId) {
                     red_cards: { $sum: "$red_cards" }
                 }
             }
-        ]);
-
-        if (results.length > 0) {
-            return results[0];
-        } else {
-            return null;
-        }
-    } catch (error) {
-        throw error;
-    }
+        ])
+            .then(results => {
+                if (results.length > 0) {
+                    resolve(results[0]);
+                } else {
+                    resolve(null); // Se il giocatore non ha nessun cartellino rosso
+                }
+            })
+            .catch(error => {
+                reject(error);
+            });
+    });
 }
 
-async function yellowCardsAPlayer(playerId) {
-    try {
-        const results = await Appearances.aggregate([
+
+function yellowCardsAPlayer(playerId) {
+    return new Promise((resolve, reject) => {
+        Appearances.aggregate([
             {
                 $match: { player_id: playerId }
             },
@@ -193,19 +196,21 @@ async function yellowCardsAPlayer(playerId) {
                 $group: {
                     _id: "$player_id",
                     player_name: { $first: "$player_name" },
-                    red_cards: { $sum: "$yellow_cards" }
+                    yellow_cards: { $sum: "$yellow_cards" }
                 }
             }
-        ]);
-
-        if (results.length > 0) {
-            return results[0];
-        } else {
-            return null;
-        }
-    } catch (error) {
-        throw error;
-    }
+        ])
+            .then(results => {
+                if (results.length > 0) {
+                    resolve(results[0]);
+                } else {
+                    resolve(null); // Se il giocatore non ha nessun cartellino rosso
+                }
+            })
+            .catch(error => {
+                reject(error);
+            });
+    });
 }
 
 
@@ -346,6 +351,31 @@ function getTeamTotalAssists(gameId, clubId) {
     });
 }
 
+function top8GoalScorers() {
+    return new Promise((resolve, reject) => {
+        Appearances.aggregate([
+            {
+                $group: {
+                    _id: "$player_id", // Raggruppa per ID del giocatore
+                    totalGoals: { $sum: "$goals" } // Somma i gol
+                }
+            },
+            {
+                $sort: { totalGoals: -1 } // Ordina in ordine decrescente per numero di gol
+            },
+            {
+                $limit: 8 // Limita il risultato ai primi 8 giocatori
+            }
+        ])
+            .then(results => {
+                resolve(results); // Risolvi con i risultati dell'aggregazione
+            })
+            .catch(error => {
+                reject(error); // Rifiuta in caso di errore
+            });
+    });
+}
+
 module.exports = {
     getAllAppearances, //prova
     mostRedCards, //giocatori con più cartellini rossi
@@ -358,5 +388,6 @@ module.exports = {
     getPlayerAppearances, //prima e ultima apparizione di un giocatore in ciascuna squadra
     getTeamTotalRedCards, //numero totale di cartellini rossi in una partita di una squadra
     getTeamTotalYellowCards, //numero totale di cartellini gialli in una partita di una squadra
-    getTeamTotalAssists //numero totale di assist in una partita di una squadra
+    getTeamTotalAssists, //numero totale di assist in una partita di una squadra
+    top8GoalScorers //top 8 marcatori homepage
 };

@@ -130,5 +130,20 @@ router.get('/player/career/:playerId', (req, res) => {
         });
 });
 
+router.get('/home/topPlayer', (req, res) => {
+    appearancesController.top8GoalScorers()
+        .then(appearances => {
+            if (appearances && appearances.length > 0) {
+                res.status(200).json(appearances); // Restituisce le apparizioni come JSON
+            } else {
+                res.status(404).json({ error: 'No players found' });
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching player appearances:', error);
+            res.status(500).json({ error: 'An error occurred while fetching top 8 player' });
+        });
+});
+
 
 module.exports = router;

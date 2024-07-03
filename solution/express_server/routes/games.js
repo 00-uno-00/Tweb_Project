@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const controller = require("../controllers/games");
+const gamesController = require("../controllers/games");
 //todo cambia percorso players
 router.get('/latest15matches', async function (req, res) {
     try {
@@ -71,6 +72,19 @@ router.get('/getGamesByChampionship/:id', async function (req, res) {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+
+router.get('/home/lastMatches', async function (req, res) {
+    try {
+        const matches = await gamesController.getLast4Matches();
+        res.status(200).json(matches);
+        console.log(matches);
+    } catch (error) {
+        console.error('Error fetching last 4 matches:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
 
 router.get('/searchGames/', async function (req, res) {
     const searchText = req.query.query;

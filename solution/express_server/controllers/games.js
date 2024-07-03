@@ -227,18 +227,17 @@ function getGameDetails(gameId) {
 
 function getManagerNames(gameId) {
     return new Promise((resolve, reject) => {
-        Games.findOne({game_id: gameId})
-            .select('home_club_manager_name away_club_manager_name') // Seleziona solo i campi necessari
-            .then(result => {
-                if (result) {
-                    const managers = {
-                        home_manager: result.home_club_manager_name,
-                        away_manager: result.away_club_manager_name
-                    };
-                    resolve(managers);
-                } else {
-                    resolve(null); // Se la partita non viene trovata
-                }
+        Games.find({})
+            .sort({ date: -1 }) // Ordina per data in ordine decrescente
+            .limit(4) // Limita a 4 risultati
+            .then(results => {
+                const lastFourGames = results.map(game => ({
+                    home_club_name: game.home_club_name,
+                    away_club_name: game.away_club_name,
+                    home_club_goals: game.home_club_goals,
+                    away_club_goals: game.away_club_goals
+                }));
+                resolve(lastFourGames);
             })
             .catch(error => {
                 reject(error);
@@ -297,7 +296,59 @@ function searchGames(names) {
 }
 
 
-module.exports = {
+async function getLast4Matches() {
+        return new Promise((resolve, reject) => {
+            Games.find({
+                home_club_goals: { $exists: true },
+                away_club_goals: { $exists: true },
+                home_club_name: { $exists: true, $ne: "", $gt: 1 },
+                away_club_name: { $exists: true, $ne: "", $gt: 1 }
+            })
+                .sort({ date: -1 }) // Ordina per data in ordine decrescente
+                .limit(4) // Limita a 4 risultati
+                .then(results => {
+                    // Se abbiamo meno di 4 risultati, proviamo a prendere più risultati fino a 4
+                    if (results.length < 4) {
+                        return Games.find({
+                            home_club_goals: { $exists: true },
+                            away_club_goals: { $exists: true },
+                            home_club_name: { $exists: true, $ne: "", $gt: 1 },
+                            away_club_name: { $exists: true, $ne: "", $gt: 1 },
+                            date: { $lt: results[results.length - 1].date } // Utilizza l'ultima data trovata come limite superiore
+                        })
+                            .sort({ date: -1 })
+                            .limit(4 - results.length)
+                            .then(additionalResults => {
+                                results.push(...additionalResults);
+                                return results;
+                            });
+                    } else {
+                        return results;
+                    }
+                })
+                .then(results => {
+                    const validGames = results.filter(game => {
+                        return game.home_club_name.length > 1 && game.away_club_name.length > 1;
+                    });
+
+                    const lastFourGames = validGames.slice(0, 4).map(game => ({
+                        home_club_name: game.home_club_name,
+                        away_club_name: game.away_club_name,
+                        home_club_goals: game.home_club_goals,
+                        away_club_goals: game.away_club_goals
+                    }));
+
+                    resolve(lastFourGames);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        });
+    }
+
+
+
+    module.exports = {
     getLast15Games,
     getLast10Games,
     getTeamScores,
@@ -306,5 +357,6 @@ module.exports = {
     getChampionshipGames,
     searchGames,
     //clubGoals,
-    getManagerNames
+    getManagerNames,
+    getLast4Matches
 };

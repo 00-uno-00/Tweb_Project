@@ -1,5 +1,6 @@
 var express = require('express');
 const {join} = require("path");
+const axios = require('axios');
 var router = express.Router();
 
 /* GET home page. */
@@ -46,4 +47,29 @@ router.get('/Info', function (req, res) {
 router.get('/Match/:id', function (req, res) {
     res.render('Match', {id: req.params.id})
 })
+
+// GET top 8 players most goals scored
+router.get('/topPlayer', async (req, res) => {
+
+    try {
+        response = await axios.get('http://localhost:3001/api/home/topPlayer');
+        console.log(response.data);
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error fetching top 8 players:', error);
+        res.status(500).json({error: 'Error fetching top 8 players'});
+    }
+});
+
+router.get('/lastMatches', async (req, res) => {
+
+    try {
+        response = await axios.get('http://localhost:3001/api/home/lastMatches');
+        console.log(response.data);
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error fetching last matches:', error);
+        res.status(500).json({error: 'Error fetching last matches'});
+    }
+});
 module.exports = router;

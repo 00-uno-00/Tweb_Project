@@ -76,6 +76,30 @@
   --bs-btn-disabled-bg: transparent;
   --bs-btn-disabled-border-color: #198754;
 }
+.match {
+  display: inline-block;
+  width: 350px; /* Larghezza fissa per ogni card */
+  height: 120px; /* Altezza fissa per ogni card */
+  margin: 10px; /* Margine tra le card */
+  padding: 10px;
+  border: 2px solid green; /* Bordo verde più spesso */
+  font-family: Arial, sans-serif; /* Utilizzo di un carattere sans-serif */
+  background-color: #f0f0f0; /* Colore di sfondo per evidenziare la card */
+  box-sizing: border-box; /* Calcolo delle dimensioni inclusivo del bordo */
+}
+
+.match-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.match-info p {
+  margin: 0;
+  font-size: 16px;
+  text-align: right; /* Allinea il testo a destra */
+}
 
 .no-results {
   text-align: center;
@@ -112,5 +136,52 @@
   font-weight: Bold;
 }
 
+
+.score-info p {
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+}/* Allinea il testo al centro */
+
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 colonne con larghezza uguale */
+  gap: 20px; /* Spazio tra le colonne e le righe */
+  padding: 20px; /* Spazio interno */
+}
+.carousel-1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px; /* Spazio tra le carte giocatore */
+  padding: 20px; /* Spazio interno */
+}
+
+.player-card {
+  flex: 0 0 calc(50% - 20px); /* Larghezza del 50% meno lo spazio tra le carte */
+  border: 2px solid green;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  height: 200px; /* Altezza fissa per ogni card */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.player-info {
+  text-align: center;
+}
+
+.player-info p {
+  margin: 5px 0;
+}
+
+.player-photo {
+  width: 100px;
+  height: 100px;
+  background-color: grey;
+  margin: 0 auto; /* Centra l'elemento */
+}
 
 
