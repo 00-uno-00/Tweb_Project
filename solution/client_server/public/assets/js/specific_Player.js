@@ -19,7 +19,6 @@ async function populateStats() {
     try {
         const response = await axios.get(`/Players/${playerId}`);
         const player = response.data;
-        console.log(player);
 
         playerName.textContent = player.name;
         nationality.textContent += ' ' + player.countryOfCitizenship;
@@ -33,7 +32,6 @@ async function populateStats() {
         height.textContent += player.heightInCm + ' cm';
         foot.textContent += player.foot;
         currentClubDomesticCompetitionId.textContent += player.championship.name;
-        console.log(currentClubDomesticCompetitionId);
 
         img.src = player.imageUrl;
     } catch (error) {
@@ -53,12 +51,13 @@ async function populateStats() {
         let careerData;
         const career = await axios.get(`/specific_Player/career/${playerId}`);
         careerData = career.data;
-        console.log(careerData);
 
         // Crea una tabella HTML
         let tableHTML = '<table><thead><tr><th>Club</th><th>First Appearance</th><th>Last Appearance</th></tr></thead><tbody>';
         let i=0;
-        careerData.forEach(item => {
+        for(let item of careerData) {
+            const team = await axios.get(`/specific_Player/club/${item.club_id}`);
+            name = team.data.name.replace('-', ' ');
 
             let date = new Date(careerData[i].firstAppearance);
             let formattedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
@@ -69,13 +68,13 @@ async function populateStats() {
             tableHTML += `
             <tr>
                
-                <td>${item.club_id}</td>
+                <td>${name}</td>
                 <td>${formattedDate}</td>
                 <td>${formattedDatelast}</td>
             </tr>
         `;
             i++;
-        });
+        }
 
         tableHTML += '</tbody></table>';
 

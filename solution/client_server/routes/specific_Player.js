@@ -40,4 +40,17 @@ router.get('/career/:id', async (req, res) => {
     }
 });
 
+router.get('/club/:id', async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        const response = await axios.get(`http://localhost:8080/Team/getTeamById/${id}`);
+
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error fetching player:', error);
+        res.status(500).json({error: 'Error fetching player'});
+    }
+});
+
 module.exports = router;
