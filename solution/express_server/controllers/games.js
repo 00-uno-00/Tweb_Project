@@ -139,7 +139,7 @@ async function getChampionshipGames(id) {
  * @param {String} gameId - ID of the game
  * @returns {Promise} - A promise that resolves with the scores of the team
  */
-function getTeamScores(gameId) {
+function getMatchScores(gameId) {
     return new Promise((resolve, reject) => {
         Games.findOne({game_id: gameId})
             .select('game_id home_club_name home_club_id away_club_name away_club_id home_club_goals away_club_goals date') // Seleziona solo i campi necessari
@@ -321,7 +321,7 @@ async function getLast4Matches() {
 module.exports = {
     getLast15Games,
     getLast10Games,
-    getTeamScores,
+    getMatchScores,
     getGameDetails,
     getAllGames,
     getChampionshipGames,

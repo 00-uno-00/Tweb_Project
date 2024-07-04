@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const database = require('./database/database');
 const swaggerUi = require('swagger-ui-express');
-const openApiDocumentation = require('./swagger/Documentation.json');
+const openApiDocumentation = require('./Swagger/Documentation.json');
 
 //routers
 const indexRouter = require('./routes/index');
