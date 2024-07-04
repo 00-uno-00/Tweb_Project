@@ -40,4 +40,8 @@ public class PlayerService {
     public List<Player> searchPlayers(String name, Pageable pageable) {
         return playerRepository.findByNameContainingIgnoreCase(name, pageable);
     }
+
+    public Long getNumberOfPlayers() {
+        return playerRepository.count();
+    }
 }

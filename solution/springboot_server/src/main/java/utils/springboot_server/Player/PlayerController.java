@@ -55,6 +55,11 @@ public class PlayerController {
         return new ResponseEntity<>(playerService.getPlayerById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/getNumberOfPlayers")
+    public ResponseEntity<Long> getNumberOfPlayers() {
+        return new ResponseEntity<>(playerService.getNumberOfPlayers(), HttpStatus.OK);
+    }
+
     @GetMapping("/getCurrentClubScore/{currentClubId}")
     public ResponseEntity<Float> getCurrentClubScore(@PathVariable long currentClubId) {
         return new ResponseEntity<>(playerService.getCurrentClubScore(currentClubId), HttpStatus.OK);

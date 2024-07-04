@@ -33,4 +33,8 @@ public class TeamService {
     public List<Team> searchTeams(String query, Pageable page) {
         return teamRepository.findByNameContainingIgnoreCase(query, page);
     }
+
+    public Long getNumberOfTeams() {
+        return teamRepository.count();
+    }
 }

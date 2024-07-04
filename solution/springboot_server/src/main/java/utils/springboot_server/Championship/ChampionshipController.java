@@ -40,6 +40,11 @@ public class ChampionshipController {
         return new ResponseEntity<>(championshipService.getChampionships(), HttpStatus.OK);
     }
 
+    @GetMapping("/getNumberOfChampionships")
+    public ResponseEntity<Long> getNumberOfChampionships() {
+        return new ResponseEntity<>(championshipService.getNumberOfChampionships(), HttpStatus.OK);
+    }
+
     @GetMapping("/search")
     public ResponseEntity<List<Championship>> searchTeams(@RequestParam String query) {
         Pageable page = PageRequest.of(0, 10);

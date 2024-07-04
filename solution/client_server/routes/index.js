@@ -1,6 +1,7 @@
 var express = require('express');
 const {join} = require("path");
 const axios = require('axios');
+const {json} = require("express");
 var router = express.Router();
 
 /* GET home page. */
@@ -83,4 +84,24 @@ router.get('/getPlayerName/:id', async (req, res) => {
         res.status(500).json({error: 'Error fetching player'});
     }
 });
+
+router.get('/getDataStats', async (req, res) => {
+    try {
+        const playerPromise = axios.get('http://localhost:8080/Player/getNumberOfPlayers');
+        const teamPromise = axios.get('http://localhost:8080/Team/getNumberOfTeams');
+        const championshipPromise = axios.get('http://localhost:8080/Championship/getNumberOfChampionships');
+
+        const[players, teams, championships] = await Promise.all([playerPromise, teamPromise, championshipPromise]);
+
+        res.json({
+            players: players.data,
+            teams: teams.data,
+            championships: championships.data
+        });
+    } catch (error) {
+        console.error('Error fetching data stats:', error);
+        res.status(500).json({error: 'Error fetching data stats'});
+    }
+});
+
 module.exports = router;

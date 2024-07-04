@@ -49,4 +49,8 @@ public class ChampionshipService {
     public Championship getChampionshipByName(String name) {
         return championshipRepository.findByName(name);
     }
+
+    public Long getNumberOfChampionships() {
+        return championshipRepository.count();
+    }
 }

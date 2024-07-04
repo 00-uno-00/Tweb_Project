@@ -39,6 +39,11 @@ public class TeamController {
         return teamService.getActiveTeams();
     }
 
+    @GetMapping("/getNumberOfTeams")
+    public Long getNumberOfTeams() {
+        return teamService.getNumberOfTeams();
+    }
+
     @GetMapping("/search")
     public ResponseEntity<List<Team>> searchTeams(@RequestParam String query) {
         Pageable page = PageRequest.of(0, 10);
