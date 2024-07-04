@@ -524,6 +524,9 @@
     "/api/latest15matches": {
       "get": {
         "summary": "Get latest 15 matches",
+        "tags": [
+          "games"
+        ],
         "description": "Returns an array of the latest 15 games.",
         "responses": {
           "200": {
@@ -649,6 +652,9 @@
     "/api/latest10matches/{id}": {
       "get": {
         "summary": "Get latest 10 matches of a club",
+        "tags": [
+          "games"
+        ],
         "description": "Returns an array of the latest 10 games of a specific club.",
         "parameters": [
           {
@@ -671,13 +677,94 @@
                   "items": {
                     "type": "object",
                     "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "667430d686c67072a01d65dc"
+                      },
+                      "game_id": {
+                        "type": "integer",
+                        "example": 4172068
+                      },
+                      "competition_id": {
+                        "type": "string",
+                        "example": "EL"
+                      },
+                      "season": {
+                        "type": "integer",
+                        "example": 2023
+                      },
+                      "round": {
+                        "type": "string",
+                        "example": "Group A"
+                      },
+                      "date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-11-30T00:00:00.000Z"
+                      },
                       "home_club_id": {
                         "type": "integer",
-                        "example": 800
+                        "example": 60
                       },
                       "away_club_id": {
                         "type": "integer",
-                        "example": 336
+                        "example": 683
+                      },
+                      "home_club_goals": {
+                        "type": "integer",
+                        "example": 5
+                      },
+                      "away_club_goals": {
+                        "type": "integer",
+                        "example": 0
+                      },
+                      "home_club_manager_name": {
+                        "type": "string",
+                        "example": "Christian Streich"
+                      },
+                      "away_club_manager_name": {
+                        "type": "string",
+                        "example": "Diego Martínez"
+                      },
+                      "stadium": {
+                        "type": "string",
+                        "example": "Europa-Park Stadion"
+                      },
+                      "attendance": {
+                        "type": "integer",
+                        "example": 34000
+                      },
+                      "referee": {
+                        "type": "string",
+                        "example": "Irfan Peljto"
+                      },
+                      "url": {
+                        "type": "string",
+                        "example": "https://www.transfermarkt.co.uk/spielbericht/index/spielbericht/4172068"
+                      },
+                      "home_club_formation": {
+                        "type": "string",
+                        "example": "4-4-2 double 6"
+                      },
+                      "away_club_formation": {
+                        "type": "string",
+                        "example": "4-3-3 Attacking"
+                      },
+                      "home_club_name": {
+                        "type": "string",
+                        "example": "Sport-Club Freiburg"
+                      },
+                      "away_club_name": {
+                        "type": "string",
+                        "example": "Olympiakos Syndesmos Filathlon Peiraios"
+                      },
+                      "aggregate": {
+                        "type": "string",
+                        "example": "5:0"
+                      },
+                      "competition_type": {
+                        "type": "string",
+                        "example": "international_cup"
                       }
                     }
                   }
@@ -707,6 +794,9 @@
     "/api/teamscores/{id}": {
       "get": {
         "summary": "Get match scores",
+        "tags": [
+          "games"
+        ],
         "description": "Returns an array with information about the scores of a specific match.",
         "parameters": [
           {
@@ -787,6 +877,9 @@
     "/api/getManagerNames/{id}": {
     "get": {
       "summary": "Get manager names",
+      "tags": [
+        "games"
+      ],
       "description": "Returns the manager names of home and away clubs for a specific match.",
       "parameters": [
         {
@@ -842,6 +935,9 @@
     "/api/getAllGames/{id}": {
       "get": {
         "summary": "Get all games of a club since 2023",
+        "tags": [
+          "games"
+        ],
         "description": "Returns an array of all games of a specific club from the year 2023.",
         "parameters": [
           {
@@ -986,6 +1082,9 @@
     "/api/getGameDetails/{id}": {
       "get": {
         "summary": "Get game details",
+        "tags": [
+          "games"
+        ],
         "description": "Returns details of a specific game.",
         "parameters": [
           {
@@ -1042,6 +1141,9 @@
     "/api/getGamesByChampionship/{id}": {
       "get": {
         "summary": "Get games by championship",
+        "tags": [
+          "games"
+        ],
         "description": "Returns an array of games of a specific championship.",
         "parameters": [
           {
@@ -1050,7 +1152,7 @@
             "description": "ID of the championship",
             "required": true,
             "schema": {
-              "type": "integer"
+              "type": "string"
             }
           }
         ],
@@ -1186,6 +1288,9 @@
     "/api/home/lastMatches": {
       "get": {
         "summary": "Get last 4 matches",
+        "tags": [
+          "games"
+        ],
         "description": "Returns an array of the last 4 matches.",
         "responses": {
           "200": {
@@ -1246,6 +1351,9 @@
     "/api/searchGames/": {
       "get": {
         "summary": "Search games",
+        "tags": [
+          "games"
+        ],
         "description": "Returns an array of games based on search criteria.",
         "parameters": [
           {
@@ -1304,6 +1412,9 @@
     "/gameevents/{gameId}": {
       "get": {
         "summary": "Get game events by ID",
+        "tags": [
+          "game events"
+        ],
         "description": "Returns an array of events for a specific game by its ID.",
         "parameters": [
           {
