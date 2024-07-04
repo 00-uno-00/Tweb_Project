@@ -20,7 +20,7 @@ async function getTeamInfo(team_id) {
         const conceded = document.getElementById('def')
         const matches_n = document.getElementById('matches_n')
         let matches = 0;
-        const gameStats = teamResponse.data.gameStats ;
+        const gameStats = teamResponse.data.gameStats;
         let atk = 0;
         gameStats.forEach(game => {
             matches++;
@@ -41,11 +41,6 @@ async function getTeamInfo(team_id) {
             }
         });
         conceded.textContent = def;
-
-
-        //document.getElementById('team_country').textContent = team.country;
-        //document.getElementById('team_founded').textContent = team.founded;
-        //document.getElementById('team_stadium').textContent = team.stadium;
     } else {
         console.error('There was an error fetching the team data!');
     }

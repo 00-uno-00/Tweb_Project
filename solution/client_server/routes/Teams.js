@@ -30,7 +30,7 @@ router.get('/top15Teams', async (req, res) => {
     }
     const scores = [];
     // Get the ids of the players in the team
-    const teamPromises = teams.map( team => axios.get(`http://localhost:8080/Player/getCurrentClubScore/${team.id}`));
+    const teamPromises = teams.map(team => axios.get(`http://localhost:8080/Player/getCurrentClubScore/${team.id}`));
     const teamResponses = await Promise.all(teamPromises);
     for (let i = 0; i < teams.length; i++) {
         scores.push({

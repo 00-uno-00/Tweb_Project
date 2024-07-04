@@ -61,20 +61,20 @@ async function populateStatsMatch() {
 
                 if (event.club_id === homeID) {
                     if (event.type === 'Cards') {
-                        eventDiv.classList.add('event_card_left'); //colora di rosso
+                        eventDiv.classList.add('event_card_left');
                     } else if (event.type === 'Goals') {
-                        eventDiv.classList.add('event_goal_left'); //colora di verde
+                        eventDiv.classList.add('event_goal_left');
                     } else {
-                        eventDiv.classList.add('other_events_left'); //colora di azzurro
+                        eventDiv.classList.add('other_events_left');
                     }
                     homeCell.appendChild(eventDiv);
                 } else if (event.club_id === awayID) {
                     if (event.type === 'Cards') {
-                        eventDiv.classList.add('event_card_right'); //colora di rosso
+                        eventDiv.classList.add('event_card_right');
                     } else if (event.type === 'Goals') {
-                        eventDiv.classList.add('event_goal_right'); //colora di verde
+                        eventDiv.classList.add('event_goal_right');
                     } else {
-                        eventDiv.classList.add('other_events_right'); //colora di azzurro
+                        eventDiv.classList.add('other_events_right');
                     }
                     awayCell.appendChild(eventDiv);
                 }
@@ -110,7 +110,6 @@ async function populateStatsMatch() {
 
             home_goals.textContent = `${match.club_goals.home_score}`;
             away_goals.textContent = `${match.club_goals.away_score}`;
-
 
 
         } catch (error) {

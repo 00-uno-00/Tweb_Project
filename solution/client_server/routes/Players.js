@@ -3,7 +3,7 @@ const axios = require('axios');
 const router = express.Router();
 
 
-// GET top 15 goal scorers
+// GET top 15 goalscorers
 router.get('/top15', async (req, res) => {
     let response;
 

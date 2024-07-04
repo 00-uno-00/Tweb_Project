@@ -8,7 +8,7 @@ router.get('/getAllChampionships', async (req, res) => {
         res.json(response.data);
     } catch (error) {
         console.error('Error fetching championships:', error);
-        res.status(500).json({ error: 'Error fetching championships' });
+        res.status(500).json({error: 'Error fetching championships'});
     }
 });
 
@@ -18,7 +18,7 @@ router.get('/getAllTeams', async (req, res) => {
         res.json(response.data);
     } catch (error) {
         console.error('Error fetching players:', error);
-        res.status(500).json({ error: 'Error fetching players' });
+        res.status(500).json({error: 'Error fetching players'});
     }
 });
 
@@ -29,7 +29,7 @@ router.get('/getTeam/:id', async (req, res) => {
         res.json(response.data);
     } catch (error) {
         console.error('Error fetching team:', error);
-        res.status(500).json({ error: 'Error fetching team' });
+        res.status(500).json({error: 'Error fetching team'});
     }
 });
 
@@ -40,7 +40,7 @@ router.get('/getChampionship/:name', async (req, res) => {
         res.json(response.data);
     } catch (error) {
         console.error('Error fetching championship:', error);
-        res.status(500).json({ error: 'Error fetching championship' });
+        res.status(500).json({error: 'Error fetching championship'});
     }
 });
 

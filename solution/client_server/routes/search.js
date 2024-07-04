@@ -6,7 +6,7 @@ router.get('/Players', async (req, res) => {
     try {
         const searchText = req.query.query;
 
-        const playersPromise = axios.get('http://localhost:8080/Player/search', { params: { query: searchText } });
+        const playersPromise = axios.get('http://localhost:8080/Player/search', {params: {query: searchText}});
 
         const [playersResponse, clubsResponse] = await Promise.all([playersPromise]);
 
@@ -26,7 +26,7 @@ router.get('/Teams', async (req, res) => {
     try {
         const searchText = req.query.query;
 
-        const teamPromise = axios.get('http://localhost:8080/Team/search', { params: { query: searchText } });
+        const teamPromise = axios.get('http://localhost:8080/Team/search', {params: {query: searchText}});
 
         const [teamResponse, clubsResponse] = await Promise.all([teamPromise]);
 
@@ -46,7 +46,7 @@ router.get('/Championships', async (req, res) => {
     try {
         const searchText = req.query.query;
 
-        const champPromise = axios.get('http://localhost:8080/Championship/search', { params: { query: searchText } });
+        const champPromise = axios.get('http://localhost:8080/Championship/search', {params: {query: searchText}});
 
         const [champResponse, clubsResponse] = await Promise.all([champPromise]);
 
@@ -66,7 +66,7 @@ router.get('/Matches', async (req, res) => {
     try {
         const searchText = req.query.query;
 
-        const gamesPromise = axios.get('http://localhost:3001/api/searchGames', { params: { query: searchText } });
+        const gamesPromise = axios.get('http://localhost:3001/api/searchGames', {params: {query: searchText}});
 
         const [gamesResponse] = await Promise.all([gamesPromise]);
 

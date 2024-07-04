@@ -189,8 +189,6 @@ function closeSearchEvent(event) {
  * Also clears the search input and removes the results.
  */
 function closeQuickSearch() {
-    //const results = document.getElementById('results')
-    //results.removeClass('results no-results')
     document.getElementById('searchbar').value = '';
     clearSearchResults();
 }

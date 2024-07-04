@@ -25,7 +25,7 @@ async function populateStats() {
         marketValue.textContent += player.marketValueInEur;
         role.textContent += player.subPosition;
         let date = new Date(player.contractExpirationDate);
-        let formattedDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+        let formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
         contractExpirationDate.textContent += formattedDate;
         dob.textContent += player.dateOfBirth;
         club.textContent += player.currentClubName;
@@ -54,8 +54,8 @@ async function populateStats() {
 
         // Crea una tabella HTML
         let tableHTML = '<table><thead><tr><th>Club</th><th>First Appearance</th><th>Last Appearance</th></tr></thead><tbody>';
-        let i=0;
-        for(let item of careerData) {
+        let i = 0;
+        for (let item of careerData) {
             const team = await axios.get(`/specific_Player/club/${item.club_id}`);
             name = team.data.name.replace('-', ' ');
 
@@ -78,7 +78,6 @@ async function populateStats() {
 
         tableHTML += '</tbody></table>';
 
-        // Inserisci la tabella in un elemento del DOM
         document.getElementById('tabella_carriera').innerHTML = tableHTML;
     } catch {
         console.error('Error fetching player careerrrrrrr: ', error);

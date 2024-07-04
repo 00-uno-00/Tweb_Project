@@ -77,7 +77,7 @@ async function loadDropDown2(option) {
         const data = championships.data;
         data.forEach(championship => {
             const optionElement = document.createElement('option');
-           optionElement.value = championship.name.replace('-', ' ').toUpperCase();
+            optionElement.value = championship.name.replace('-', ' ').toUpperCase();
             optionElement.textContent = championship.name.replace('-', ' ').toUpperCase();
             dropdown2.appendChild(optionElement);
         });
@@ -127,7 +127,7 @@ function showDropdown2() {
     }
 }
 
-function leaveRoom(){
+function leaveRoom() {
     chat1.emit('leave', roomNo, name);
     document.getElementById('initial_form').style.display = 'block';
     document.getElementById('chat_interface').style.display = 'none';

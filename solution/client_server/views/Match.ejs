@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Statistiche Partita</title>
     <link rel="icon" type="image/png" sizes="242x206" href="/assets/img/removebg-3@2x.png">
-    <link rel="icon" type="image/png" sizes="242x206" href="/assets/img/removebg-3@2x.png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" sizes="242x206" href="/assets/img/removebg-3@2x.png"
+          media="(prefers-color-scheme: dark)">
     <link rel="icon" type="image/png" sizes="242x206" href="/assets/img/removebg-3@2x.png">
-    <link rel="icon" type="image/png" sizes="242x206" href="/assets/img/removebg-3@2x.png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" sizes="242x206" href="/assets/img/removebg-3@2x.png"
+          media="(prefers-color-scheme: dark)">
     <link rel="icon" type="image/png" sizes="242x206" href="/assets/img/removebg-3@2x.png">
     <link rel="icon" type="image/png" sizes="242x206" href="/assets/img/removebg-3@2x.png">
     <link rel="icon" type="image/png" sizes="242x206" href="/assets/img/removebg-3@2x.png">
@@ -25,127 +27,141 @@
 </head>
 
 <body onload="populateStatsMatch(), initSearch()">
-    <nav class="navbar navbar-expand-md bg-dark">
-        <div class="container-fluid"><a class="navbar-brand me-auto d-md-flex align-items-md-center" href="/index" style="padding-top: 0;background: #00000000;font-family: 'Lexend Zetta', sans-serif;font-size: 30px;color: rgb(255,255,255);margin-right: 0px;">Calcio <img class="img-fluid" src="/assets/img/removebg-3@2x.png" style="max-width: 20%;">Trends</a><button data-bs-toggle="collapse" class="navbar-toggler ms-auto collapsed" data-bs-target="#primaryNavbar" style="filter: invert(100%);"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse text-nowrap justify-content-center" id="primaryNavbar" style="font-size: 20px;color: rgb(255,255,255);">
-                <ul class="navbar-nav ms-auto" style="color: #ffffff;">
-                    <li class="nav-item"><a class="nav-link" href="/index" style="color: #ffffff;">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Players" style="color: rgb(255,255,255);">Players</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Teams" style="color: rgb(255,255,255);">Teams</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Matches" style="color: rgb(255,255,255);">Matches</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Championships" style="color: rgb(255,255,255);">Championships</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/chat1" style="color: rgb(255,255,255);">Chat</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Info" style="color: var(--bs-body-bg);">Info</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="row" style="margin-right: 0;margin-left: 0;">
-        <div class="col" style="background: var(--bs-primary);color: var(--bs-body-bg);text-align: center;padding-top: 1.5rem;padding-bottom: 1.5rem;">
-            <h1 class="fw-bold" style="font-size: 4rem;">Match</h1>
-            <p style="font-size: 1.25rem;padding-bottom: 1rem;margin-bottom: 0;">Beyond the Game: Exploring Football Through Data</p>
-        </div>
-    </div>
-    <div class="container mt-4">
-        <div class="match-header">
-            <h2 class="text-center" id="teams"></h2>
-            <p class="text-center" id="stadium"></p>
-        </div>
-        <div class="match-stats mt-3">
-            <h3 class="text-center mb-4">Statistiche partita</h3>
-            <div>
-                <table class="table table-hover">
-                    <tbody>
-                        <tr>
-                            <td class="text-center" id="home_manager">-</td>
-                            <td style="text-align: center;" id="manager">Manager</td>
-                            <td class="text-center" id="away_manager">-</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center" id="home_assist">-</td>
-                            <td style="text-align: center;">Assists</td>
-                            <td class="text-center" id="away_assist">-</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center" id="home_y_card">-</td>
-                            <td style="text-align: center;">Cartellini gialli</td>
-                            <td class="text-center" id="away_y_card">-</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center" id="home_r_card">-</td>
-                            <td style="text-align: center;">Cartellini rossi</td>
-                            <td class="text-center" id="away_r_card">-</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center" id="home_goals">-</td>
-                            <td style="text-align: center;">Goals</td>
-                            <td class="text-center" id="away_goals">-</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+<nav class="navbar navbar-expand-md bg-dark">
+    <div class="container-fluid"><a class="navbar-brand me-auto d-md-flex align-items-md-center" href="/index"
+                                    style="padding-top: 0;background: #00000000;font-family: 'Lexend Zetta', sans-serif;font-size: 30px;color: rgb(255,255,255);margin-right: 0px;">Calcio
+            <img class="img-fluid" src="/assets/img/removebg-3@2x.png" style="max-width: 20%;">Trends</a>
+        <button data-bs-toggle="collapse" class="navbar-toggler ms-auto collapsed" data-bs-target="#primaryNavbar"
+                style="filter: invert(100%);"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse text-nowrap justify-content-center" id="primaryNavbar"
+             style="font-size: 20px;color: rgb(255,255,255);">
+            <ul class="navbar-nav ms-auto" style="color: #ffffff;">
+                <li class="nav-item"><a class="nav-link" href="/index" style="color: #ffffff;">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Players" style="color: rgb(255,255,255);">Players</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/Teams" style="color: rgb(255,255,255);">Teams</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Matches" style="color: rgb(255,255,255);">Matches</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/Championships" style="color: rgb(255,255,255);">Championships</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/chat1" style="color: rgb(255,255,255);">Chat</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Info" style="color: var(--bs-body-bg);">Info</a></li>
+            </ul>
         </div>
     </div>
-    <div class="col" style="text-align: center;">
+</nav>
+<div class="row" style="margin-right: 0;margin-left: 0;">
+    <div class="col"
+         style="background: var(--bs-primary);color: var(--bs-body-bg);text-align: center;padding-top: 1.5rem;padding-bottom: 1.5rem;">
+        <h1 class="fw-bold" style="font-size: 4rem;">Match</h1>
+        <p style="font-size: 1.25rem;padding-bottom: 1rem;margin-bottom: 0;">Beyond the Game: Exploring Football Through
+            Data</p>
+    </div>
+</div>
+<div class="container mt-4">
+    <div class="match-header">
+        <h2 class="text-center" id="teams"></h2>
+        <p class="text-center" id="stadium"></p>
+    </div>
+    <div class="match-stats mt-3">
+        <h3 class="text-center mb-4">Statistiche partita</h3>
         <div>
-            <h2 class="fw-normal" style="margin-bottom: 0.5rem;">Azioni importante</h2>
-            <div class="event_container">
-                <table class="events_table">
-                    <thead>
-                    <tr>
-                        <th>Home Events</th>
-                        <th>Away Events</th>
-                    </tr>
-                    </thead>
-                    <tbody id="events">
-                    <!-- Event rows will be dynamically inserted here by JavaScript -->
-                    </tbody>
-                </table>
-            </div>
-
-            <!--<p id="events">info</p>-->
+            <table class="table table-hover">
+                <tbody>
+                <tr>
+                    <td class="text-center" id="home_manager">-</td>
+                    <td style="text-align: center;" id="manager">Manager</td>
+                    <td class="text-center" id="away_manager">-</td>
+                </tr>
+                <tr>
+                    <td class="text-center" id="home_assist">-</td>
+                    <td style="text-align: center;">Assists</td>
+                    <td class="text-center" id="away_assist">-</td>
+                </tr>
+                <tr>
+                    <td class="text-center" id="home_y_card">-</td>
+                    <td style="text-align: center;">Cartellini gialli</td>
+                    <td class="text-center" id="away_y_card">-</td>
+                </tr>
+                <tr>
+                    <td class="text-center" id="home_r_card">-</td>
+                    <td style="text-align: center;">Cartellini rossi</td>
+                    <td class="text-center" id="away_r_card">-</td>
+                </tr>
+                <tr>
+                    <td class="text-center" id="home_goals">-</td>
+                    <td style="text-align: center;">Goals</td>
+                    <td class="text-center" id="away_goals">-</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-    <div class="row" style="margin-right: 0;margin-left: 0;">
-        <div class="col" style="background: var(--bs-primary);color: var(--bs-body-bg);">
-            <h1 style="font-size: 2.5rem;">Looking for another match?</h1>
-            <p style="font-size: 1.25rem;padding-bottom: 1rem;margin-bottom: 0;">Insert the team names and we'll do the rest&nbsp;</p>
+</div>
+<div class="col" style="text-align: center;">
+    <div>
+        <h2 class="fw-normal" style="margin-bottom: 0.5rem;">Azioni importante</h2>
+        <div class="event_container">
+            <table class="events_table">
+                <thead>
+                <tr>
+                    <th>Home Events</th>
+                    <th>Away Events</th>
+                </tr>
+                </thead>
+                <tbody id="events">
+                </tbody>
+            </table>
         </div>
-    </div><!-- Start: Pretty Search Form -->
-    <form id="search-form" class="search-form">
-        <div class="input-group">
-            <span class="input-group-text"><i class="fa fa-search"></i></span>
-            <input id="searchbar" class="form-control" type="text" placeholder="I am looking for..">
-            <button id="searchButton" class="btn btn-light" type="button" style="background: var(--bs-primary);color: var(--bs-body-bg);">Search </button>
-        </div>
-    </form><!-- End: Pretty Search Form -->
-    <div id="results" class="results" ></div>
-    <footer class="d-xl-flex align-items-xl-end" style="background: var(--bs-body-color);">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h3 class="text-center" style="color: var(--bs-body-bg);margin-top: 8px;">Contact Us</h3>
-                    <hr style="color: var(--bs-body-bg);">
-                    <h4 class="text-center" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" style="color: var(--bs-body-bg);" title="Please don't contact us">Email: <a href="mailto:calcio@trends.com" target="_blank"><span style="color: rgb(255, 255, 255);">calcio@trends.com</span></a><br>or write us a message!</h4>
-                </div>
-                <div class="col align-self-center col-2" id="logo"><img class="img-fluid" src="/assets/img/removebg-3@2x.png" style="max-height: 50%;"></div>
-                <div class="col">
-                    <h3 class="text-center" style="color: var(--bs-body-bg);margin-top: 8px;">Social</h3>
-                    <hr style="color: var(--bs-body-bg);">
-                    <div class="row">
-                        <div class="col" style="text-align: center;"><img src="/assets/img/facebook--negative.png"></div>
-                        <div class="col" style="text-align: center;"><img src="/assets/img/instagram--negative.png"></div>
-                        <div class="col" style="text-align: center;"><img src="/assets/img/twitter--negative.png"></div>
-                    </div>
+    </div>
+</div>
+<div class="row" style="margin-right: 0;margin-left: 0;">
+    <div class="col" style="background: var(--bs-primary);color: var(--bs-body-bg);">
+        <h1 style="font-size: 2.5rem;">Looking for another match?</h1>
+        <p style="font-size: 1.25rem;padding-bottom: 1rem;margin-bottom: 0;">Insert the team names and we'll do the rest&nbsp;</p>
+    </div>
+</div><!-- Start: Pretty Search Form -->
+<form id="search-form" class="search-form">
+    <div class="input-group">
+        <span class="input-group-text"><i class="fa fa-search"></i></span>
+        <input id="searchbar" class="form-control" type="text" placeholder="I am looking for..">
+        <button id="searchButton" class="btn btn-light" type="button"
+                style="background: var(--bs-primary);color: var(--bs-body-bg);">Search
+        </button>
+    </div>
+</form><!-- End: Pretty Search Form -->
+<div id="results" class="results"></div>
+<footer class="d-xl-flex align-items-xl-end" style="background: var(--bs-body-color);">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3 class="text-center" style="color: var(--bs-body-bg);margin-top: 8px;">Contact Us</h3>
+                <hr style="color: var(--bs-body-bg);">
+                <h4 class="text-center" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
+                    style="color: var(--bs-body-bg);" title="Please don't contact us">Email: <a
+                            href="mailto:calcio@trends.com" target="_blank"><span style="color: rgb(255, 255, 255);">calcio@trends.com</span></a><br>or
+                    write us a message!</h4>
+            </div>
+            <div class="col align-self-center col-2" id="logo"><img class="img-fluid"
+                                                                    src="/assets/img/removebg-3@2x.png"
+                                                                    style="max-height: 50%;"></div>
+            <div class="col">
+                <h3 class="text-center" style="color: var(--bs-body-bg);margin-top: 8px;">Social</h3>
+                <hr style="color: var(--bs-body-bg);">
+                <div class="row">
+                    <div class="col" style="text-align: center;"><img src="/assets/img/facebook--negative.png"></div>
+                    <div class="col" style="text-align: center;"><img src="/assets/img/instagram--negative.png"></div>
+                    <div class="col" style="text-align: center;"><img src="/assets/img/twitter--negative.png"></div>
                 </div>
             </div>
         </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/js/bs-init.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-    <script src="/assets/js/specific_Match.js"></script>
-    <script src="/assets/js/search.js"></script>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/bs-init.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="/assets/js/specific_Match.js"></script>
+<script src="/assets/js/search.js"></script>
 </body>
 
 </html>

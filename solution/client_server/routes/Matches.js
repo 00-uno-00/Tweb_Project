@@ -10,18 +10,18 @@ router.get('/latest15matches', async (req, res) => {
         res.json(response.data);
     } catch (error) {
         console.error('Error fetching latest 15 matches :', error);
-        res.status(500).json({ error: 'Error fetching latest 15 matches' });
+        res.status(500).json({error: 'Error fetching latest 15 matches'});
     }
 });
 
 // GET team scores
 router.get('/teamscores', async (req, res) => {
     try {
-        const response = await axios.get('http://localhost:3001/api/teamscores/:id'); //todo
+        const response = await axios.get('http://localhost:3001/api/teamscores/:id');
         res.json(response.data);
     } catch (error) {
         console.error('Error fetching team scores :', error);
-        res.status(500).json({ error: 'Error fetching team scores' });
+        res.status(500).json({error: 'Error fetching team scores'});
     }
 });
 

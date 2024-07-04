@@ -14,9 +14,6 @@
     <link rel="stylesheet" href="assets/css/Pretty-Search-Form-.css">
     <link rel="stylesheet" href="assets/css/Chat.css">
     <link rel="stylesheet" href="assets/css/Simple-Bootstrap-Chat.css">
-    <style>
-        /* Insert optimized CSS here */
-    </style>
     <script src="assets/js/chat.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
@@ -24,19 +21,25 @@
 <body onload="init()">
 <nav class="navbar navbar-expand-md bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand me-auto d-md-flex align-items-md-center" href="/index" style="padding-top: 0;background: #00000000;font-family: 'Lexend Zetta', sans-serif;font-size: 30px;color: rgb(255,255,255);margin-right: 0px;">
+        <a class="navbar-brand me-auto d-md-flex align-items-md-center" href="/index"
+           style="padding-top: 0;background: #00000000;font-family: 'Lexend Zetta', sans-serif;font-size: 30px;color: rgb(255,255,255);margin-right: 0px;">
             Calcio <img class="img-fluid" src="assets/img/removebg-3@2x.png" style="max-width: 20%;">Trends
         </a>
-        <button data-bs-toggle="collapse" class="navbar-toggler ms-auto collapsed" data-bs-target="#primaryNavbar" style="filter: invert(100%);">
+        <button data-bs-toggle="collapse" class="navbar-toggler ms-auto collapsed" data-bs-target="#primaryNavbar"
+                style="filter: invert(100%);">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse text-nowrap justify-content-center" id="primaryNavbar" style="font-size: 20px;color: rgb(255,255,255);">
+        <div class="collapse navbar-collapse text-nowrap justify-content-center" id="primaryNavbar"
+             style="font-size: 20px;color: rgb(255,255,255);">
             <ul class="navbar-nav ms-auto" style="color: #ffffff;">
                 <li class="nav-item"><a class="nav-link" href="/index" style="color: #ffffff;">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/Players" style="color: rgb(255,255,255);">Players</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Players" style="color: rgb(255,255,255);">Players</a>
+                </li>
                 <li class="nav-item"><a class="nav-link" href="/Teams" style="color: rgb(255,255,255);">Teams</a></li>
-                <li class="nav-item"><a class="nav-link" href="/Matches" style="color: rgb(255,255,255);">Matches</a></li>
-                <li class="nav-item"><a class="nav-link" href="/Championships" style="color: rgb(255,255,255);">Championships</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Matches" style="color: rgb(255,255,255);">Matches</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/Championships" style="color: rgb(255,255,255);">Championships</a>
+                </li>
                 <li class="nav-item"><a class="nav-link" href="/chat1" style="color: rgb(255,255,255);">Chat</a></li>
                 <li class="nav-item"><a class="nav-link" href="/Info" style="color: var(--bs-body-bg);">Info</a></li>
             </ul>
@@ -66,13 +69,14 @@
                 <option value="option2">Option 2</option>
                 <option value="option3">Option 3</option>
             </select>
-        <button id="connect" onclick="connectToRoom()">Connect</button>
+            <button id="connect" onclick="connectToRoom()">Connect</button>
     </form>
 </div>
 <div id="chat_interface" style="display: none">
     <h1>Chat</h1>
     <div>
-        <div id="who_you_are" style="display: inline"></div>, you are chatting in room:
+        <div id="who_you_are" style="display: inline"></div>
+        , you are chatting in room:
         <div id="in_room" style="display: inline"></div>
     </div>
     <div id="chat_container" class="split left">

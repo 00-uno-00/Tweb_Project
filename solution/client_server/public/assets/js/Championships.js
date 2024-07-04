@@ -17,7 +17,7 @@ async function populateChampionsips() {
                 }
                 const row = document.createElement('tr');
                 const championshipCell = document.createElement('td');
-                championshipCell.textContent = championship.toUpperCase().replaceAll("-", " ") ;
+                championshipCell.textContent = championship.toUpperCase().replaceAll("-", " ");
                 championshipCell.className = 'text-center';
                 row.appendChild(championshipCell);
                 const href = `/specific_Championship/${championship_id}`;

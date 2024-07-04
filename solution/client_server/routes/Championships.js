@@ -8,7 +8,7 @@ router.get('/getTop10', async (req, res) => {
         res.json(response.data);
     } catch (error) {
         console.error('Error fetching top 10 championships:', error);
-        res.status(500).json({ error: 'Error fetching top 10 championships' });
+        res.status(500).json({error: 'Error fetching top 10 championships'});
     }
 });
 
