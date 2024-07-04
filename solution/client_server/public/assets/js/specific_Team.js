@@ -1,3 +1,10 @@
+
+/**
+ * This file contains the functions that are used to fetch the data of a specific team.
+ * The data includes the team name, players, matches, and statistics.
+ * The functions are called when the page is loaded.
+ * */
+
 async function getTeamData() {
     const team_id = window.location.pathname.split('/')[2];
 
@@ -10,6 +17,13 @@ async function getTeamData() {
     //Matches
     await getMatches(team_id);
 }
+
+/**
+ * Populates the team information on the webpage.
+ * @async
+ * @function getTeamInfo
+ * @param {Number} team_id - The team ID.
+ * */
 
 async function getTeamInfo(team_id) {
     const teamResponse = await axios.get(`/Team/teamInfo/${parseInt(team_id)}`);
@@ -46,6 +60,10 @@ async function getTeamInfo(team_id) {
     }
 }
 
+/**
+ * Populates the players information on the webpage.
+ * */
+
 async function getPlayers(team_id) {
     const playersResponse = await axios.get(`/Team/players/${parseInt(team_id)}`);
     if (playersResponse.status === 200) {
@@ -74,6 +92,13 @@ async function getPlayers(team_id) {
         console.error('There was an error fetching the players!');
     }
 }
+
+/**
+ * Populates the matches information on the webpage.
+ * @async
+ * @function getMatches
+ * @param {Number} team_id - The team ID.
+ * */
 
 async function getMatches(team_id) {
     const matchesResponse = await axios.get(`/Team/matches/${parseInt(team_id)}`);

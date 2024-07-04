@@ -199,17 +199,18 @@ function getGameDetails(gameId) {
 
 function getManagerNames(gameId) {
     return new Promise((resolve, reject) => {
-        Games.find({})
-            .sort({date: -1}) // Ordina per data in ordine decrescente
-            .limit(4) // Limita a 4 risultati
-            .then(results => {
-                const lastFourGames = results.map(game => ({
-                    home_club_name: game.home_club_name,
-                    away_club_name: game.away_club_name,
-                    home_club_goals: game.home_club_goals,
-                    away_club_goals: game.away_club_goals
-                }));
-                resolve(lastFourGames);
+        Games.findOne({game_id: gameId})
+            .select('home_club_manager_name away_club_manager_name') // Seleziona solo i campi necessari
+            .then(result => {
+                if (result) {
+                    const managers = {
+                        home_manager: result.home_club_manager_name,
+                        away_manager: result.away_club_manager_name
+                    };
+                    resolve(managers);
+                } else {
+                    resolve(null); // Se la partita non viene trovata
+                }
             })
             .catch(error => {
                 reject(error);

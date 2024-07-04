@@ -58,6 +58,13 @@ function handleQuickSearchInput(event) {
     }
 }
 
+/**
+ * Handles the search for matches.
+ * @param searchText The search text.
+ * @async
+ * @function matchesSearch
+ * */
+
 function matchesSearch(searchText) {
     axios.get(`/search/Matches`, { params: { query: searchText } })
         .then(response => displaySearchResults(response.data, 'Matches'))
@@ -138,6 +145,14 @@ function createCategoryContainer(labelText, items, itemClass, idKey, resultsDiv)
 
     resultsDiv.appendChild(containerDiv);
 }
+
+/**
+ * Creates an HTML element with the specified tag, classes, and text content.
+ * @param tag The tag of the element.
+ * @param classes The classes to add to the element.
+ * @param textContent The text content of the element.
+ * @returns {HTMLElement} The created element.
+ * */
 
 function createElement(tag, classes, textContent = '') {
     const element = document.createElement(tag);

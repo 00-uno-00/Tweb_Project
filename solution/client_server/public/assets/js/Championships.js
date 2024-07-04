@@ -1,4 +1,13 @@
 async function populateChampionsips() {
+    /**
+     * Asynchronously populates the top 10 championships into an HTML table.
+     * Fetches data from the endpoint '/Championships/getTop10', processes it,
+     * and updates the HTML table with id 'championships_table'.
+     *
+     * @async
+     * @function populateChampionships
+     * @returns {Promise<void>} A promise that resolves when the table is populated.
+     */
     const res = await axios.get('/Championships/getTop10');
     console.log(res.data);
     if (res.status === 200) {

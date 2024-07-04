@@ -1,3 +1,12 @@
+
+/**
+ * Populates the top 15 goalscorers in a table on the webpage.
+ * This function asynchronously fetches the top 15 goal scorers from the server and displays them in a table.
+ * Each row in the table represents a scorer, including their position, name, and score (number of goals).
+ * The table is dynamically created with rows for each scorer. Clicking on a row redirects the user to a detailed view of the specific player.
+ * In case of an error during fetching, an error message is logged to the console.
+ */
+
 async function populateTop15Scorers() {
     const response = await axios.get('/Players/top15')
     if (response.status === 200) {

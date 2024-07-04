@@ -2,12 +2,20 @@ let name = null;
 let roomNo = null;
 let chat1;
 
+/**
+ * Initializes the chat application, sets up the socket connection, and shows the initial form.
+ */
+
 function init() {
     document.getElementById('initial_form').style.display = 'block';
     document.getElementById('chat_interface').style.display = 'none';
     chat1 = io('/chat1');
     initChatSocket();
 }
+
+/**
+ * Sets up socket event listeners for chat functionality.
+ */
 
 function initChatSocket() {
     chat1.on('joined', function (room, userId) {
@@ -33,11 +41,19 @@ function initChatSocket() {
     });
 }
 
+/**
+ * Sends the chat text to the server and clears the input field.
+ */
+
 function sendChatText() {
     let chatText = document.getElementById('message-input').value;
     chat1.emit('chat1', roomNo, name, chatText);
     document.getElementById('message-input').value = '';
 }
+
+/**
+ * Connects the user to a chat room based on the selected options.
+ */
 
 function connectToRoom() {
     name = document.getElementById('name').value;
@@ -68,6 +84,11 @@ function connectToRoom() {
     chat1.emit('create or join', roomNo, name);
 }
 
+/**
+ * Loads the options for the second dropdown based on the selected category (Championship or Team).
+ * @param {string} option - The selected category.
+ */
+
 async function loadDropDown2(option) {
     const dropdown2 = document.getElementById('dropdown2');
     dropdown2.innerHTML = ''; // Clear existing options
@@ -94,6 +115,12 @@ async function loadDropDown2(option) {
     }
 }
 
+/**
+ * Writes a message to the chat history.
+ * @param {string} text - The message text.
+ * @param {string} messageClass - The CSS class to apply to the message.
+ */
+
 function writeOnChatHistory(text, messageClass) {
     let history = document.getElementById('chat_history');
     let paragraph = document.createElement('p');
@@ -104,6 +131,10 @@ function writeOnChatHistory(text, messageClass) {
     history.scrollTop = history.scrollHeight - history.clientHeight; // Ensure scrolling to the bottom
     document.getElementById('message-input').value = '';
 }
+
+/**
+ * Shows the second dropdown based on the selected value of the first dropdown.
+ */
 
 function showDropdown2() {
     var dropdown1 = document.getElementById("dropdown1");
@@ -127,6 +158,10 @@ function showDropdown2() {
     }
 }
 
+/**
+ * Leaves the current chat room and resets the interface.
+ */
+
 function leaveRoom() {
     chat1.emit('leave', roomNo, name);
     document.getElementById('initial_form').style.display = 'block';
@@ -135,6 +170,12 @@ function leaveRoom() {
     name = null;
     roomNo = null;
 }
+
+/**
+ * Hides the login interface and shows the chat interface.
+ * @param {string} room - The room ID.
+ * @param {string} userId - The user ID.
+ */
 
 function hideLoginInterface(room, userId) {
     document.getElementById('initial_form').style.display = 'none';

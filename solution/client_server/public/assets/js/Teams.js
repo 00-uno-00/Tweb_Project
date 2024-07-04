@@ -1,3 +1,11 @@
+
+/**
+ * This function is called when the page is loaded. It fetches the top 15 teams from the server and displays them in a table.
+ * Each row in the table represents a team, including their position, name, and score (number of goals).
+ * The table is dynamically created with rows for each team. Clicking on a row redirects the user to a detailed view of the specific team.
+ * In case of an error during fetching, an error message is logged to the console.
+ */
+
 async function getTeams() {
     const response = await axios.get('/Teams/top15Teams');
     if (response.status === 200) {

@@ -1,3 +1,13 @@
+
+/**
+ * Populates the latest 15 matches in a table on the webpage.
+ * This function asynchronously fetches the latest 15 matches from the server and displays them in a table.
+ * Each match includes the home and away team names, their scores, and the match date.
+ * If the match data is successfully fetched, the table is dynamically created with rows for each match.
+ * Clicking on a row redirects the user to a detailed match view.
+ * In case of an error during fetching, an error message is logged to the console.
+ */
+
 async function populateLatest15Matches() {
     const response = await axios.get('/Matches/latest15matches')
     if (response.status === 200) {

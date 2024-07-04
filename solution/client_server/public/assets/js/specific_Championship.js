@@ -1,3 +1,11 @@
+
+/**
+ * This file contains the functions that are used to load the data of a specific championship
+ * and display it on the webpage.
+ * The data includes the championship name, type, country, confederation, teams, players, and matches.
+ * The functions are called when the page is loaded.
+ */
+
 async function loadData() {
     const champId = window.location.pathname.split('/')[2];
     const res = await axios.get(`/specific_Championship/getChampionship/${champId}`);
@@ -12,6 +20,13 @@ async function loadData() {
     await matchesData(championship.matches);
 }
 
+/**
+ * Populates the championship information on the webpage.
+ * @async
+ * @function champData
+ * @param {Object} championship - The championship object.
+ * */
+
 async function champData(championship) {
     const info = document.getElementById('champ_info')
 
@@ -22,6 +37,13 @@ async function champData(championship) {
     }
     info.innerText += " | Confederation: " + championship.confederation.toUpperCase();
 }
+
+/**
+ * Populates the teams information on the webpage.
+ * @async
+ * @function teamsData
+ * @param {Object} data - The data object containing the teams and matches.
+ * */
 
 async function teamsData(data) {
     let teams = data.teams;
@@ -69,6 +91,13 @@ async function teamsData(data) {
         bestTeamsTable.appendChild(row);
     }
 }
+
+/**
+ * Populates the matches information on the webpage.
+ * @async
+ * @function matchesData
+ * @param {Array} matches - The array of matches.
+ * */
 
 async function matchesData(matches) {
     const matchesTable = document.getElementById('matches_table');

@@ -4,6 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     greenBarData();
 });
 
+/**
+ * Fetches and displays the top 8 players in a carousel.
+ * @async
+ * @function top8players
+ * @returns {Promise<void>}
+ */
+
 async function top8players() {
     let playersContainer = document.getElementById('carousel-1');
 
@@ -42,6 +49,13 @@ async function top8players() {
         playersContainer.textContent = 'An error occurred while fetching the top 8 players.';
     }
 }
+
+/**
+ * Fetches and displays the last 4 matches in a container.
+ * @async
+ * @function lastMatches
+ * @returns {Promise<void>}
+ */
 
 async function lastMatches() {
     let matchesContainer = document.getElementById('matches-container');
@@ -82,6 +96,13 @@ async function lastMatches() {
     }
 }
 
+/**
+ * Fetches and displays data for the green bar section.
+ * @async
+ * @function greenBarData
+ * @returns {Promise<void>}
+ */
+
 async function greenBarData(){
     usersNumber();
 
@@ -95,7 +116,14 @@ async function greenBarData(){
     nchampdiv.textContent = stats.data.championships;
 }
 
+/**
+ * Generates a random user count and displays it.
+ * @async
+ * @function usersNumber
+ * @returns {Promise<void>}
+ */
 //totally real user count
+
 async function usersNumber() {
     let numberUsers = document.getElementById('n_users');
     let numero = Math.floor(Math.random() * 10000);
