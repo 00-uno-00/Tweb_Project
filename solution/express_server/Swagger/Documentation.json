@@ -521,7 +521,7 @@
         }
       }
     },
-    "/latest15matches": {
+    "/api/latest15matches": {
       "get": {
         "summary": "Get latest 15 matches",
         "description": "Returns an array of the latest 15 games.",
@@ -646,7 +646,7 @@
         }
       }
     },
-    "/latest10matches/{id}": {
+    "/api/latest10matches/{id}": {
       "get": {
         "summary": "Get latest 10 matches of a club",
         "description": "Returns an array of the latest 10 games of a specific club.",
@@ -1292,6 +1292,93 @@
                     "error": {
                       "type": "string",
                       "example": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gameevents/{gameId}": {
+      "get": {
+        "summary": "Get game events by ID",
+        "description": "Returns an array of events for a specific game by its ID.",
+        "parameters": [
+          {
+            "name": "gameId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the game",
+            "schema": {
+              "type": "integer",
+              "example": 4172097
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "club_id": {
+                        "type": "integer",
+                        "example": 336
+                      },
+                      "type": {
+                        "type": "string",
+                        "example": "goal"
+                      },
+                      "player_id": {
+                        "type": "integer",
+                        "example": 12345
+                      },
+                      "description": {
+                        "type": "string",
+                        "example": "Player scored a goal"
+                      },
+                      "minute": {
+                        "type": "integer",
+                        "example": 45
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No events found for the specified game ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "No events found for the specified game ID"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "An error occurred while fetching the game events"
                     }
                   }
                 }
