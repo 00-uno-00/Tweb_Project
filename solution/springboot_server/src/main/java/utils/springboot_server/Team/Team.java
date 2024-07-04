@@ -5,6 +5,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+/**
+ * Represents a team entity in the system.
+ * This class is mapped to the "teams" table in the database and contains information about a team,
+ * such as its code, name, competition it participates in, market value, and other attributes.
+ */
 @Entity
 @Table(name = "teams")
 public class Team {
@@ -56,6 +61,8 @@ public class Team {
 
     @Column(name = "url")
     private String url;
+
+    // Getters and setters for each field
 
     public int getId() {
         return id;

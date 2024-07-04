@@ -5,6 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+/**
+ * Entity class representing a player.
+ * Maps to the 'players' table in the database, holding player-related information.
+ */
 @Entity
 @Table(name = "players")
 public class Player {
@@ -81,6 +85,7 @@ public class Player {
     @Column(name = "score")
     private float score;
 
+    // Getters and setters for each field
     public float getScore() {
         return score;
     }

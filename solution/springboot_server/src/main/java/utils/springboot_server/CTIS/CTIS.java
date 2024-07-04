@@ -5,6 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+/**
+ * Entity class representing the CTI (Calcio Trends Impact) Score.
+ * Maps to the 'cti_score' table in the database.
+ */
 @Entity
 @Table(name = "cti_score")
 public class CTIS {
@@ -18,6 +22,7 @@ public class CTIS {
     @Column(name = "year", nullable = false)
     private String year;
 
+    // Getters and setters for each field
     public long getId() {
         return id;
     }
@@ -32,5 +37,13 @@ public class CTIS {
 
     public void setScore(long score) {
         this.score = score;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 }

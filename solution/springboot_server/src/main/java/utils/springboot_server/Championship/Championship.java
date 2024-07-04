@@ -5,6 +5,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+/**
+ * Represents a Championship entity in the database.
+ * This class is used to map the championships table in the database to a Java object.
+ * Each field in the class corresponds to a column in the table.
+ */
 @Entity
 @Table(name = "championships")
 public class Championship {
@@ -39,6 +44,7 @@ public class Championship {
     @Column(name = "url")
     private String url;
 
+    // Getters and setters for each field
     public String getId() {
         return id;
     }
