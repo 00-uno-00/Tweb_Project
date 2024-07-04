@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const controller = require('../controllers/appearances');
-const appearancesController = require("../controllers/appearances");
 
 router.get('/player/totalgoals/:id', async function (req, res) {
     const playerId = parseInt(req.params.id, 10);
@@ -39,36 +38,11 @@ router.get('/player/totalminutesplayed/:id', async function (req, res) {
     }
 });
 
-router.get('/player/yellowCardsAPlayer/:id', async function (req, res) {
-    const playerId = parseInt(req.params.id, 10);
-
-    try {
-        const appearances = await controller.yellowCardsAPlayer(38004);
-        res.status(200).json(appearances);
-    } catch (error) {
-        console.error('Error fetching player appearances:', error);
-        res.status(500).json({error: 'Internal server error'});
-    }
-});
-
-router.get('/player/redCardsAPlayer/:id', async function (req, res) {
-    const playerId = parseInt(req.params.id, 10);
-
-    try {
-        const appearances = await controller.redCardsAPlayer(38004);
-        res.status(200).json(appearances);
-    } catch (error) {
-        console.error('Error fetching player appearances:', error);
-        res.status(500).json({error: 'Internal server error'});
-    }
-});
-
-
 router.get('/game/yellowCards/:gameId/:clubId', (req, res) => {
     const gameId = req.params.gameId;
     const clubId = req.params.clubId;
 
-    appearancesController.getTeamTotalYellowCards(gameId, clubId)
+    controller.getTeamTotalYellowCards(gameId, clubId)
         .then(yellowCardCount => {
             res.status(200).json({totalYellowCards: yellowCardCount});
         })
@@ -82,7 +56,7 @@ router.get('/game/redcards/:gameId/:clubId', (req, res) => {
     const gameId = req.params.gameId;
     const clubId = req.params.clubId;
 
-    appearancesController.getTeamTotalRedCards(gameId, clubId)
+    controller.getTeamTotalRedCards(gameId, clubId)
         .then(totalRedCards => {
             res.status(200).json({totalRedCards: totalRedCards});
         })
@@ -96,7 +70,7 @@ router.get('/game/assists/:gameId/:clubId', (req, res) => {
     const gameId = req.params.gameId;
     const clubId = req.params.clubId;
 
-    appearancesController.getTeamTotalAssists(gameId, clubId)
+    controller.getTeamTotalAssists(gameId, clubId)
         .then(totalAssists => {
             res.status(200).json({totalAssists: totalAssists});
         })
@@ -115,7 +89,7 @@ router.get('/game/assists/:gameId/:clubId', (req, res) => {
  */
 router.get('/player/career/:playerId', (req, res) => {
     const playerId = parseInt(req.params.playerId, 10);
-    appearancesController.getPlayerAppearances(playerId)
+    controller.getPlayerAppearances(playerId)
         .then(appearances => {
             if (appearances && appearances.length > 0) {
                 res.status(200).json(appearances);
@@ -130,7 +104,7 @@ router.get('/player/career/:playerId', (req, res) => {
 });
 
 router.get('/home/topPlayer', (req, res) => {
-    appearancesController.top8GoalScorers()
+    controller.top8GoalScorers()
         .then(appearances => {
             if (appearances && appearances.length > 0) {
                 res.status(200).json(appearances);

@@ -1,0 +1,502 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Tweb_project",
+    "description": "MongoDB API documentation.",
+    "termsOfService": "http://api_url/terms/",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3001",
+      "description": "MongoDB server"
+    }
+  ],
+  "paths": {
+    "/api/player/totalgoals/{id}": {
+      "get": {
+        "summary": "Get total goals scored by a player",
+        "description": "Returns the total number of goals scored by the player with the specified ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the player",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "totalGoals": {
+                      "type": "integer",
+                      "example": 25
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/player/totalassists/{id}": {
+      "get": {
+        "summary": "Get total assists made by a player",
+        "description": "Returns the total number of assists made by the player with the specified ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the player",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "totalAssists": {
+                      "type": "integer",
+                      "example": 15
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/player/totalminutesplayed/{id}": {
+      "get": {
+        "summary": "Get total minutes played by a player",
+        "description": "Returns the total number of minutes played by the player with the specified ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the player",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "totalMinutesPlayed": {
+                      "type": "integer",
+                      "example": 1234
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/game/yellowCards/{gameId}/{clubId}": {
+      "get": {
+        "summary": "Get total yellow cards for a club in a game",
+        "description": "Returns the total number of yellow cards given to a club in the specified game.",
+        "parameters": [
+          {
+            "name": "gameId",
+            "in": "path",
+            "description": "ID of the game",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "clubId",
+            "in": "path",
+            "description": "ID of the club",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "totalYellowCards": {
+                      "type": "integer",
+                      "example": 3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "An error occurred while fetching the total yellow cards"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/game/redcards/{gameId}/{clubId}": {
+      "get": {
+        "summary": "Get total red cards for a club in a game",
+        "description": "Returns the total number of red cards given to a club in the specified game.",
+        "parameters": [
+          {
+            "name": "gameId",
+            "in": "path",
+            "description": "ID of the game",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "clubId",
+            "in": "path",
+            "description": "ID of the club",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "totalRedCards": {
+                      "type": "integer",
+                      "example": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "An error occurred while fetching the total red cards"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/game/assists/{gameId}/{clubId}": {
+      "get": {
+        "summary": "Get total assists for a club in a game",
+        "description": "Returns the total number of assists made by a club in the specified game.",
+        "parameters": [
+          {
+            "name": "gameId",
+            "in": "path",
+            "description": "ID of the game",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clubId",
+            "in": "path",
+            "description": "ID of the club",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "totalAssists": {
+                      "type": "integer",
+                      "example": 5
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "An error occurred while fetching the total assists"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/player/career/{playerId}": {
+      "get": {
+        "summary": "Get first and last appearances for a player in each team",
+        "description": "Returns the first and last appearance of a player in each team.",
+        "parameters": [
+          {
+            "name": "playerId",
+            "in": "path",
+            "description": "ID of the player",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "firstAppearance": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2022-01-15"
+                      },
+                      "lastAppearance": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2023-05-20"
+                      },
+                        "player_name": {
+                            "type": "string",
+                            "example": "Cristiano Ronaldo"
+                        },
+                        "club_id": {
+                            "type": "integer",
+                            "example": 162
+                        }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No appearances found for the specified player ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "No appearances found for the specified player ID"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "An error occurred while fetching the player appearances"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/home/topPlayer": {
+      "get": {
+        "summary": "Get top 8 goal scorers",
+        "description": "Returns the top 8 goal scorers.",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_Id": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "totalGoals": {
+                        "type": "integer",
+                        "example": 25
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No players found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "No players found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "An error occurred while fetching top 8 players"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

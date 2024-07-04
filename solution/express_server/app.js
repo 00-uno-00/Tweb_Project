@@ -4,6 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const database = require('./database/database');
+const swaggerUi = require('swagger-ui-express');
+const openApiDocumentation = require('./swagger/Documentation.json');
 
 //routers
 const indexRouter = require('./routes/index');
@@ -20,10 +22,9 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-0
 
 //api endpoints
 app.use('/', indexRouter);
@@ -31,6 +32,8 @@ app.use('/users', usersRouter);
 app.use('/api', gamesEventsRouter);
 app.use('/api', appearancesRouter);
 app.use('/api', gamesRouter);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openApiDocumentation));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
