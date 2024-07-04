@@ -21,8 +21,7 @@ router.get('/latest15matches', async function (req, res) {
  * Retrieves the latest 10 games of a specific club.
  * @param {Number} id - The id of the club.
  * @return {Array} An array of the latest 10 games of the club.
- *
- */
+ **/
 router.get('/latest10matches/:id', async function (req, res) {
     try {
         const matches = await controller.getLast10Games(parseInt(req.params.id));

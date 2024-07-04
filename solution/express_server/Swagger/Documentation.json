@@ -20,6 +20,9 @@
     "/api/player/totalgoals/{id}": {
       "get": {
         "summary": "Get total goals scored by a player",
+        "tags": [
+          "appearances"
+        ],
         "description": "Returns the total number of goals scored by the player with the specified ID.",
         "parameters": [
           {
@@ -71,6 +74,9 @@
     "/api/player/totalassists/{id}": {
       "get": {
         "summary": "Get total assists made by a player",
+        "tags": [
+          "appearances"
+        ],
         "description": "Returns the total number of assists made by the player with the specified ID.",
         "parameters": [
           {
@@ -122,6 +128,9 @@
     "/api/player/totalminutesplayed/{id}": {
       "get": {
         "summary": "Get total minutes played by a player",
+        "tags": [
+          "appearances"
+        ],
         "description": "Returns the total number of minutes played by the player with the specified ID.",
         "parameters": [
           {
@@ -173,6 +182,9 @@
     "/api/game/yellowCards/{gameId}/{clubId}": {
       "get": {
         "summary": "Get total yellow cards for a club in a game",
+        "tags": [
+          "appearances"
+        ],
         "description": "Returns the total number of yellow cards given to a club in the specified game.",
         "parameters": [
           {
@@ -233,6 +245,9 @@
     "/api/game/redcards/{gameId}/{clubId}": {
       "get": {
         "summary": "Get total red cards for a club in a game",
+        "tags": [
+          "appearances"
+        ],
         "description": "Returns the total number of red cards given to a club in the specified game.",
         "parameters": [
           {
@@ -293,6 +308,9 @@
     "/api/game/assists/{gameId}/{clubId}": {
       "get": {
         "summary": "Get total assists for a club in a game",
+        "tags": [
+          "appearances"
+        ],
         "description": "Returns the total number of assists made by a club in the specified game.",
         "parameters": [
           {
@@ -353,6 +371,9 @@
     "/api/player/career/{playerId}": {
       "get": {
         "summary": "Get first and last appearances for a player in each team",
+        "tags": [
+          "appearances"
+        ],
         "description": "Returns the first and last appearance of a player in each team.",
         "parameters": [
           {
@@ -385,14 +406,14 @@
                         "format": "date",
                         "example": "2023-05-20"
                       },
-                        "player_name": {
-                            "type": "string",
-                            "example": "Cristiano Ronaldo"
-                        },
-                        "club_id": {
-                            "type": "integer",
-                            "example": 162
-                        }
+                      "player_name": {
+                        "type": "string",
+                        "example": "Cristiano Ronaldo"
+                      },
+                      "club_id": {
+                        "type": "integer",
+                        "example": 162
+                      }
                     }
                   }
                 }
@@ -437,6 +458,9 @@
     "/api/home/topPlayer": {
       "get": {
         "summary": "Get top 8 goal scorers",
+        "tags": [
+          "appearances"
+        ],
         "description": "Returns the top 8 goal scorers.",
         "responses": {
           "200": {
@@ -496,7 +520,789 @@
           }
         }
       }
+    },
+    "/latest15matches": {
+      "get": {
+        "summary": "Get latest 15 matches",
+        "description": "Returns an array of the latest 15 games.",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "aggregate": {
+                        "type": "string",
+                        "example": "1:1"
+                      },
+                      "away_club_formation": {
+                        "type": "string",
+                        "example": "3-4-3"
+                      },
+                      "away_club_goals": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "away_club_id": {
+                        "type": "integer",
+                        "example": 336
+                      },
+                      "away_club_manager_name": {
+                        "type": "string",
+                        "example": "Rúben Amorim"
+                      },
+                      "away_club_name": {
+                        "type": "string",
+                        "example": "Sporting Clube de Portugal"
+                      },
+                      "competition_id": {
+                        "type": "string",
+                        "example": "EL"
+                      },
+                      "competition_type": {
+                        "type": "string",
+                        "example": "international_cup"
+                      },
+                      "date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-11-30T00:00:00.000Z"
+                      },
+                      "game_id": {
+                        "type": "integer",
+                        "example": 4172097
+                      },
+                      "home_club_formation": {
+                        "type": "string",
+                        "example": "3-4-2-1"
+                      },
+                      "home_club_goals": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "home_club_id": {
+                        "type": "integer",
+                        "example": 800
+                      },
+                      "home_club_manager_name": {
+                        "type": "string",
+                        "example": "Gian Piero Gasperini"
+                      },
+                      "home_club_name": {
+                        "type": "string",
+                        "example": "Atalanta Bergamasca Calcio S.p.a."
+                      },
+                      "referee": {
+                        "type": "string",
+                        "example": "Michael Oliver"
+                      },
+                      "round": {
+                        "type": "string",
+                        "example": "Group D"
+                      },
+                      "season": {
+                        "type": "integer",
+                        "example": 2023
+                      },
+                      "stadium": {
+                        "type": "string",
+                        "example": "Gewiss Stadium"
+                      },
+                      "url": {
+                        "type": "string",
+                        "format": "uri",
+                        "example": "https://www.transfermarkt.co.uk/spielbericht/index/spielbericht/4172097"
+                      },
+                      "_id": {
+                        "type": "string",
+                        "example": "667430d686c67072a01d4a53"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/latest10matches/{id}": {
+      "get": {
+        "summary": "Get latest 10 matches of a club",
+        "description": "Returns an array of the latest 10 games of a specific club.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the club",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "home_club_id": {
+                        "type": "integer",
+                        "example": 800
+                      },
+                      "away_club_id": {
+                        "type": "integer",
+                        "example": 336
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/teamscores/{id}": {
+      "get": {
+        "summary": "Get match scores",
+        "description": "Returns an array with information about the scores of a specific match.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the match",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "game_id": {
+                      "type": "integer",
+                      "example": 4172097
+                    },
+                    "home_team": {
+                      "type": "string",
+                      "example": "Atalanta Bergamasca Calcio S.p.a."
+                    },
+                    "home_id": {
+                      "type": "integer",
+                      "example": 800
+                    },
+                    "away_team": {
+                      "type": "string",
+                      "example": "Sporting Clube de Portugal"
+                    },
+                    "away_id": {
+                      "type": "integer",
+                      "example": 336
+                    },
+                    "home_score": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "away_score": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "date": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2023-11-30T00:00:00.000Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/getManagerNames/{id}": {
+    "get": {
+      "summary": "Get manager names",
+      "description": "Returns the manager names of home and away clubs for a specific match.",
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "ID of the match",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "home_manager": {
+                    "type": "string",
+                    "example": "Gian Piero Gasperini"
+                  },
+                  "away_manager": {
+                    "type": "string",
+                    "example": "Rúben Amorim"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "500": {
+          "description": "Internal server error",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string",
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+    "/api/getAllGames/{id}": {
+      "get": {
+        "summary": "Get all games of a club since 2023",
+        "description": "Returns an array of all games of a specific club from the year 2023.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the club",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "game_id": {
+                        "type": "integer",
+                        "example": 4172097
+                      },
+                      "competition_id": {
+                        "type": "string",
+                        "example": "EL"
+                      },
+                      "season": {
+                        "type": "integer",
+                        "example": 2023
+                      },
+                      "round": {
+                        "type": "string",
+                        "example": "Group D"
+                      },
+                      "date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-11-30T00:00:00.000Z"
+                      },
+                      "home_club_id": {
+                        "type": "integer",
+                        "example": 800
+                      },
+                      "away_club_id": {
+                        "type": "integer",
+                        "example": 336
+                      },
+                      "home_club_goals": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "away_club_goals": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "home_club_position": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "away_club_position": {
+                        "type": "integer",
+                        "example": 2
+                      },
+                      "home_club_manager_name": {
+                        "type": "string",
+                        "example": "Gian Piero Gasperini"
+                      },
+                      "away_club_manager_name": {
+                        "type": "string",
+                        "example": "Rúben Amorim"
+                      },
+                      "stadium": {
+                        "type": "string",
+                        "example": "Gewiss Stadium"
+                      },
+                      "attendance": {
+                        "type": "integer",
+                        "example": 40000
+                      },
+                      "referee": {
+                        "type": "string",
+                        "example": "Michael Oliver"
+                      },
+                      "url": {
+                        "type": "string",
+                        "format": "uri",
+                        "example": "https://www.transfermarkt.co.uk/spielbericht/index/spielbericht/4172097"
+                      },
+                      "home_club_formation": {
+                        "type": "string",
+                        "example": "3-4-2-1"
+                      },
+                      "away_club_formation": {
+                        "type": "string",
+                        "example": "3-4-3"
+                      },
+                      "home_club_name": {
+                        "type": "string",
+                        "example": "Atalanta Bergamasca Calcio S.p.a."
+                      },
+                      "away_club_name": {
+                        "type": "string",
+                        "example": "Sporting Clube de Portugal"
+                      },
+                      "aggregate": {
+                        "type": "string",
+                        "example": "1:1"
+                      },
+                      "competition_type": {
+                        "type": "string",
+                        "example": "international_cup"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/getGameDetails/{id}": {
+      "get": {
+        "summary": "Get game details",
+        "description": "Returns details of a specific game.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the game",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2023-11-30T00:00:00.000Z"
+                    },
+                    "stadium": {
+                      "type": "string",
+                      "example": "Gewiss Stadium"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/getGamesByChampionship/{id}": {
+      "get": {
+        "summary": "Get games by championship",
+        "description": "Returns an array of games of a specific championship.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the championship",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "game_id": {
+                        "type": "integer",
+                        "example": 4172097
+                      },
+                      "competition_id": {
+                        "type": "string",
+                        "example": "EL"
+                      },
+                      "season": {
+                        "type": "integer",
+                        "example": 2023
+                      },
+                      "round": {
+                        "type": "string",
+                        "example": "Group D"
+                      },
+                      "date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-11-30T00:00:00.000Z"
+                      },
+                      "home_club_id": {
+                        "type": "integer",
+                        "example": 800
+                      },
+                      "away_club_id": {
+                        "type": "integer",
+                        "example": 336
+                      },
+                      "home_club_goals": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "away_club_goals": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "home_club_position": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "away_club_position": {
+                        "type": "integer",
+                        "example": 2
+                      },
+                      "home_club_manager_name": {
+                        "type": "string",
+                        "example": "Gian Piero Gasperini"
+                      },
+                      "away_club_manager_name": {
+                        "type": "string",
+                        "example": "Rúben Amorim"
+                      },
+                      "stadium": {
+                        "type": "string",
+                        "example": "Gewiss Stadium"
+                      },
+                      "attendance": {
+                        "type": "integer",
+                        "example": 40000
+                      },
+                      "referee": {
+                        "type": "string",
+                        "example": "Michael Oliver"
+                      },
+                      "url": {
+                        "type": "string",
+                        "format": "uri",
+                        "example": "https://www.transfermarkt.co.uk/spielbericht/index/spielbericht/4172097"
+                      },
+                      "home_club_formation": {
+                        "type": "string",
+                        "example": "3-4-2-1"
+                      },
+                      "away_club_formation": {
+                        "type": "string",
+                        "example": "3-4-3"
+                      },
+                      "home_club_name": {
+                        "type": "string",
+                        "example": "Atalanta Bergamasca Calcio S.p.a."
+                      },
+                      "away_club_name": {
+                        "type": "string",
+                        "example": "Sporting Clube de Portugal"
+                      },
+                      "aggregate": {
+                        "type": "string",
+                        "example": "1:1"
+                      },
+                      "competition_type": {
+                        "type": "string",
+                        "example": "international_cup"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/home/lastMatches": {
+      "get": {
+        "summary": "Get last 4 matches",
+        "description": "Returns an array of the last 4 matches.",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "home_club_goals": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "away_club_goals": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "home_club_name": {
+                        "type": "string",
+                        "example": "Atalanta Bergamasca Calcio S.p.a."
+                      },
+                      "away_club_name": {
+                        "type": "string",
+                        "example": "Sporting Clube de Portugal"
+                      },
+                      "date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-11-30T00:00:00.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/searchGames/": {
+      "get": {
+        "summary": "Search games",
+        "description": "Returns an array of games based on search criteria.",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Search text to match game names",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "home_club_name": {
+                        "type": "string",
+                        "example": "Atalanta Bergamasca Calcio S.p.a."
+                      },
+                      "away_club_name": {
+                        "type": "string",
+                        "example": "Sporting Clube de Portugal"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
+
+
 
