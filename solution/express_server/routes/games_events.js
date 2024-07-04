@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const controller = require('../controllers/games_events');
-const gameEventsController = require("../controllers/games_events");
-const appearancesController = require("../controllers/appearances");
-
+const controller = require("../controllers/games_events");
+/*
 router.get('/players/top15goalscorers', async function (req, res) {
     try {
         const players = await controller.top15GoalScorers();
@@ -24,11 +22,17 @@ router.get('/players/:id', async function (req, res) {
         console.error('Error fetching player goals:', error);
         res.status(500).json({error: 'Internal server error'});
     }
-});
+});*/
+
+/**
+ * Retrieves the total events of a game by its ID.
+ * @param {Number} gameId - ID of the game.
+ * @returns {Promise} - A promise that resolves with the events of the game or rejects with an error.
+ */
 
 router.get('/gameevents/:gameId', (req, res) => {
     const gameId = parseInt(req.params.gameId, 10);
-    gameEventsController.getEventsByGameId(gameId)
+    controller.getEventsByGameId(gameId)
         .then(events => {
             if (events && events.length > 0) {
                 res.status(200).json(events); // Restituisce gli eventi come JSON

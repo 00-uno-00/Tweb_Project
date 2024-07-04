@@ -75,7 +75,7 @@ router.get('/getAllGames/:id', async function (req, res) {
         const matches = await controller.getAllGames(parseInt(req.params.id));
         res.status(200).json(matches);
     } catch (error) {
-        console.error('Error fetching latest 15 matches:', error);
+        console.error('Error fetching games:', error);
         res.status(500).json({error: 'Internal server error'});
     }
 });
@@ -90,7 +90,7 @@ router.get('/getGameDetails/:id', async function (req, res) {
         const matches = await controller.getGameDetails(req.params.id);
         res.status(200).json(matches);
     } catch (error) {
-        console.error('Error fetching latest 15 matches:', error);
+        console.error('Error fetching latest games details:', error);
         res.status(500).json({error: 'Internal server error'});
     }
 });
@@ -106,7 +106,7 @@ router.get('/getGamesByChampionship/:id', async function (req, res) {
         const matches = await controller.getChampionshipGames(req.params.id);
         res.status(200).json(matches);
     } catch (error) {
-        console.error('Error fetching latest 15 matches:', error);
+        console.error('Error fetching games by championship:', error);
         res.status(500).json({error: 'Internal server error'});
     }
 });

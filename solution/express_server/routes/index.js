@@ -11,7 +11,7 @@ const controller = require("../controllers/games");
 router.get('/', function (req, res, next) {
     res.render('index', {title: 'Express'});
 });
-
+/*
 router.get('/appearances', (req, res) => {
     appearancesController.getAllAppearances()
         .then(appearances => {
@@ -43,12 +43,12 @@ router.get('/mostyellowcards', (req, res) => {
         });
 });
 
-/**
+/!**
  * GET /mostplayedminutes
  * Retrieves the total minutes played by a specific player.
  * @query playerId - The ID of the player for whom to retrieve total minutes played.
  * @returns {Object} - JSON object with total minutes played or an error message.
- */
+ *!/
 router.get('/totalplayedminutes', (req, res) => {
     appearancesController.totalMinutesPlayed(38004) // TODO Assuming playerId is passed as a query parameter req.query.playerId (ora me lo sono inventato)
         .then(totalMinutes => {
@@ -59,12 +59,12 @@ router.get('/totalplayedminutes', (req, res) => {
         });
 });
 
-/**
+/!**
  * GET /totalgoals
  * Retrieves the total goals scored by a specific player.
  * @query playerId - The ID of the player for whom to retrieve total goals scored.
  * @returns {Object} - JSON object with total goals scored or an error message.
- */
+ *!/
 router.get('/totalgoals', (req, res) => {
     appearancesController.totalGoalsScored(38004) // TODO Assuming playerId is passed as a query parameter req.query.playerId (ora me lo sono inventato
         .then(totalGoals => {
@@ -75,12 +75,12 @@ router.get('/totalgoals', (req, res) => {
         });
 });
 
-/**
+/!**
  * GET /totalassists
  * Retrieves the total assists made by a specific player.
  * @query playerId - The ID of the player for whom to retrieve total assists.
  * @returns {Object} - JSON object with total assists or an error message.
- */
+ *!/
 router.get('/totalassists', (req, res) => {
 
     appearancesController.totalAssists(38004) //TODO const playerId = req.query.playerId; Assumendo che playerId sia passato come parametro di query
@@ -92,12 +92,12 @@ router.get('/totalassists', (req, res) => {
         });
 });
 
-/**
+/!**
  * GET /totalgoalsbyclub
  * Retrieves the total goals scored by a specific club during all games.
  * @query clubId - The ID of the club for which to retrieve total goals scored.
  * @returns {Object} - JSON object with total goals scored or an error message.
- */
+ *!/
 router.get('/totalgoalsbyclub', (req, res) => {
     //const clubId = req.query.clubId; // todo Assumendo che clubId sia passato come parametro di query
     clubGamesController.totalGoalsByClub(431)
@@ -109,12 +109,12 @@ router.get('/totalgoalsbyclub', (req, res) => {
         });
 });
 
-/**
+/!**
  * GET /getmanager
  * Retrieves the manager of a specific club.
  * @query clubId - The ID of the club for which to retrieve the manager's name.
  * @returns {Object} - JSON object with the manager's name or an error message.
- */
+ *!/
 router.get('/getmanager', (req, res) => {
     clubGamesController.getManager(83) //todo const club
         .then(managerName => {
@@ -130,11 +130,11 @@ router.get('/getmanager', (req, res) => {
         });
 });
 
-/**
+/!**
  * GET /top15clubsbywins
  * Restituisce le prime 15 squadre con il maggior numero di vittorie.
  * @returns {Object} - JSON con l'ID del club e il totale delle vittorie
- */
+ *!/
 router.get('/top15clubsbywins', (req, res) => {
     clubGamesController.top15ClubsByWins()
         .then(clubs => {
@@ -148,11 +148,11 @@ router.get('/top15clubsbywins', (req, res) => {
 });
 
 
-/**
+/!**
  * GET /top15goalscorers
  * Restituisce i primi 15 giocatori con il maggior numero di gol.
  * @returns {Object} - JSON con l'ID del giocatore e il totale dei gol
- */
+ *!/
 router.get('/top15goalscorers', (req, res) => {
     gameEventsController.top15GoalScorers()
         .then(players => {
@@ -190,11 +190,11 @@ router.get('/yellowCardsAPlayer/:id', (req, res) => {
             res.status(500).json({error: 'An error occurred while fetching the top 15 goal scorers'});
         });
 });
-/**
+/!**
  * GET /last15games
  * Restituisce le ultime 15 partite giocate rispetto alla data odierna.
  * @returns {Object} - JSON con le ultime 15 partite.
- */
+ *!/
 router.get('/last15games', (req, res) => {
     gamesController.getLast15Games()
         .then(games => {
@@ -206,12 +206,12 @@ router.get('/last15games', (req, res) => {
         });
 });
 
-/**
+/!**
  * GET /teamscores/:gamesID
  * Restituisce il punteggio della squadra e della squadra avversaria per una data squadra.
  * @param {Number} clubId - ID della squadra.
  * @returns {Object} - JSON con i punteggi delle partite.
- */
+ *!/
 router.get('/teamscores/:gamesID', (req, res) => {
     const gamesID = req.params.id;
     gamesController.getTeamScores(gamesID)
@@ -235,6 +235,6 @@ router.get('/game/:gameId/redcards', (req, res) => {
             console.error('Error fetching total red cards:', error);
             res.status(500).json({error: 'An error occurred while fetching the total red cards'});
         });
-})
+})*/
 
 module.exports = router;
