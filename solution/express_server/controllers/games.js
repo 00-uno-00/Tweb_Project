@@ -280,25 +280,6 @@ async function getLast4Matches() {
             .sort({date: -1})
             .limit(4)
             .then(results => {
-                if (results.length < 4) {
-                    return Games.find({
-                        home_club_goals: {$exists: true},
-                        away_club_goals: {$exists: true},
-                        home_club_name: {$exists: true, $ne: "", $gt: 1},
-                        away_club_name: {$exists: true, $ne: "", $gt: 1},
-                        date: {$lt: results[results.length - 1].date}
-                    })
-                        .sort({date: -1})
-                        .limit(4 - results.length)
-                        .then(additionalResults => {
-                            results.push(...additionalResults);
-                            return results;
-                        });
-                } else {
-                    return results;
-                }
-            })
-            .then(results => {
                 const validGames = results.filter(game => {
                     return game.home_club_name.length > 1 && game.away_club_name.length > 1;
                 });
@@ -307,7 +288,8 @@ async function getLast4Matches() {
                     home_club_name: game.home_club_name,
                     away_club_name: game.away_club_name,
                     home_club_goals: game.home_club_goals,
-                    away_club_goals: game.away_club_goals
+                    away_club_goals: game.away_club_goals,
+                    game_id: game.game_id
                 }));
 
                 resolve(lastFourGames);

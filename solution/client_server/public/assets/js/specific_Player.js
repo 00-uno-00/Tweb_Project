@@ -1,5 +1,17 @@
 async function populateStats() {
+
+    let playerId = window.location.pathname.split('/')[2];
+
+    populatePlayer(playerId);
+
+    populateGameStats(playerId);
+
+    populateCareer(playerId);
+}
+
+async function populatePlayer(playerId) {
     let playerName = document.getElementById('player_name');
+    let playerScore = document.getElementById('player_score');
     let nationality = document.getElementById('Nationality');
     let marketValue = document.getElementById('market_value_in_eur');
     let role = document.getElementById('Role');
@@ -7,20 +19,17 @@ async function populateStats() {
     let dob = document.getElementById('DOB');
     let currentClubDomesticCompetitionId = document.getElementById('current_club_domestic_competition_id');
     let club = document.getElementById('Club');
-    let minutesPlayed = document.getElementById('minutes_played');
-    let height = document.getElementById('Height');
-    let goals = document.getElementById('goals');
-    let foot = document.getElementById('Foot');
-    let assists = document.getElementById('assists');
     let img = document.getElementById('player_image');
+    let foot = document.getElementById('Foot');
+    let height = document.getElementById('Height');
 
-    let playerId = window.location.pathname.split('/')[2];
 
     try {
         const response = await axios.get(`/Players/${playerId}`);
         const player = response.data;
 
         playerName.textContent = player.name;
+        playerScore.textContent += player.score;
         nationality.textContent += ' ' + player.countryOfCitizenship;
         marketValue.textContent += player.marketValueInEur;
         role.textContent += player.subPosition;
@@ -38,6 +47,13 @@ async function populateStats() {
         console.error('Error fetching player: ', error);
     }
 
+}
+
+async function populateGameStats(playerId) {
+    let minutesPlayed = document.getElementById('minutes_played');
+    let goals = document.getElementById('goals');
+    let assists = document.getElementById('assists');
+
     try {
         const ret = await axios.get(`/specific_Player/stats/${playerId}`);
 
@@ -47,6 +63,9 @@ async function populateStats() {
     } catch (error) {
         console.error('Error fetching player stats: ', error);
     }
+}
+
+async function populateCareer(playerId) {
     try {
         let careerData;
         const career = await axios.get(`/specific_Player/career/${playerId}`);
@@ -80,7 +99,6 @@ async function populateStats() {
 
         document.getElementById('tabella_carriera').innerHTML = tableHTML;
     } catch {
-        console.error('Error fetching player careerrrrrrr: ', error);
+        console.error('Error fetching player career: ', error);
     }
 }
-

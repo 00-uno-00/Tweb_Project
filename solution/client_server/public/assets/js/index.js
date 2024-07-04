@@ -17,14 +17,11 @@ async function top8players() {
     try {
         const response = await axios.get('/topPlayer');
         const players = response.data;
-        console.log('Top 8 players:', players);
         playersContainer.innerHTML = ''; // Clear previous content
         if (players.length === 0) {
             playersContainer.textContent = 'No players found.';
         } else {
             for (const player of players) {
-                console.log(player);
-                console.log(player._id);
                 const name = await axios.get(`/getPlayerName/${player._id}`);
                 let Player = name.data;
                 const playerDiv = document.createElement('div');
@@ -62,7 +59,7 @@ async function lastMatches() {
     try {
         const response = await axios.get('/index/lastMatches');
         const matches = response.data;
-        console.log('Top 4 matches:', matches);
+        console.log(matches)
         matchesContainer.innerHTML = ''; // Clear previous content
 
         if (matches.length === 0) {

@@ -95,6 +95,17 @@ router.get('/statsMatch/totalinfo/:gameId/:clubId', async (req, res) => {
     }
 });
 
+router.get('/specific_Player/:id', async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        const player = await axios.get(`http://localhost:8080/Player/getPlayerById/${id}`);
+        res.json(player.data);
+    } catch (error) {
+        console.error('Error fetching player:', error);
+        res.status(500).json({error: 'Error fetching player'});
+    }
+});
 
 router.get('/')
 
