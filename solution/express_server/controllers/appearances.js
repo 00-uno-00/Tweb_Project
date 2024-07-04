@@ -3,7 +3,7 @@ var Appearances = require('../models/appearances');
 //prova
 function getAllAppearances() {
     return new Promise((resolve, reject) => {
-        Appearances.find({appearance_id:'2233748_79232'})
+        Appearances.find({appearance_id: '2233748_79232'})
             .then(results => {
                 resolve(results);
             })
@@ -23,12 +23,12 @@ function mostRedCards() {
             {
                 $group: {
                     _id: "$player_id",
-                    player_name: { $first: "$player_name" },
-                    red_cards: { $sum: "$red_cards" }
+                    player_name: {$first: "$player_name"},
+                    red_cards: {$sum: "$red_cards"}
                 }
             },
-            { $sort: { red_cards: -1 } },
-            { $limit: 15 }
+            {$sort: {red_cards: -1}},
+            {$limit: 15}
         ])
             .then(results => {
                 resolve(results);
@@ -49,12 +49,12 @@ function mostYellowCards() {
             {
                 $group: {
                     _id: "$player_id",
-                    player_name: { $first: "$player_name" },
-                    yellow_cards: { $sum: "$yellow_cards" }
+                    player_name: {$first: "$player_name"},
+                    yellow_cards: {$sum: "$yellow_cards"}
                 }
             },
-            { $sort: { yellow_cards: -1 } },
-            { $limit: 20 }
+            {$sort: {yellow_cards: -1}},
+            {$limit: 20}
         ])
             .then(results => {
                 resolve(results);
@@ -74,12 +74,12 @@ function totalMinutesPlayed(playerId) {
     return new Promise((resolve, reject) => {
         Appearances.aggregate([
             {
-                $match: { player_id: playerId }
+                $match: {player_id: playerId}
             },
             {
                 $group: {
                     _id: null,
-                    totalMinutes: { $sum: "$minutes_played" }
+                    totalMinutes: {$sum: "$minutes_played"}
                 }
             }
         ])
@@ -105,12 +105,12 @@ function totalGoalsScored(playerId) {
     return new Promise((resolve, reject) => {
         Appearances.aggregate([
             {
-                $match: { player_id: playerId }
+                $match: {player_id: playerId}
             },
             {
                 $group: {
                     _id: null,
-                    totalGoals: { $sum: "$goals" }
+                    totalGoals: {$sum: "$goals"}
                 }
             }
         ])
@@ -136,12 +136,12 @@ function totalAssists(playerId) {
     return new Promise((resolve, reject) => {
         Appearances.aggregate([
             {
-                $match: { player_id: playerId }
+                $match: {player_id: playerId}
             },
             {
                 $group: {
                     _id: null,
-                    totalAssists: { $sum: "$assists" }
+                    totalAssists: {$sum: "$assists"}
                 }
             }
         ])
@@ -162,13 +162,13 @@ function redCardsAPlayer(playerId) {
     return new Promise((resolve, reject) => {
         Appearances.aggregate([
             {
-                $match: { player_id: playerId }
+                $match: {player_id: playerId}
             },
             {
                 $group: {
                     _id: "$player_id",
-                    player_name: { $first: "$player_name" },
-                    red_cards: { $sum: "$red_cards" }
+                    player_name: {$first: "$player_name"},
+                    red_cards: {$sum: "$red_cards"}
                 }
             }
         ])
@@ -190,13 +190,13 @@ function yellowCardsAPlayer(playerId) {
     return new Promise((resolve, reject) => {
         Appearances.aggregate([
             {
-                $match: { player_id: playerId }
+                $match: {player_id: playerId}
             },
             {
                 $group: {
                     _id: "$player_id",
-                    player_name: { $first: "$player_name" },
-                    yellow_cards: { $sum: "$yellow_cards" }
+                    player_name: {$first: "$player_name"},
+                    yellow_cards: {$sum: "$yellow_cards"}
                 }
             }
         ])
@@ -223,14 +223,14 @@ function getPlayerAppearances(playerId) {
     return new Promise((resolve, reject) => {
         Appearances.aggregate([
             {
-                $match: { player_id: playerId } // Filtra per ID del giocatore
+                $match: {player_id: playerId} // Filtra per ID del giocatore
             },
             {
                 $group: {
                     _id: "$player_club_id", // Raggruppa per ID del club
-                    firstAppearance: { $min: "$date" }, // Trova la data della prima apparizione
-                    lastAppearance: { $max: "$date" }, // Trova la data dell'ultima apparizione
-                    player_name: { $first: "$player_name" } // Mantiene il nome del giocatore
+                    firstAppearance: {$min: "$date"}, // Trova la data della prima apparizione
+                    lastAppearance: {$max: "$date"}, // Trova la data dell'ultima apparizione
+                    player_name: {$first: "$player_name"} // Mantiene il nome del giocatore
                 }
             },
             {
@@ -243,7 +243,7 @@ function getPlayerAppearances(playerId) {
                 }
             },
             {
-                $sort: { firstAppearance: -1 }
+                $sort: {firstAppearance: -1}
             }
         ])
             .then(results => {
@@ -264,7 +264,7 @@ function getPlayerAppearances(playerId) {
  */
 function getTeamTotalRedCards(gameId, clubId) {
     return new Promise((resolve, reject) => {
-        Appearances.find({ game_id: gameId, player_club_id: clubId })
+        Appearances.find({game_id: gameId, player_club_id: clubId})
             .then(results => {
                 if (results.length > 0) {
                     // Calcola il numero totale di cartellini rossi sommando il campo red_cards di ciascun documento
@@ -280,34 +280,11 @@ function getTeamTotalRedCards(gameId, clubId) {
     });
 }
 
-// function getTeamTotalYellowCards(gameId, clubId) {
-//     return new Promise((resolve, reject) => {
-//         console.log("gameId:", gameId, "clubId:", clubId);
-//
-//         Appearances.aggregate([
-//             { $match: { game_id: gameId, player_club_id: clubId } }, // Filtra per ID partita e ID squadra
-//             { $group: { _id: null, totalYellowCards: { $sum: "$yellow_cards" } } }
-//         ])
-//             .then(results => {
-//                 console.log("Aggregation results:", results.length);
-//                 if (results.length > 0) {
-//                     resolve(results[0].totalYellowCards); // Risolvi con il numero totale di cartellini rossi
-//                 } else {
-//                     resolve(0); // Se non ci sono cartellini rossi, restituisci 0
-//                 }
-//
-//             })
-//             .catch(error => {
-//                 reject(error); // Rifiuta in caso di errore
-//             });
-//     });
-// }
-
 function getTeamTotalYellowCards(gameId, clubId) {
     return new Promise((resolve, reject) => {
         console.log("gameId:", gameId, "clubId:", clubId);
 
-        Appearances.find({ game_id: gameId, player_club_id: clubId })
+        Appearances.find({game_id: gameId, player_club_id: clubId})
             .then(results => {
                 console.log("Find results:", results);
                 if (results.length > 0) {
@@ -325,7 +302,6 @@ function getTeamTotalYellowCards(gameId, clubId) {
 }
 
 
-
 /**
  * Funzione per ottenere il numero totale di assist di una squadra in una partita dato il suo ID e l'ID della squadra.
  * @param {Number} gameId - ID della partita.
@@ -335,7 +311,7 @@ function getTeamTotalYellowCards(gameId, clubId) {
 
 function getTeamTotalAssists(gameId, clubId) {
     return new Promise((resolve, reject) => {
-        Appearances.find({ game_id: gameId, player_club_id: clubId })
+        Appearances.find({game_id: gameId, player_club_id: clubId})
             .then(results => {
                 if (results.length > 0) {
                     // Calcola il numero totale di assist sommando il campo assists di ciascun documento
@@ -357,11 +333,11 @@ function top8GoalScorers() {
             {
                 $group: {
                     _id: "$player_id", // Raggruppa per ID del giocatore
-                    totalGoals: { $sum: "$goals" } // Somma i gol
+                    totalGoals: {$sum: "$goals"} // Somma i gol
                 }
             },
             {
-                $sort: { totalGoals: -1 } // Ordina in ordine decrescente per numero di gol
+                $sort: {totalGoals: -1} // Ordina in ordine decrescente per numero di gol
             },
             {
                 $limit: 8 // Limita il risultato ai primi 8 giocatori
@@ -377,17 +353,17 @@ function top8GoalScorers() {
 }
 
 module.exports = {
-    getAllAppearances, //prova
-    mostRedCards, //giocatori con più cartellini rossi
-    mostYellowCards, //giocatori con più cartellini gialli
-    totalMinutesPlayed, //minuti giocati
-    totalGoalsScored, //gol fatti
-    totalAssists, //assist fatti
-    redCardsAPlayer, //cartellini rossi fatti da un giocatore
-    yellowCardsAPlayer, //cartellini gialli fatti da un giocatore
-    getPlayerAppearances, //prima e ultima apparizione di un giocatore in ciascuna squadra
-    getTeamTotalRedCards, //numero totale di cartellini rossi in una partita di una squadra
-    getTeamTotalYellowCards, //numero totale di cartellini gialli in una partita di una squadra
-    getTeamTotalAssists, //numero totale di assist in una partita di una squadra
-    top8GoalScorers //top 8 marcatori homepage
+    getAllAppearances,
+    mostRedCards,
+    mostYellowCards,
+    totalMinutesPlayed,
+    totalGoalsScored,
+    totalAssists,
+    redCardsAPlayer,
+    yellowCardsAPlayer,
+    getPlayerAppearances,
+    getTeamTotalRedCards,
+    getTeamTotalYellowCards,
+    getTeamTotalAssists,
+    top8GoalScorers
 };

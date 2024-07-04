@@ -10,28 +10,28 @@ function top15ClubsByGoals() {
         ClubGames.aggregate([
             {
                 $group: {
-                    _id: "$club_id", // Raggruppa per ID del club
-                    totalGoals: { $sum: "$own_goals" } // Somma i gol del club
+                    _id: "$club_id",
+                    totalGoals: {$sum: "$own_goals"}
                 }
             },
             {
-                $sort: { totalGoals: -1 } // Ordina in ordine decrescente per numero di gol
+                $sort: {totalGoals: -1}
             },
             {
-                $limit: 15 // Limita il risultato ai primi 15 club
+                $limit: 15
             },
             {
                 $project: {
-                    club_id: "$_id", // Rinomina _id in club_id
-                    totalGoals: 1 // Include totalGoals nel risultato finale
+                    club_id: "$_id",
+                    totalGoals: 1
                 }
             }
         ])
             .then(results => {
-                resolve(results); // Risolvi con i risultati dell'aggregazione
+                resolve(results);
             })
             .catch(error => {
-                reject(error); // Rifiuta in caso di errore
+                reject(error);
             });
     });
 }
@@ -44,14 +44,13 @@ function top15ClubsByGoals() {
  */
 function getManager(clubId) {
     return new Promise((resolve, reject) => {
-        ClubGames.findOne({ club_id: clubId })
+        ClubGames.findOne({club_id: clubId})
             .select("own_manager_name")
             .then(result => {
-                console.log('Manager Name:', managerName); // Stampa per il debug
                 if (result) {
                     resolve(result.own_manager_name);
                 } else {
-                    resolve(null); // Se il club non viene trovato
+                    resolve(null);
                 }
             })
             .catch(error => {
@@ -64,36 +63,35 @@ function top15ClubsByWins() {
     return new Promise((resolve, reject) => {
         ClubGames.aggregate([
             {
-                $match: { is_win: 1 } // Considera solo le partite vinte
+                $match: {is_win: 1}
             },
             {
                 $group: {
-                    _id: "$club_id", // Raggruppa per ID del club
-                    totalWins: { $sum: 1 } // Conta le vittorie
+                    _id: "$club_id",
+                    totalWins: {$sum: 1}
                 }
             },
             {
-                $sort: { totalWins: -1 } // Ordina in ordine decrescente per numero di vittorie
+                $sort: {totalWins: -1}
             },
             {
-                $limit: 15 // Limita il risultato ai primi 15 club
+                $limit: 15
             },
             {
                 $project: {
-                    club_id: "$_id", // Rinomina _id in club_id
-                    totalWins: 1 // Include totalWins nel risultato finale
+                    club_id: "$_id",
+                    totalWins: 1
                 }
             }
         ])
             .then(results => {
-                resolve(results); // Risolvi con i risultati dell'aggregazione
+                resolve(results);
             })
             .catch(error => {
-                reject(error); // Rifiuta in caso di errore
+                reject(error);
             });
     });
 }
-
 
 
 module.exports = {

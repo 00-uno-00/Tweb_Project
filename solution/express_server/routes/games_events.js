@@ -10,7 +10,7 @@ router.get('/players/top15goalscorers', async function (req, res) {
         res.status(200).json(players);
     } catch (error) {
         console.error('Error fetching top 15 goal scorers:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error'});
     }
 });
 
@@ -22,7 +22,7 @@ router.get('/players/:id', async function (req, res) {
         res.status(200).json(player);
     } catch (error) {
         console.error('Error fetching player goals:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error'});
     }
 });
 
@@ -33,16 +33,14 @@ router.get('/gameevents/:gameId', (req, res) => {
             if (events && events.length > 0) {
                 res.status(200).json(events); // Restituisce gli eventi come JSON
             } else {
-                res.status(404).json({ error: 'No events found for the specified game ID' });
+                res.status(404).json({error: 'No events found for the specified game ID'});
             }
         })
         .catch(error => {
             console.error('Error fetching game events:', error);
-            res.status(500).json({ error: 'An error occurred while fetching the game events' });
+            res.status(500).json({error: 'An error occurred while fetching the game events'});
         });
 });
-
-
 
 
 module.exports = router;

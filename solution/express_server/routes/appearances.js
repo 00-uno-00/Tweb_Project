@@ -11,7 +11,7 @@ router.get('/player/totalgoals/:id', async function (req, res) {
         res.status(200).json(appearances);
     } catch (error) {
         console.error('Error fetching player appearances:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error'});
     }
 });
 
@@ -23,7 +23,7 @@ router.get('/player/totalassists/:id', async function (req, res) {
         res.status(200).json(appearances);
     } catch (error) {
         console.error('Error fetching player appearances:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error'});
     }
 });
 
@@ -35,7 +35,7 @@ router.get('/player/totalminutesplayed/:id', async function (req, res) {
         res.status(200).json(appearances);
     } catch (error) {
         console.error('Error fetching player appearances:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error'});
     }
 });
 
@@ -47,7 +47,7 @@ router.get('/player/yellowCardsAPlayer/:id', async function (req, res) {
         res.status(200).json(appearances);
     } catch (error) {
         console.error('Error fetching player appearances:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error'});
     }
 });
 
@@ -59,10 +59,9 @@ router.get('/player/redCardsAPlayer/:id', async function (req, res) {
         res.status(200).json(appearances);
     } catch (error) {
         console.error('Error fetching player appearances:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error'});
     }
 });
-
 
 
 router.get('/game/yellowCards/:gameId/:clubId', (req, res) => {
@@ -71,11 +70,11 @@ router.get('/game/yellowCards/:gameId/:clubId', (req, res) => {
 
     appearancesController.getTeamTotalYellowCards(gameId, clubId)
         .then(yellowCardCount => {
-            res.status(200).json({ totalYellowCards: yellowCardCount }); // Restituisce il numero totale di cartellini rossi come JSON
+            res.status(200).json({totalYellowCards: yellowCardCount});
         })
         .catch(error => {
             console.error('Error fetching total yellow cards:', error);
-            res.status(500).json({ error: 'An error occurred while fetching the total yellow cards' });
+            res.status(500).json({error: 'An error occurred while fetching the total yellow cards'});
         });
 });
 
@@ -85,11 +84,11 @@ router.get('/game/redcards/:gameId/:clubId', (req, res) => {
 
     appearancesController.getTeamTotalRedCards(gameId, clubId)
         .then(totalRedCards => {
-            res.status(200).json({ totalRedCards: totalRedCards }); // Restituisce il numero totale di cartellini rossi come JSON
+            res.status(200).json({totalRedCards: totalRedCards});
         })
         .catch(error => {
             console.error('Error fetching total red cards:', error);
-            res.status(500).json({ error: 'An error occurred while fetching the total red cards' });
+            res.status(500).json({error: 'An error occurred while fetching the total red cards'});
         });
 });
 
@@ -99,11 +98,11 @@ router.get('/game/assists/:gameId/:clubId', (req, res) => {
 
     appearancesController.getTeamTotalAssists(gameId, clubId)
         .then(totalAssists => {
-            res.status(200).json({ totalAssists: totalAssists }); // Restituisce il numero totale di assist come JSON
+            res.status(200).json({totalAssists: totalAssists});
         })
         .catch(error => {
             console.error('Error fetching total assists:', error);
-            res.status(500).json({ error: 'An error occurred while fetching the total assists' });
+            res.status(500).json({error: 'An error occurred while fetching the total assists'});
         });
 });
 
@@ -119,14 +118,14 @@ router.get('/player/career/:playerId', (req, res) => {
     appearancesController.getPlayerAppearances(playerId)
         .then(appearances => {
             if (appearances && appearances.length > 0) {
-                res.status(200).json(appearances); // Restituisce le apparizioni come JSON
+                res.status(200).json(appearances);
             } else {
-                res.status(404).json({ error: 'No appearances found for the specified player ID' });
+                res.status(404).json({error: 'No appearances found for the specified player ID'});
             }
         })
         .catch(error => {
             console.error('Error fetching player appearances:', error);
-            res.status(500).json({ error: 'An error occurred while fetching the player appearances' });
+            res.status(500).json({error: 'An error occurred while fetching the player appearances'});
         });
 });
 
@@ -134,14 +133,14 @@ router.get('/home/topPlayer', (req, res) => {
     appearancesController.top8GoalScorers()
         .then(appearances => {
             if (appearances && appearances.length > 0) {
-                res.status(200).json(appearances); // Restituisce le apparizioni come JSON
+                res.status(200).json(appearances);
             } else {
-                res.status(404).json({ error: 'No players found' });
+                res.status(404).json({error: 'No players found'});
             }
         })
         .catch(error => {
             console.error('Error fetching player appearances:', error);
-            res.status(500).json({ error: 'An error occurred while fetching top 8 player' });
+            res.status(500).json({error: 'An error occurred while fetching top 8 player'});
         });
 });
 

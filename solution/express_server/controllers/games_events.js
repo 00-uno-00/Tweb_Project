@@ -3,7 +3,7 @@ var GameEvents = require('../models/games_events');
 //restituisce i gol di un giocatore
 function totalGoalsByPlayer(playerId) {
     return new Promise((resolve, reject) => {
-        GameEvents.countDocuments({ player_id: playerId, type: 'goals' })
+        GameEvents.countDocuments({player_id: playerId, type: 'goals'})
             .then(goalCount => {
                 resolve(goalCount);
             })
@@ -21,45 +21,45 @@ function top15GoalScorers() {
     return new Promise((resolve, reject) => {
         GameEvents.aggregate([
             {
-                $match: { type: 'Goals' } // Considera solo gli eventi di tipo "goal"
+                $match: {type: 'Goals'}
             },
             {
                 $group: {
-                    _id: "$player_id", // Raggruppa per ID del giocatore
-                    totalGoals: { $sum: 1 } // Somma i gol
+                    _id: "$player_id",
+                    totalGoals: {$sum: 1}
                 }
             },
             {
-                $sort: { totalGoals: -1 } // Ordina in ordine decrescente per numero di gol
+                $sort: {totalGoals: -1}
             },
             {
-                $limit: 15 // Limita il risultato ai primi 15 giocatori
+                $limit: 15
             },
         ])
             .then(results => {
-                resolve(results); // Risolvi con i risultati dell'aggregazione
+                resolve(results);
             })
             .catch(error => {
-                reject(error); // Rifiuta in caso di errore
+                reject(error);
             });
     });
 }
 
 /**
- * Funzione per ottenere tutti gli eventi di una partita dato il suo ID.
- * @param {Number} gameId - ID della partita.
- * @returns {Promise} - Una promessa che si risolve con gli eventi della partita.
+ * Function to get the events of a game by its ID.
+ * @param {Number} gameId - ID of the game.
+ * @returns {Promise} - A promise that resolves with the events of the game or rejects with an error.
  */
 function getEventsByGameId(gameId) {
     return new Promise((resolve, reject) => {
-        GameEvents.find({ game_id: gameId })
-            .select('club_id type player_id description minute') // Seleziona solo i campi necessari
-            .sort({ minute: 1 }) // Ordina i risultati in base al campo "minute" in ordine crescente
+        GameEvents.find({game_id: gameId})
+            .select('club_id type player_id description minute')
+            .sort({minute: 1})
             .then(results => {
-                resolve(results); // Risolvi con i risultati della query
+                resolve(results);
             })
             .catch(error => {
-                reject(error); // Rifiuta in caso di errore
+                reject(error);
             });
     });
 }

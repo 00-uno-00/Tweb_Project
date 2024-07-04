@@ -9,7 +9,7 @@ router.get('/latest15matches', async function (req, res) {
         res.status(200).json(matches);
     } catch (error) {
         console.error('Error fetching latest 15 matches:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error'});
     }
 });
 
@@ -19,7 +19,7 @@ router.get('/latest10matches/:id', async function (req, res) {
         res.status(200).json(matches);
     } catch (error) {
         console.error('Error fetching latest 15 matches:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error'});
     }
 });
 
@@ -29,7 +29,7 @@ router.get('/teamscores/:id', async function (req, res) {
         res.status(200).json(matches);
     } catch (error) {
         console.error('Error fetching latest 15 matches:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error'});
     }
 });
 
@@ -39,7 +39,7 @@ router.get('/getManagerNames/:id', async function (req, res) {
         res.status(200).json(matches);
     } catch (error) {
         console.error('Error fetching latest 15 matches:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error'});
     }
 });
 //getallgames of a team
@@ -49,7 +49,7 @@ router.get('/getAllGames/:id', async function (req, res) {
         res.status(200).json(matches);
     } catch (error) {
         console.error('Error fetching latest 15 matches:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error'});
     }
 });
 
@@ -59,7 +59,7 @@ router.get('/getGameDetails/:id', async function (req, res) {
         res.status(200).json(matches);
     } catch (error) {
         console.error('Error fetching latest 15 matches:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error'});
     }
 });
 
@@ -69,7 +69,7 @@ router.get('/getGamesByChampionship/:id', async function (req, res) {
         res.status(200).json(matches);
     } catch (error) {
         console.error('Error fetching latest 15 matches:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error'});
     }
 });
 
@@ -80,10 +80,9 @@ router.get('/home/lastMatches', async function (req, res) {
         console.log(matches);
     } catch (error) {
         console.error('Error fetching last 4 matches:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error'});
     }
 });
-
 
 
 router.get('/searchGames/', async function (req, res) {
@@ -95,7 +94,7 @@ router.get('/searchGames/', async function (req, res) {
         res.status(200).json(matches);
     } catch (error) {
         console.error('Error fetching latest 15 matches:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error'});
     }
 });
 
