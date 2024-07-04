@@ -78,14 +78,15 @@
 }
 .match {
   display: inline-block;
-  width: 350px; /* Larghezza fissa per ogni card */
-  height: 120px; /* Altezza fissa per ogni card */
-  margin: 10px; /* Margine tra le card */
+  width: 100%;
+  height: auto;
+  margin: 5px;
   padding: 10px;
-  border: 2px solid green; /* Bordo verde più spesso */
-  font-family: Arial, sans-serif; /* Utilizzo di un carattere sans-serif */
-  background-color: #f0f0f0; /* Colore di sfondo per evidenziare la card */
-  box-sizing: border-box; /* Calcolo delle dimensioni inclusivo del bordo */
+  border: 2px solid green;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  box-sizing: border-box;
+  border-radius: 10px;
 }
 
 .match-info {
@@ -93,12 +94,29 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+  overflow: auto;
 }
 
-.match-info p {
-  margin: 0;
+.match-info .left,
+.match-info .right,
+.match-info .vs {
+  flex: 1;
+  text-align: center;
+}
+
+.match-info .left,
+.match-info .right {
   font-size: 16px;
-  text-align: right; /* Allinea il testo a destra */
+  font-weight: bold;
+}
+
+.match-info .vs {
+  font-size: 16px;
+  font-style: italic;
+}
+
+.score-info {
+  text-align: center;
 }
 
 .no-results {
@@ -139,7 +157,7 @@
 
 .score-info p {
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
   text-align: center;
 }/* Allinea il testo al centro */
 

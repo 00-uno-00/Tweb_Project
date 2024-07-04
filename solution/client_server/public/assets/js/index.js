@@ -55,9 +55,9 @@ async function lastMatches() {
 
                 matchDiv.innerHTML = `
                     <div class="match-info">
-              <p id="left">${match.home_club_name}</p>
-              <p>vs</p>
-              <p id="right">${match.away_club_name}</p>
+              <p class="left">${match.home_club_name}</p>
+              <p class="vs">vs</p>
+              <p class="right">${match.away_club_name}</p>
             </div>
             <div class="score-info">
               <p>Score: ${match.home_club_goals} - ${match.away_club_goals}</p>
