@@ -87,7 +87,7 @@ function totalMinutesPlayed(playerId) {
                 if (results.length > 0) {
                     resolve(results[0].totalMinutes);
                 } else {
-                    resolve(0); // Se il giocatore non ha nessuna apparizione
+                    resolve(0);
                 }
             })
             .catch(error => {
@@ -118,7 +118,7 @@ function totalGoalsScored(playerId) {
                 if (results.length > 0) {
                     resolve(results[0].totalGoals);
                 } else {
-                    resolve(0); // Se il giocatore non ha segnato nessun gol
+                    resolve(0);
                 }
             })
             .catch(error => {
@@ -149,7 +149,7 @@ function totalAssists(playerId) {
                 if (results.length > 0) {
                     resolve(results[0].totalAssists);
                 } else {
-                    resolve(0); // Se il giocatore non ha fatto nessun assist
+                    resolve(0);
                 }
             })
             .catch(error => {
@@ -157,6 +157,12 @@ function totalAssists(playerId) {
             });
     });
 }
+
+/**
+ * Retrieves the total red cards received by a specific player from the database.
+ * @param {number} playerId - The ID of the player for whom to retrieve total red cards.
+ * @returns {Promise} - A promise that resolves with the total red cards or rejects with an error.
+ * */
 
 function redCardsAPlayer(playerId) {
     return new Promise((resolve, reject) => {
@@ -176,7 +182,7 @@ function redCardsAPlayer(playerId) {
                 if (results.length > 0) {
                     resolve(results[0]);
                 } else {
-                    resolve(null); // Se il giocatore non ha nessun cartellino rosso
+                    resolve(null);
                 }
             })
             .catch(error => {
@@ -185,6 +191,11 @@ function redCardsAPlayer(playerId) {
     });
 }
 
+/**
+ * Retrieves the total yellow cards received by a specific player from the database.
+ * @param {number} playerId - The ID of the player for whom to retrieve total yellow cards.
+ * @returns {Promise} - A promise that resolves with the total yellow cards or rejects with an error.
+ * */
 
 function yellowCardsAPlayer(playerId) {
     return new Promise((resolve, reject) => {
@@ -204,7 +215,7 @@ function yellowCardsAPlayer(playerId) {
                 if (results.length > 0) {
                     resolve(results[0]);
                 } else {
-                    resolve(null); // Se il giocatore non ha nessun cartellino rosso
+                    resolve(null);
                 }
             })
             .catch(error => {
@@ -215,10 +226,10 @@ function yellowCardsAPlayer(playerId) {
 
 
 /**
- * Funzione per ottenere la prima e l'ultima apparizione di un giocatore in ciascuna squadra.
- * @param {Number} playerId - ID del giocatore.
- * @returns {Promise} - Una promessa che si risolve con le prime e ultime apparizioni per ciascuna squadra.
- */
+ * Retrieves the first and last appearance of a player in each club.
+ * @param {Number} playerId - The ID of the player.
+ * @returns {Promise} - A promise that resolves with the first and last appearances for each club.
+ * */
 function getPlayerAppearances(playerId) {
     return new Promise((resolve, reject) => {
         Appearances.aggregate([
@@ -227,19 +238,19 @@ function getPlayerAppearances(playerId) {
             },
             {
                 $group: {
-                    _id: "$player_club_id", // Raggruppa per ID del club
-                    firstAppearance: {$min: "$date"}, // Trova la data della prima apparizione
-                    lastAppearance: {$max: "$date"}, // Trova la data dell'ultima apparizione
-                    player_name: {$first: "$player_name"} // Mantiene il nome del giocatore
+                    _id: "$player_club_id",
+                    firstAppearance: {$min: "$date"},
+                    lastAppearance: {$max: "$date"},
+                    player_name: {$first: "$player_name"}
                 }
             },
             {
                 $project: {
-                    _id: 0,  //Escludi l'_id
-                    club_id: "$_id", // Rinominare _id in club_id
-                    player_name: 1, // Includi il nome del giocatore
-                    firstAppearance: 1, // Includi la prima apparizione
-                    lastAppearance: 1 // Includi l'ultima apparizione
+                    _id: 0,
+                    club_id: "$_id",
+                    player_name: 1,
+                    firstAppearance: 1,
+                    lastAppearance: 1
                 }
             },
             {
@@ -247,38 +258,43 @@ function getPlayerAppearances(playerId) {
             }
         ])
             .then(results => {
-                resolve(results); // Risolvi con i risultati dell'aggregazione
+                resolve(results);
             })
             .catch(error => {
-                reject(error); // Rifiuta in caso di errore
+                reject(error);
             });
     });
 }
 
-
 /**
- * Funzione per ottenere il numero totale di cartellini rossi di una squadra in una partita dato il suo ID e l'ID della squadra.
- * @param {Number} gameId - ID della partita.
- * @param {Number} clubId - ID della squadra.
- * @returns {Promise} - Una promessa che si risolve con il numero totale di cartellini rossi.
+ * Function to get the total number of red cards for a team in a match given its ID and the team's ID.
+ * @param {Number} gameId - ID of the match.
+ * @param {Number} clubId - ID of the team.
+ * @returns {Promise} - A promise that resolves to the total number of red cards.
  */
+
 function getTeamTotalRedCards(gameId, clubId) {
     return new Promise((resolve, reject) => {
         Appearances.find({game_id: gameId, player_club_id: clubId})
             .then(results => {
                 if (results.length > 0) {
-                    // Calcola il numero totale di cartellini rossi sommando il campo red_cards di ciascun documento
                     const totalRedCards = results.reduce((sum, appearance) => sum + appearance.red_cards, 0);
-                    resolve(totalRedCards); // Risolvi con il numero totale di cartellini rossi
+                    resolve(totalRedCards);
                 } else {
-                    resolve(0); // Se non ci sono apparizioni, restituisci 0
+                    resolve(0);
                 }
             })
             .catch(error => {
-                reject(error); // Rifiuta in caso di errore
+                reject(error);
             });
     });
 }
+
+/**
+ * Retrieves the total number of yellow cards for a team in a match given its ID and the team's ID.
+ * @param {Number} gameId - ID of the match.
+ * @param {Number} clubId - ID of the team.
+ * */
 
 function getTeamTotalYellowCards(gameId, clubId) {
     return new Promise((resolve, reject) => {
@@ -288,25 +304,23 @@ function getTeamTotalYellowCards(gameId, clubId) {
             .then(results => {
                 console.log("Find results:", results);
                 if (results.length > 0) {
-                    // Calcola il numero totale di cartellini gialli sommando il campo yellow_cards di ciascun documento
                     const totalYellowCards = results.reduce((sum, appearance) => sum + appearance.yellow_cards, 0);
-                    resolve(totalYellowCards); // Risolvi con il numero totale di cartellini gialli
+                    resolve(totalYellowCards);
                 } else {
-                    resolve(0); // Se non ci sono apparizioni, restituisci 0
+                    resolve(0);
                 }
             })
             .catch(error => {
-                reject(error); // Rifiuta in caso di errore
+                reject(error);
             });
     });
 }
 
-
 /**
- * Funzione per ottenere il numero totale di assist di una squadra in una partita dato il suo ID e l'ID della squadra.
- * @param {Number} gameId - ID della partita.
- * @param {Number} clubId - ID della squadra.
- * @returns {Promise} - Una promessa che si risolve con il numero totale di assist.
+ * Function to get the total number of assists for a team in a match given its ID and the team's ID.
+ * @param {Number} gameId - ID of the match.
+ * @param {Number} clubId - ID of the team.
+ * @returns {Promise} - A promise that resolves to the total number of assists.
  */
 
 function getTeamTotalAssists(gameId, clubId) {
@@ -314,40 +328,44 @@ function getTeamTotalAssists(gameId, clubId) {
         Appearances.find({game_id: gameId, player_club_id: clubId})
             .then(results => {
                 if (results.length > 0) {
-                    // Calcola il numero totale di assist sommando il campo assists di ciascun documento
                     const totalAssists = results.reduce((sum, appearance) => sum + appearance.assists, 0);
-                    resolve(totalAssists); // Risolvi con il numero totale di assist
+                    resolve(totalAssists);
                 } else {
-                    resolve(0); // Se non ci sono apparizioni, restituisci 0
+                    resolve(0);
                 }
             })
             .catch(error => {
-                reject(error); // Rifiuta in caso di errore
+                reject(error);
             });
     });
 }
+
+/**
+ * Retrieves the top 8 goal scorers from the database.
+ * @returns {Promise} - A promise that resolves with the retrieved data or rejects with an error.
+ */
 
 function top8GoalScorers() {
     return new Promise((resolve, reject) => {
         Appearances.aggregate([
             {
                 $group: {
-                    _id: "$player_id", // Raggruppa per ID del giocatore
+                    _id: "$player_id",
                     totalGoals: {$sum: "$goals"} // Somma i gol
                 }
             },
             {
-                $sort: {totalGoals: -1} // Ordina in ordine decrescente per numero di gol
+                $sort: {totalGoals: -1}
             },
             {
-                $limit: 8 // Limita il risultato ai primi 8 giocatori
+                $limit: 8
             }
         ])
             .then(results => {
-                resolve(results); // Risolvi con i risultati dell'aggregazione
+                resolve(results);
             })
             .catch(error => {
-                reject(error); // Rifiuta in caso di errore
+                reject(error);
             });
     });
 }

@@ -7,6 +7,15 @@ const express = require('express');
 const axios = require('axios');
 const router = express.Router();
 
+/**
+ * Route to get detailed information for a specific team by ID.
+ *
+ * @route GET /teamInfo/:team_id
+ * @param {string} req.params.team_id - The ID of the team whose information is being requested.
+ * @returns {JSON} An object containing the team's name and game statistics.
+ * @returns {Error} 500 - If there is an error fetching the team information.
+ */
+
 router.get('/teamInfo/:team_id', async (req, res) => {
     const {team_id} = req.params;
 
@@ -26,6 +35,15 @@ router.get('/teamInfo/:team_id', async (req, res) => {
     }
 });
 
+/**
+ * Route to get all the players in a specific team by ID.
+ *
+ * @route GET /players/:team_id
+ * @param {string} req.params.team_id - The ID of the team whose players are being requested.
+ * @returns {JSON} A list of players belonging to the team.
+ * @returns {Error} 500 - If there is an error fetching the players.
+ */
+
 router.get('/players/:team_id', async (req, res) => {
     const {team_id} = req.params;
 
@@ -37,6 +55,15 @@ router.get('/players/:team_id', async (req, res) => {
         res.status(500).json({error: 'Error fetching the players'});
     }
 });
+
+/**
+ * Route to get the latest 10 matches of a specific team by ID.
+ *
+ * @route GET /matches/:team_id
+ * @param {string} req.params.team_id - The ID of the team whose latest matches are being requested.
+ * @returns {JSON} A list of the latest 10 matches of the team.
+ * @returns {Error} 500 - If there is an error fetching the matches.
+ */
 
 router.get('/matches/:team_id', async (req, res) => {
     const {team_id} = req.params;

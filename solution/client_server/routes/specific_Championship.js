@@ -3,6 +3,13 @@ const axios = require('axios');
 const {log} = require("debug");
 const router = express.Router();
 
+/**
+ * Route to get all the championships.
+ * @name getChampionships
+ * @function
+ * @returns {list} championships - List of championships.
+ */
+
 router.get('/getChampionship/:id', async (req, res) => {
     const {id} = req.params;
 
@@ -42,6 +49,13 @@ router.get('/getTeamsCTIS/:ids', async (req, res) => {
         res.status(500).json({error: 'Error fetching teams'});
     }
 });
+
+/**
+ * route to get all the teams in the championship.
+ * @name getTeams
+ * @function
+ * @param {integer} id - The id of the championship.
+ */
 
 router.get('/getTeam/:id', async (req, res) => {
     const id = req.params.id;

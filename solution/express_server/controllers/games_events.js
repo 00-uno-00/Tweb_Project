@@ -1,6 +1,11 @@
 var GameEvents = require('../models/games_events');
 
-//restituisce i gol di un giocatore
+/**
+ * function to get the total goals scored by a player.
+ * @param {Number} playerId - ID of the player.
+ * @returns {Promise} - A promise that resolves with the total goals scored by the player or rejects with an error.
+ */
+
 function totalGoalsByPlayer(playerId) {
     return new Promise((resolve, reject) => {
         GameEvents.countDocuments({player_id: playerId, type: 'goals'})

@@ -3,6 +3,16 @@ const axios = require('axios');
 const {log} = require("debug");
 const router = express.Router();
 
+/**
+ * Route to get detailed statistics for a specific match by ID.
+ * This includes stadium data, club goals, and game events.
+ *
+ * @route GET /statsMatch/:id
+ * @param {string} req.params.id - The ID of the match to fetch statistics for.
+ * @returns {Object} An object containing data about the stadium, club goals, and events of the match.
+ * @returns {Error} 500 - If there is an error fetching any of the match details.
+ */
+
 router.get('/statsMatch/:id', async (req, res) => {
     const id = req.params.id;
     let data_stadium, club_goals;
@@ -16,7 +26,6 @@ router.get('/statsMatch/:id', async (req, res) => {
         return res.status(500).json({error: 'Error fetching game details'});
     }
 
-    // Try fetching team scores
     try {
         const club_goals_promise = axios.get(`http://localhost:3001/api/teamscores/${id}`);
         club_goals = await club_goals_promise;
@@ -40,6 +49,17 @@ router.get('/statsMatch/:id', async (req, res) => {
         events: events.data
     });
 });
+
+/**
+ * Route to get comprehensive statistics for a specific game and club by their IDs.
+ * This includes manager name, yellow cards, red cards, and assists data.
+ *
+ * @route GET /statsMatch/totalinfo/:gameId/:clubId
+ * @param {string} req.params.gameId - The ID of the game.
+ * @param {string} req.params.clubId - The ID of the club.
+ * @returns {Object} An object containing the manager's name, yellow cards, red cards, and assists data.
+ * @returns {Error} 500 - If there is an error fetching any of the data.
+ */
 
 router.get('/statsMatch/totalinfo/:gameId/:clubId', async (req, res) => {
     const team_id = req.params.clubId;

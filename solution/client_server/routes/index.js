@@ -62,6 +62,7 @@ router.get('/topPlayer', async (req, res) => {
     }
 });
 
+// GET top 8 teams most goals scored
 router.get('/lastMatches', async (req, res) => {
 
     try {
@@ -74,6 +75,9 @@ router.get('/lastMatches', async (req, res) => {
     }
 });
 
+/**
+ * Get all players from the server
+ * */
 router.get('/getPlayerName/:id', async (req, res) => {
     const playerId = req.params.id;
     try {
@@ -85,6 +89,9 @@ router.get('/getPlayerName/:id', async (req, res) => {
     }
 });
 
+/**
+ * Get data stats
+ * */
 router.get('/getDataStats', async (req, res) => {
     try {
         const playerPromise = axios.get('http://localhost:8080/Player/getNumberOfPlayers');

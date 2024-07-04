@@ -59,6 +59,11 @@ function getManager(clubId) {
     });
 }
 
+/**
+ * Retrieves the top 15 clubs with the most wins.
+ * @returns {Promise} - A promise that resolves with the top 15 clubs by wins or rejects with an error.
+ */
+
 function top15ClubsByWins() {
     return new Promise((resolve, reject) => {
         ClubGames.aggregate([

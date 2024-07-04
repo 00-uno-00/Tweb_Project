@@ -23,6 +23,12 @@ function getLast15Games() {
     });
 }
 
+/**
+ * function to get the last 10 games of a team
+ * @param {String} clubId - ID of the team
+ * @returns {Promise} - A promise that resolves with the last 10 games of the team
+ * */
+
 function getLast10Games(clubId) {
     return new Promise((resolve, reject) => {
         Games.aggregate([
@@ -50,6 +56,12 @@ function getLast10Games(clubId) {
     });
 
 }
+
+/**
+ * function to get all the games of a team
+ * @param {String} id - ID of the team
+ * @returns {Promise} - A promise that resolves with the games of the team
+ * */
 
 async function getAllGames(id) {
     return new Promise((resolve, reject) => {
@@ -86,6 +98,11 @@ async function getAllGames(id) {
     });
 
 }
+
+/**
+ * function to get all the games of a championship
+ * @param {String} id - ID of the championship
+ * */
 
 async function getChampionshipGames(id) {
     return new Promise((resolve, reject) => {
