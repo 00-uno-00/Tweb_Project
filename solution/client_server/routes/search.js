@@ -85,4 +85,30 @@ router.get('/Championships', async (req, res) => {
         res.status(500).send('Internal server error');
     }
 });
+/**
+ * Searches for matches based on a query string and returns a list of possible matches.
+ * 
+ * @route GET /Matches
+ * @param {string} req.query.query - The search query for match names.
+ * @returns {JSON} An object containing arrays of matches from PostgreSQL and MongoDB (MongoDB part is not implemented yet).
+ */
+router.get('/Matches', async (req, res) => {
+    try {
+        const searchText = req.query.query;
+
+        const gamesPromise = axios.get('http://localhost:3001/api/searchGames', {params: {query: searchText}});
+
+        const [gamesResponse] = await Promise.all([gamesPromise]);
+
+        const response = {
+            postgres: [],
+            mongo: gamesResponse.data
+        };
+        res.json(response);
+    } catch (error) {
+        console.error('Error in search: ', error);
+        res.status(500).send('Internal server error');
+    }
+});
+
 module.exports = router;

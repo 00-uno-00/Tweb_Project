@@ -225,49 +225,76 @@ function searchGames(names) {
     return new Promise((resolve, reject) => {
         Games.aggregate([
             {
-                $match: {
-                    $or: [
+                $facet: {
+                    "priorityMatches": [
                         {
-                            home_club_name: {$regex: names[0], $options: "i"},
-                            away_club_name: {$regex: names[1] !== "" ? names[1] : names[0], $options: "i"}
+                            $match: {
+                                $or: [
+                                    {
+                                        home_club_name: {$regex: names[0], $options: "i"},
+                                        away_club_name: {$regex: names[1] !== "" ? names[1] : names[0], $options: "i"}
+                                    },
+                                    {
+                                        home_club_name: {$regex: names[1] !== "" ? names[1] : names[0], $options: "i"},
+                                        away_club_name: {$regex: names[0], $options: "i"}
+                                    }
+                                ]
+                            }
                         },
                         {
-                            home_club_name: {$regex: names[1] !== "" ? names[1] : names[0], $options: "i"},
-                            away_club_name: {$regex: names[0], $options: "i"}
+                            $match: {
+                                date: {
+                                    $gte: new Date("Sun, 01 Jan 2023 00:00:00 GMT"),
+                                    $lt: new Date("Mon, 01 Jan 2024 00:00:00 GMT")
+                                }
+                            }
+                        },
+                        { $sort: { date: -1 } },
+                        { $limit: 10 }
+                    ],
+                    "otherMatches": [
+                        {
+                            $match: {
+                                $or: [
+                                    {
+                                        home_club_name: {$regex: names[0], $options: "i"}
+                                    },
+                                    {
+                                        away_club_name: {$regex: names[0], $options: "i"}
+                                    }
+                                ]
+                            }
                         },
                         {
-                            home_club_name: {$regex: names[0], $options: "i"}
+                            $match: {
+                                date: {
+                                    $gte: new Date("Sun, 01 Jan 2023 00:00:00 GMT"),
+                                    $lt: new Date("Mon, 01 Jan 2024 00:00:00 GMT")
+                                }
+                            }
                         },
-                        {
-                            away_club_name: {$regex: names[0], $options: "i"}
-                        }
+                        { $sort: { date: -1 } },
+                        { $limit: 10 }
                     ]
                 }
             },
             {
-                $match: {
-                    date: {
-                        $gte: new Date("Sun, 01 Jan 2023 00:00:00 GMT"),
-                        $lt: new Date("Mon, 01 Jan 2024 00:00:00 GMT")
-                    }
+                $project: {
+                    combinedResults: { $concatArrays: ["$priorityMatches", "$otherMatches"] }
                 }
             },
-            {
-                $sort: {date: -1}
-            },
-            {
-                $limit: 10
-            }
+            { $unwind: "$combinedResults" },
+            { $replaceRoot: { newRoot: "$combinedResults" } },
+            { $limit: 10 }
         ])
-            .then(results => {
-                resolve(results);
-            })
-            .catch(error => {
-                reject(error);
-            });
+        .then(results => {
+            resolve(results);
+        })
+        .catch(error => {
+            reject(error);
+        });
     });
 }
-
 
 async function getLast4Matches() {
     return new Promise((resolve, reject) => {

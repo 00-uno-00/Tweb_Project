@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from dataclasses import dataclass
 import seaborn as sns
 import calculator as calc
 from dataclasses import dataclass, field
@@ -146,22 +145,22 @@ if __name__ == "__main__":
     # Load data
     players = load_players_from_csv("Assignment_Data/players.csv")
     app = load_appearances_from_csv("Assignment_Data/appearances.csv")
-
+    year = "2022"
     # Example usage
-    grouped_df = filter('2023', players, app)
-    for player in grouped_df:
-        print(f"Player ID: {player.player_id}, Score: {calculate_score(player)}")
+    grouped_df = filter(year, players, app)
     
+    print("Calculating...")
     # Calculate scores for each player
     player_scores = []
     for player in grouped_df:
         score = calculate_score(player)
         player_scores.append({
             'player_id': player.player_id,
-            'year': '2023',
+            'year': year,
             'score': score
         })
-    
+    print("Scores calculated")
+    print("Normalizing...")
     # Normalize scores
     normalized_scores = normalize_scores([player['score'] for player in player_scores])
 
@@ -170,5 +169,7 @@ if __name__ == "__main__":
         player['score'] = normalized_scores[i]
 
     # Write scores to JSON file
-    with open('scores.json', 'w') as json_file:
+    with open('scores22.json', 'w') as json_file:
         json.dump(player_scores, json_file)
+        
+    print("Scores normalized and saved to scores22.json")
