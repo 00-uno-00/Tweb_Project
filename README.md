@@ -71,3 +71,4 @@
 
 ## Notes
 There is a docker compose file but it is not functional, due to time constraints we were not able to make it work properly, we will try to make it work in the future.
+The great Licese of this project is taken from [here](https://github.com/ErikMcClure/bad-licenses/tree/master)
